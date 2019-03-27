@@ -152,7 +152,7 @@
       <xs:enumeration value="application" />
       <xs:enumeration value="font" />
     </xs:restriction>
-  <simpleType>
+  </xs:simpleType>
   <!-- Content Component -->
 	<xs:complexType name="ContentComponentType">
 		<xs:sequence>
@@ -262,7 +262,7 @@
 	</xs:complexType>
   <!-- Audio Sampling Rate -->
   <xs:simpleType name="AudioSamplingRateType">
-    <xs:restriction base="xs:UIntVector">
+    <xs:restriction base="UIntVectorType">
       <xs:minLength value="1"/>
       <xs:maxLength value="2"/>
     </xs:restriction>
