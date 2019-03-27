@@ -263,6 +263,7 @@
 				<xs:attribute name="id" type="StringNoWhitespaceType" default="1"/>
 				<xs:attribute name="preselectionComponents" type="StringVectorType" use="required"/>
 				<xs:attribute name="lang" type="xs:language"/>
+				<xs:attribute name="single_init" type="xs:boolean" default="false"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
