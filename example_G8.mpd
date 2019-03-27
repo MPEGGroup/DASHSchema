@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Attention: this is not a complete MPD and thus will not validate against the MPD Schema -->
-<MPD>
+<MPD
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="urn:mpeg:dash:schema:mpd:2011"
+    xmlns:drm="http://example.net/052011/drm"
+    xsi:schemaLocation="urn:mpeg:dash:schema:mpd:2011 DASH-MPD.xsd"
+    type="static"
+    mediaPresentationDuration="PT3256S"
+    minBufferTime="PT10.00S"
+    profiles="urn:mpeg:dash:profile:isoff-on-demand:2011">
     <Period>
         <AdaptationSet mimeType="video/mp4" group="1">
             <Role schemeIdUri="urn:mpeg:dash:role:2011" value="main"/>
