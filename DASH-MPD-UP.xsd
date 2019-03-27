@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="urn:mpeg:dash:schema:urlparam:2014" targetNamespace="urn:mpeg:dash:schema:urlparam:2014" elementFormDefault="qualified" attributeFormDefault="unqualified">
+<xs:import namespace="http://www.w3.org/1999/xlink" schemaLocation="xlink.xsd"/>
+
+<xs:element name="UrlQueryInfo" type="UrlQueryInfoType"/>
+
+<xs:complexType name="UrlQueryInfoType">
+	<xs:sequence>
+		<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+	</xs:sequence>
+  <xs:attribute name="queryTemplate" type="xs:string"/>
+  <xs:attribute name="useMPDUrlQuery" type="xs:boolean"/>
+  <xs:attribute name="queryString" type="xs:string"/>
+  <xs:attribute ref="xlink:href"/>
+  <xs:attribute ref="xlink:actuate" default="onRequest"/>
+  <xs:anyAttribute namespace="##other" processContents="lax"/>
+</xs:complexType>
+
+<xs:element name="ExtUrlQueryInfo" type="ExtendedUrlInfoType"/>
+<xs:element name="ExtHttpHeaderInfo" type="ExtendedUrlInfoType"/>
+
+<xs:complexType name="ExtendedUrlInfoType">
+   <xs:complexContent>
+      <xs:extension base="UrlQueryInfoType">
+         <xs:attribute name="includeInRequests" type="xs:string" default="segment"/>
+         <xs:attribute name="headerParamSource" type="xs:string" default=""/>
+         <xs:attribute name="sameOriginOnly"    type="xs:boolean" default="false"/>
+     </xs:extension>
+   </xs:complexContent>
+</xs:complexType>
+
+</xs:schema>
