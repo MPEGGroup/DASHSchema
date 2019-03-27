@@ -78,7 +78,7 @@
                 </SegmentList>
             </Representation>
         </AdaptationSet>
-        <AdaptationSet mimeType="video/mp4" codecs=" mvc1.760028">
+        <AdaptationSet mimeType="video/mp4" codecs="mvc1.760028">
             <Role schemeIdUri="urn:mpeg:dash:stereoid:2011" value="l0"/>
             <Representation id="C1" dependencyId="C2" bandwidth="192000">
                 <SegmentList duration="10">
