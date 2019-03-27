@@ -20,6 +20,7 @@
 			<xs:element name="EssentialProperty" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="SupplementalProperty" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="UTCTiming" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="TimeLeapSecondInformation" type="TimeLeapSecondInformationType" minOccurs="0" maxOccurs="1"/>
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 		<xs:attribute name="id" type="xs:string"/>
@@ -477,4 +478,15 @@
 		<xs:attribute name="duration" type="xs:duration"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
+	<!-- Leap Second Information -->
+	<xs:complexType name="TimeLeapSecondInformationType">
+		<xs:sequence>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="availabilityStartLeapOffset" type="xs:integer" use="required"/>
+		<xs:attribute name="nextAvailabilityStartLeapOffset" type="xs:integer"/>
+		<xs:attribute name="nextLeapChangeTime" type="xs:dateTime"/>
+		<xs:anyAttribute namespace="##other" processContents="lax"/>
+	</xs:complexType>
+	
 </xs:schema>
