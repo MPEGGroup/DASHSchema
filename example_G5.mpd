@@ -44,7 +44,7 @@
             <!-- Representation dependent on both above -->
             <Representation 
                 mimeType="video/mp4" 
-                codecs="avc2.56401E " 
+                codecs="avc2.56401E" 
                 id="tag7" 
                 dependencyId="tag5 tag6" 
                 bandwidth="1024000"> 
