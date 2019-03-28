@@ -208,7 +208,8 @@
 				<xs:anyAttribute namespace="##other" processContents="lax"/>
 			</xs:extension>
 		</xs:simpleContent>
-	</xs:complexType>	<!-- Adaptation Set -->
+	</xs:complexType>
+	<!-- Adaptation Set -->
 	<xs:complexType name="AdaptationSetType">
 		<xs:complexContent>
 			<xs:extension base="RepresentationBaseType">
@@ -226,6 +227,8 @@
 				</xs:sequence>
 				<xs:attribute ref="xlink:href"/>
 				<xs:attribute ref="xlink:actuate" default="onRequest"/>
+				<xs:attribute ref="xlink:type" fixed="simple"/>
+				<xs:attribute ref="xlink:show" fixed="embed"/>
 				<xs:attribute name="id" type="xs:unsignedInt"/>
 				<xs:attribute name="group" type="xs:unsignedInt"/>
 				<xs:attribute name="lang" type="xs:language"/>
@@ -243,6 +246,7 @@
 				<xs:attribute name="subsegmentAlignment" type="xs:boolean" default="false"/>
 				<xs:attribute name="subsegmentStartsWithSAP" type="SAPType" default="0"/>
 				<xs:attribute name="bitstreamSwitching" type="xs:boolean"/>
+				<xs:attribute name="initializationRef" type="StringVectorType"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -336,6 +340,8 @@
 			<xs:element name="RandomAccess" type="RandomAccessType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="GroupLabel" type="LabelType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="Label" type="LabelType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ProducerReferenceTime" type="ProducerReferenceTimeType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ContentPopularityRate" type="ContentPopularityRateType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 		<xs:attribute name="profiles" type="xs:string"/>
@@ -346,7 +352,7 @@
 		<xs:attribute name="audioSamplingRate" type="AudioSamplingRateType"/>
 		<xs:attribute name="mimeType" type="xs:string"/>
 		<xs:attribute name="segmentProfiles" type="ListOf4CCType"/>
-		<xs:attribute name="codecs" type="xs:string"/>
+		<xs:attribute name="codecs" type="CodecsType"/>
 		<xs:attribute name="maximumSAPPeriod" type="xs:double"/>
 		<xs:attribute name="startWithSAP" type="SAPType"/>
 		<xs:attribute name="maxPlayoutRate" type="xs:double"/>
@@ -354,6 +360,55 @@
 		<xs:attribute name="scanType" type="VideoScanType"/>
 		<xs:attribute name="selectionPriority" type="xs:unsignedInt"/>
 		<xs:attribute name="tag" type="TagType"/>
+		<xs:anyAttribute namespace="##other" processContents="lax"/>
+	</xs:complexType>
+	<!-- Content Popularity Rate -->
+	<xs:complexType name="ContentPopularityRateType">
+		<xs:sequence>
+			<xs:element name="PR" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:attribute name="popularityRate">
+						<xs:simpleType>
+							<xs:restriction base="xs:unsignedInt">
+								<xs:minInclusive value="1"/>
+								<xs:maxInclusive value="100"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="start" type="xs:unsignedInt" use="optional"/>
+					<xs:attribute name="r" type="xs:int" use="optional" default="0"/>
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="source" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="content"/>
+					<xs:enumeration value="statistics"/>
+					<xs:enumeration value="other"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="source_description" type="xs:string"/>
+		<xs:anyAttribute namespace="##other" processContents="lax"/>
+	</xs:complexType>
+	<!--Request Rate Timeline -->
+	<xs:complexType name="RequestRateTimelineType">
+		<xs:sequence>
+			<xs:element name="RR" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:attribute name="requestRate" type="xs:unsignedLong" use="required"/>
+					<xs:attribute name="s" type="xs:unsignedInt" use="optional"/>
+					<xs:attribute name="r" type="xs:int" use="optional" default="0"/>
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="source" type="xs:string"/>
+		<xs:attribute name="source_description" type="xs:string"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
 	<!-- Label and Group Label -->
@@ -366,7 +421,21 @@
 			</xs:extension>
 		</xs:simpleContent>
 	</xs:complexType>
-  <!-- Preselection -->
+	<!-- Producer Reference time -->
+	<xs:complexType name="ProducerReferenceTimeType">
+		<xs:sequence>
+			<xs:element name="Instance" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:attribute name="ntp" type="xs:unsignedLong" use="required"/>
+					<xs:attribute name="media" type="xs:unsignedLong"/>
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:anyAttribute namespace="##other" processContents="lax"/>
+	</xs:complexType>
+	<!-- Preselection -->
 	<xs:complexType name="PreselectionType">
 		<xs:complexContent>
 			<xs:extension base="RepresentationBaseType">
@@ -442,9 +511,11 @@
 		<xs:sequence>
 			<xs:element name="Initialization" type="URLType" minOccurs="0"/>
 			<xs:element name="RepresentationIndex" type="URLType" minOccurs="0"/>
+			<xs:element name="FailoverContent" type="FailoverContentType" minOccurs="0"/>
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 		<xs:attribute name="timescale" type="xs:unsignedInt"/>
+		<xs:attribute name="eptDelta" type="xs:integer"/>
 		<xs:attribute name="presentationTimeOffset" type="xs:unsignedLong"/>
 		<xs:attribute name="presentationDuration" type="xs:unsignedLong"/>
 		<xs:attribute name="timeShiftBufferDepth" type="xs:duration"/>
@@ -476,6 +547,20 @@
 		<xs:attribute name="range" type="xs:string"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
+	<!-- Failover Content -->
+	<xs:complexType name="FailoverContentType">
+		<xs:sequence>
+			<xs:element name="MS" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:attribute name="t" type="xs:unsignedLong" use="required"/>
+					<xs:attribute name="d" type="xs:unsignedLong"/>
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:anyAttribute namespace="##other" processContents="lax"/>
+	</xs:complexType>
 	<!-- Segment List -->
 	<xs:complexType name="SegmentListType">
 		<xs:complexContent>
@@ -485,6 +570,8 @@
 				</xs:sequence>
 				<xs:attribute ref="xlink:href"/>
 				<xs:attribute ref="xlink:actuate" default="onRequest"/>
+				<xs:attribute ref="xlink:type" fixed="simple"/>
+				<xs:attribute ref="xlink:show" fixed="embed"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -593,4 +680,17 @@
 		<xs:attribute name="duration" type="xs:duration"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
-</xs:schema>
+	<xs:simpleType name="CodecsType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[a-zA-Z\-]+'[a-zA-Z]{1,8}(=[a-zA-Z]{1,8})*'(%[0-9A-F]{2}|[a-zA-Z0-9!#\\$\^_\-\+\{\}\|\.`~&#038;])+(.(%[0-9A-F]{2}|[a-zA-Z0-9!#\\$\^_\-\+\{\}\|\.`~&#038;])+)*(,(%[0-9A-F]{2}|[a-zA-Z0-9!#\\$\^_\-\+\{\}\|\.`~&#038;])+(.(%[0-9A-F]{2}|[a-zA-Z0-9!#\\$\^_\-\+\{\}\|\.`~&#038;])+)*)*">
+				<xs:annotation>
+					<xs:documentation>RFC6381 fancy-list</xs:documentation>
+				</xs:annotation>
+			</xs:pattern>
+			<xs:pattern value="[a-zA-Z0-9!#\\$%\^\*_\-\+\{\}\|'\.`~&#038;]+(,[a-zA-Z0-9!#\\$%\^\*_\-\+\{\}\|'\.`~&#038;]+)*">
+				<xs:annotation>
+					<xs:documentation>RFC6381 simp-list</xs:documentation>
+				</xs:annotation>
+			</xs:pattern>
+		</xs:restriction>
+	</xs:simpleType></xs:schema>
