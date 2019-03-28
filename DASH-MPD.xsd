@@ -15,11 +15,15 @@
 			<xs:element name="ProgramInformation" type="ProgramInformationType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="BaseURL" type="BaseURLType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="Location" type="xs:anyURI" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ServiceDescription" type="ServiceDescriptionType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="Period" type="PeriodType" maxOccurs="unbounded"/>
 			<xs:element name="Metrics" type="MetricsType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="EssentialProperty" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="SupplementalProperty" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="UTCTiming" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="InitializationSet" type="InitializationSetType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="InitializationGroup" type="UIntVWithIDType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="InitializationPresentation" type="UIntVWithIDType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 		<xs:attribute name="id" type="xs:string"/>
@@ -53,6 +57,7 @@
 			<xs:element name="SegmentTemplate" type="SegmentTemplateType" minOccurs="0"/>
 			<xs:element name="AssetIdentifier" type="DescriptorType" minOccurs="0"/>
 			<xs:element name="EventStream" type="EventStreamType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ServiceDescription" type="ServiceDescriptionType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="AdaptationSet" type="AdaptationSetType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="Subset" type="SubsetType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="SupplementalProperty" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
@@ -63,6 +68,8 @@
 		</xs:sequence>
 		<xs:attribute ref="xlink:href"/>
 		<xs:attribute ref="xlink:actuate" default="onRequest"/>
+		<xs:attribute ref="xlink:type" fixed="simple"/>
+		<xs:attribute ref="xlink:show" fixed="embed"/>
 		<xs:attribute name="id" type="xs:string"/>
 		<xs:attribute name="start" type="xs:duration"/>
 		<xs:attribute name="duration" type="xs:duration"/>
@@ -77,9 +84,12 @@
 		</xs:sequence>
 		<xs:attribute ref="xlink:href"/>
 		<xs:attribute ref="xlink:actuate" default="onRequest"/>
+		<xs:attribute ref="xlink:type" fixed="simple"/>
+		<xs:attribute ref="xlink:show" fixed="embed"/>
 		<xs:attribute name="schemeIdUri" type="xs:anyURI" use="required"/>
 		<xs:attribute name="value" type="xs:string"/>
 		<xs:attribute name="timescale" type="xs:unsignedInt"/>
+		<xs:attribute name="presentationTimeOffset" type="xs:unsignedLong" default="0"/>
 	</xs:complexType>
 	<!-- Event  -->
 	<xs:complexType name="EventType">
@@ -89,10 +99,116 @@
 		<xs:attribute name="presentationTime" type="xs:unsignedLong" default="0"/>
 		<xs:attribute name="duration" type="xs:unsignedLong"/>
 		<xs:attribute name="id" type="xs:unsignedInt"/>
-		<xs:attribute name="messageData" type="xs:string"/>
+		<xs:attribute name="contentEncoding" type="ContentEncodingType"/>
+		<xs:attribute name="messageData" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>
+					Deprecated in favor of carrying the message information in the
+					value space of the event
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
-	<!-- Adaptation Set -->
+	<!-- Event Coding -->
+	<xs:simpleType name="ContentEncodingType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="base64"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- Initialization Set -->
+	<xs:complexType name="InitializationSetType">
+		<xs:complexContent>
+			<xs:extension base="RepresentationBaseType">
+				<xs:sequence>
+					<xs:element name="Accessibility" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="Role" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="Rating" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="Viewpoint" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="ContentComponent" type="ContentComponentType" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute ref="xlink:href"/>
+				<xs:attribute ref="xlink:actuate" default="onRequest"/>
+				<xs:attribute name="id" type="xs:unsignedInt" use="required"/>
+				<xs:attribute name="lang" type="xs:language"/>
+				<xs:attribute name="contentType" type="RFC6838ContentTypeType"/>
+				<xs:attribute name="par" type="RatioType"/>
+				<xs:attribute name="maxBandwidth" type="xs:unsignedInt"/>
+				<xs:attribute name="maxWidth" type="xs:unsignedInt"/>
+				<xs:attribute name="maxHeight" type="xs:unsignedInt"/>
+				<xs:attribute name="maxFrameRate" type="FrameRateType"/>
+				<xs:attribute name="initialization" type="xs:anyURI"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- Service Description -->
+	<xs:complexType name="ServiceDescriptionType">
+		<xs:sequence>
+			<xs:element name="Scope" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Latency" type="LatencyType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="PlaybackRate" type="PlaybackRateType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="OperatingQuality" type="PlaybackRateType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="OperatingBandwidth" type="PlaybackRateType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string"/>
+		<xs:anyAttribute namespace="##other" processContents="lax"/>
+	</xs:complexType>
+	<!-- Service Description Latency -->
+	<xs:complexType name="LatencyType">
+		<xs:sequence>
+			<xs:element name="QualityLatency" type="UIntPairsWithIDType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="referenceId" type="xs:unsignedInt"/>
+		<xs:attribute name="target" type="xs:unsignedInt"/>
+		<xs:attribute name="max" type="xs:unsignedInt"/>
+		<xs:attribute name="min" type="xs:unsignedInt"/>
+		<xs:anyAttribute namespace="##other" processContents="lax"/>
+	</xs:complexType>
+	<!-- Service Description Playback Rate -->
+	<xs:complexType name="PlaybackRateType">
+		<xs:attribute name="max" type="xs:double"/>
+		<xs:attribute name="min" type="xs:double"/>
+		<xs:anyAttribute namespace="##other" processContents="lax"/>
+	</xs:complexType>
+	<!-- Service Description Operating Quality -->
+	<xs:complexType name="OperatingQualityType">
+		<xs:attribute name="mediaType" type="xs:string"/>
+		<xs:attribute name="min" type="xs:double"/>
+		<xs:attribute name="max" type="xs:double"/>
+		<xs:attribute name="target" type="xs:unsignedInt"/>
+		<xs:attribute name="type" type="xs:anyURI"/>
+		<xs:anyAttribute namespace="##other" processContents="lax"/>
+	</xs:complexType>
+	<!-- Service Description Operating Bandwidth -->
+	<xs:complexType name="OperatingBandwidthType">
+		<xs:attribute name="mediaType" type="xs:string"/>
+		<xs:attribute name="min" type="xs:double"/>
+		<xs:attribute name="max" type="xs:double"/>
+		<xs:attribute name="target" type="xs:unsignedInt"/>
+		<xs:anyAttribute namespace="##other" processContents="lax"/>
+	</xs:complexType>
+	<!-- UInt Pairs With ID -->
+	<xs:complexType name="UIntPairsWithIDType">
+		<xs:simpleContent>
+			<xs:extension base="UIntVectorType">
+				<xs:attribute name="type" type="xs:anyURI"/>
+				<xs:anyAttribute namespace="##other" processContents="lax"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<!-- UInt Vector With ID -->
+	<xs:complexType name="UIntVWithIDType">
+		<xs:simpleContent>
+			<xs:extension base="UIntVectorType">
+				<xs:attribute name="id" type="xs:string" use="required"/>
+				<xs:attribute name="profiles" type="xs:string"/>
+				<xs:attribute name="contentType" type="RFC6838ContentTypeType"/>
+				<xs:anyAttribute namespace="##other" processContents="lax"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>	<!-- Adaptation Set -->
 	<xs:complexType name="AdaptationSetType">
 		<xs:complexContent>
 			<xs:extension base="RepresentationBaseType">
