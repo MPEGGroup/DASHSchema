@@ -693,4 +693,5 @@
 				</xs:annotation>
 			</xs:pattern>
 		</xs:restriction>
-	</xs:simpleType></xs:schema>
+	</xs:simpleType>
+</xs:schema>
