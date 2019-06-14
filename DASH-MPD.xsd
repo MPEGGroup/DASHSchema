@@ -152,7 +152,7 @@
       <xs:enumeration value="application" />
       <xs:enumeration value="font" />
     </xs:restriction>
-  <simpleType>
+  </xs:simpleType>
   <!-- Content Component -->
 	<xs:complexType name="ContentComponentType">
 		<xs:sequence>
@@ -254,6 +254,12 @@
 	<xs:complexType name="PreselectionType">
 		<xs:complexContent>
 			<xs:extension base="RepresentationBaseType">
+				<xs:sequence>
+					<xs:element name="Accessibility" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="Role" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="Rating" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="Viewpoint" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
 				<xs:attribute name="id" type="StringNoWhitespaceType" default="1"/>
 				<xs:attribute name="preselectionComponents" type="StringVectorType" use="required"/>
 				<xs:attribute name="lang" type="xs:language"/>
@@ -262,7 +268,7 @@
 	</xs:complexType>
   <!-- Audio Sampling Rate -->
   <xs:simpleType name="AudioSamplingRateType">
-    <xs:restriction base="xs:UIntVector">
+    <xs:restriction base="UIntVectorType">
       <xs:minLength value="1"/>
       <xs:maxLength value="2"/>
     </xs:restriction>
