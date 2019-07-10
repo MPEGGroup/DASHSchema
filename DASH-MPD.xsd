@@ -20,6 +20,7 @@
 			<xs:element name="EssentialProperty" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="SupplementalProperty" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="UTCTiming" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="TimeLeapSecondInformation" type="TimeLeapSecondInformationType" minOccurs="0" maxOccurs="1"/>
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 		<xs:attribute name="id" type="xs:string"/>
@@ -139,21 +140,21 @@
 	<!-- Type for Frame Rate -->
 	<xs:simpleType name="FrameRateType">
 		<xs:restriction base="xs:string">
-			<xs:pattern value="[0-9]*[0-9](/[0-9]*[0-9])?"/>
+			<xs:pattern value="[0-9]+(/[1-9][0-9]*)?"/>
 		</xs:restriction>
 	</xs:simpleType>
-  <!-- Type for RFC6838 Content Type -->
-  <xs:simpleType name="RFC6838ContentTypeType">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="text" />
-      <xs:enumeration value="image" />
-      <xs:enumeration value="audio" />
-      <xs:enumeration value="video" />
-      <xs:enumeration value="application" />
-      <xs:enumeration value="font" />
-    </xs:restriction>
-  </xs:simpleType>
-  <!-- Content Component -->
+	<!-- Type for RFC6838 Content Type -->
+	<xs:simpleType name="RFC6838ContentTypeType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="text"/>
+			<xs:enumeration value="image"/>
+			<xs:enumeration value="audio"/>
+			<xs:enumeration value="video"/>
+			<xs:enumeration value="application"/>
+			<xs:enumeration value="font"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- Content Component -->
 	<xs:complexType name="ContentComponentType">
 		<xs:sequence>
 			<xs:element name="Accessibility" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
@@ -250,7 +251,7 @@
 			</xs:extension>
 		</xs:simpleContent>
 	</xs:complexType>
-  <!-- Preselection -->
+	<!-- Preselection -->
 	<xs:complexType name="PreselectionType">
 		<xs:complexContent>
 			<xs:extension base="RepresentationBaseType">
@@ -266,13 +267,13 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-  <!-- Audio Sampling Rate -->
-  <xs:simpleType name="AudioSamplingRateType">
-    <xs:restriction base="UIntVectorType">
-      <xs:minLength value="1"/>
-      <xs:maxLength value="2"/>
-    </xs:restriction>
-  </xs:simpleType>
+	<!-- Audio Sampling Rate -->
+	<xs:simpleType name="AudioSamplingRateType">
+		<xs:restriction base="UIntVectorType">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
 	<!-- Stream Access Point type enumeration -->
 	<xs:simpleType name="SAPType">
 		<xs:restriction base="xs:unsignedInt">
@@ -481,6 +482,16 @@
 	<xs:complexType name="RangeType">
 		<xs:attribute name="time" type="xs:duration"/>
 		<xs:attribute name="duration" type="xs:duration"/>
+		<xs:anyAttribute namespace="##other" processContents="lax"/>
+	</xs:complexType>
+	<!-- Leap Second Information -->
+	<xs:complexType name="TimeLeapSecondInformationType">
+		<xs:sequence>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="availabilityStartLeapOffset" type="xs:integer" use="required"/>
+		<xs:attribute name="nextAvailabilityStartLeapOffset" type="xs:integer"/>
+		<xs:attribute name="nextLeapChangeTime" type="xs:dateTime"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
 </xs:schema>
