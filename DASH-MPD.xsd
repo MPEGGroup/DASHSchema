@@ -21,7 +21,7 @@
 			<xs:element name="EssentialProperty" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="SupplementalProperty" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="UTCTiming" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element name="TimeLeapSecondInformation" type="TimeLeapSecondInformationType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="LeapSecondInformation" type="LeapSecondInformationType" minOccurs="0" maxOccurs="1"/>
 			<xs:element name="InitializationSet" type="InitializationSetType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="InitializationGroup" type="UIntVWithIDType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="InitializationPresentation" type="UIntVWithIDType" minOccurs="0" maxOccurs="unbounded"/>
@@ -702,7 +702,7 @@
 		</xs:restriction>
 	</xs:simpleType>
 	<!-- Leap Second Information -->
-	<xs:complexType name="TimeLeapSecondInformationType">
+	<xs:complexType name="LeapSecondInformationType">
 		<xs:sequence>
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
