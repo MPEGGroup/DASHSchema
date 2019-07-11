@@ -4,8 +4,8 @@
 	<xs:annotation>
 		<xs:appinfo>Media Presentation Description</xs:appinfo>
 		<xs:documentation xml:lang="en">
-      This Schema defines the Media Presentation Description for MPEG-DASH.
-    </xs:documentation>
+This Schema defines the Media Presentation Description for MPEG-DASH.
+</xs:documentation>
 	</xs:annotation>
 	<!-- MPD: main element -->
 	<xs:element name="MPD" type="MPDtype"/>
@@ -81,7 +81,7 @@
 		<xs:attribute name="value" type="xs:string"/>
 		<xs:attribute name="timescale" type="xs:unsignedInt"/>
 	</xs:complexType>
-	<!-- Event  -->
+	<!-- Event -->
 	<xs:complexType name="EventType">
 		<xs:sequence>
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
@@ -113,7 +113,7 @@
 				<xs:attribute name="id" type="xs:unsignedInt"/>
 				<xs:attribute name="group" type="xs:unsignedInt"/>
 				<xs:attribute name="lang" type="xs:language"/>
-				<xs:attribute name="contentType" type="RFC6838ContentTypeType"/>
+				<xs:attribute name="contentType" type="IETFRFC6838ContentTypeType"/>
 				<xs:attribute name="par" type="RatioType"/>
 				<xs:attribute name="minBandwidth" type="xs:unsignedInt"/>
 				<xs:attribute name="maxBandwidth" type="xs:unsignedInt"/>
@@ -142,18 +142,18 @@
 			<xs:pattern value="[0-9]*[0-9](/[0-9]*[0-9])?"/>
 		</xs:restriction>
 	</xs:simpleType>
-  <!-- Type for RFC6838 Content Type -->
-  <xs:simpleType name="RFC6838ContentTypeType">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="text" />
-      <xs:enumeration value="image" />
-      <xs:enumeration value="audio" />
-      <xs:enumeration value="video" />
-      <xs:enumeration value="application" />
-      <xs:enumeration value="font" />
-    </xs:restriction>
-  </xs:simpleType>
-  <!-- Content Component -->
+	<!-- Type for IETF RFC6838 Content Type -->
+	<xs:simpleType name="IETFRFC6838ContentTypeType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="text"/>
+			<xs:enumeration value="image"/>
+			<xs:enumeration value="audio"/>
+			<xs:enumeration value="video"/>
+			<xs:enumeration value="application"/>
+			<xs:enumeration value="font"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- Content Component -->
 	<xs:complexType name="ContentComponentType">
 		<xs:sequence>
 			<xs:element name="Accessibility" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
@@ -250,7 +250,7 @@
 			</xs:extension>
 		</xs:simpleContent>
 	</xs:complexType>
-  <!-- Preselection -->
+	<!-- Preselection -->
 	<xs:complexType name="PreselectionType">
 		<xs:complexContent>
 			<xs:extension base="RepresentationBaseType">
@@ -266,13 +266,13 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-  <!-- Audio Sampling Rate -->
-  <xs:simpleType name="AudioSamplingRateType">
-    <xs:restriction base="UIntVectorType">
-      <xs:minLength value="1"/>
-      <xs:maxLength value="2"/>
-    </xs:restriction>
-  </xs:simpleType>
+	<!-- Audio Sampling Rate -->
+	<xs:simpleType name="AudioSamplingRateType">
+		<xs:restriction base="UIntVectorType">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
 	<!-- Stream Access Point type enumeration -->
 	<xs:simpleType name="SAPType">
 		<xs:restriction base="xs:unsignedInt">
@@ -292,13 +292,13 @@
 	<xs:simpleType name="TagType">
 		<xs:restriction base="xs:string"/>
 	</xs:simpleType>
-	<!-- Subset  -->
+	<!-- Subset -->
 	<xs:complexType name="SubsetType">
 		<xs:attribute name="contains" type="UIntVectorType" use="required"/>
 		<xs:attribute name="id" type="xs:string"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
-	<!-- Switching  -->
+	<!-- Switching -->
 	<xs:complexType name="SwitchingType">
 		<xs:attribute name="interval" type="xs:unsignedInt" use="required"/>
 		<xs:attribute name="type" type="SwitchingTypeType"/>
@@ -311,7 +311,7 @@
 			<xs:enumeration value="bitstream"/>
 		</xs:restriction>
 	</xs:simpleType>
-	<!-- Random Access  -->
+	<!-- Random Access -->
 	<xs:complexType name="RandomAccessType">
 		<xs:attribute name="interval" type="xs:unsignedInt" use="required"/>
 		<xs:attribute name="type" type="RandomAccessTypeType" default="closed"/>
@@ -378,7 +378,7 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<!-- Segment URL  -->
+	<!-- Segment URL -->
 	<xs:complexType name="SegmentURLType">
 		<xs:sequence>
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
