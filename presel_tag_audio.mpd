@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MPD
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xmlns:dolby="http://www.dolby.com/ns/online/DASH"
+ xmlns="urn:mpeg:dash:schema:mpd:2011"
+ xsi:schemaLocation="urn:mpeg:dash:schema:mpd:2011"
+ type="dynamic"
+ availabilityStartTime="2018-12-20T06:28:37Z"
+ publishTime="2018-12-20T06:28:37Z"
+ minimumUpdatePeriod="PT2S"
+ mediaPresentationDuration="PT0H0M54.554S"
+ minBufferTime="PT4S"
+ profiles="urn:mpeg:dash:profile:isoff-broadcast:2015">
+ <Period id="1" start="PT0S">
+    <!-- Video -->
+    <AdaptationSet id="1" mimeType="video/mp4" segmentAlignment="true" startWithSAP="1">
+      <SegmentTemplate timescale="5994"
+        media="video_$Number$.mp4"
+        initialization="video.mp4"
+        startNumber="1">
+        <SegmentTimeline>
+          <S t="0" d="12000" r="33"/>
+        </SegmentTimeline>
+      </SegmentTemplate>
+      <Representation id="1" bandwidth="2030173" codecs="hev1.1.6.L120.90" width="1920" height="1080"/>
+    </AdaptationSet>
+    <!-- Audio -->
+    <AdaptationSet id="2" mimeType="audio/mp4" segmentAlignment="true" startWithSAP="1">
+      <SegmentTemplate timescale="48000"
+        media="audio_$Number$.mp4"
+        initialization="audio.mp4"
+        startNumber="1">
+        <SegmentTimeline>
+          <S t="0" d="90112" r="129"/>
+        </SegmentTimeline>
+      </SegmentTemplate>
+      <Representation id="2" bandwidth="434965" codecs="mhm2.0x0C" audioSamplingRate="48000"/>
+    </AdaptationSet>
+    <!-- Preselections -->
+    <Preselection id="es" tag="1" preselectionComponents="2">
+      <AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="2"/>
+      <Label id="1">Main Spanish</Label>
+      <Role schemeIdUri="urn:mpeg:dash:role:2011" value="main"/>
+    </Preselection>
+    <Preselection id="en" tag="2" preselectionComponents="2">
+      <AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="2"/>
+      <Label id="2">Main English</Label>
+      <Role schemeIdUri="urn:mpeg:dash:role:2011" value="alternate"/>
+    </Preselection>
+ </Period>
+</MPD>
