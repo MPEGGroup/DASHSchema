@@ -607,7 +607,7 @@
 	<!-- Segment Timeline -->
 	<xs:complexType name="SegmentTimelineType">
 		<xs:sequence>
-			<xs:element name="S" maxOccurs="unbounded">
+			<xs:element name="S" minOccurs="0" maxOccurs="unbounded">
 				<xs:complexType>
 					<xs:attribute name="t" type="xs:unsignedLong"/>
 					<xs:attribute name="n" type="xs:unsignedLong"/>
