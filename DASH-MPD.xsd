@@ -93,7 +93,7 @@
 		<xs:attribute name="presentationTimeOffset" type="xs:unsignedLong" default="0"/>
 	</xs:complexType>
 	<!-- Event  -->
-	<xs:complexType name="EventType">
+	<xs:complexType name="EventType" mixed="true">
 		<xs:sequence>
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
