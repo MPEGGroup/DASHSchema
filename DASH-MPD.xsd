@@ -645,6 +645,7 @@
 				<xs:attribute name="byteRange" type="xs:string"/>
 				<xs:attribute name="availabilityTimeOffset" type="xs:double"/>
 				<xs:attribute name="availabilityTimeComplete" type="xs:boolean"/>
+				<xs:attribute name="timeShiftBufferDepth" type="xs:duration"/>
 				<xs:anyAttribute namespace="##other" processContents="lax"/>
 			</xs:extension>
 		</xs:simpleContent>
