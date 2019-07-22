@@ -21,7 +21,7 @@
 			<xs:element name="EssentialProperty" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="SupplementalProperty" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="UTCTiming" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element name="TimeLeapSecondInformation" type="TimeLeapSecondInformationType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="LeapSecondInformation" type="LeapSecondInformationType" minOccurs="0" maxOccurs="1"/>
 			<xs:element name="InitializationSet" type="InitializationSetType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="InitializationGroup" type="UIntVWithIDType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="InitializationPresentation" type="UIntVWithIDType" minOccurs="0" maxOccurs="unbounded"/>
@@ -93,7 +93,7 @@
 		<xs:attribute name="presentationTimeOffset" type="xs:unsignedLong" default="0"/>
 	</xs:complexType>
 	<!-- Event  -->
-	<xs:complexType name="EventType">
+	<xs:complexType name="EventType" mixed="true">
 		<xs:sequence>
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
@@ -607,7 +607,7 @@
 	<!-- Segment Timeline -->
 	<xs:complexType name="SegmentTimelineType">
 		<xs:sequence>
-			<xs:element name="S" maxOccurs="unbounded">
+			<xs:element name="S" minOccurs="0" maxOccurs="unbounded">
 				<xs:complexType>
 					<xs:attribute name="t" type="xs:unsignedLong"/>
 					<xs:attribute name="n" type="xs:unsignedLong"/>
@@ -645,6 +645,7 @@
 				<xs:attribute name="byteRange" type="xs:string"/>
 				<xs:attribute name="availabilityTimeOffset" type="xs:double"/>
 				<xs:attribute name="availabilityTimeComplete" type="xs:boolean"/>
+				<xs:attribute name="timeShiftBufferDepth" type="xs:duration"/>
 				<xs:anyAttribute namespace="##other" processContents="lax"/>
 			</xs:extension>
 		</xs:simpleContent>
@@ -702,7 +703,7 @@
 		</xs:restriction>
 	</xs:simpleType>
 	<!-- Leap Second Information -->
-	<xs:complexType name="TimeLeapSecondInformationType">
+	<xs:complexType name="LeapSecondInformationType">
 		<xs:sequence>
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
