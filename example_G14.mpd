@@ -16,5 +16,5 @@
 		</AdaptationSet>
 	</Period>
 	<UTCTiming schemeIdUri="urn:mpeg:dash:utc:http-xsdate:2014" value="https://example.com/iso"/>
-	<LeapSecondInformation availabilityStartLeapOffset="0" nextAvailabilityStartLeapOffset="1" nextLeapChangeTime="2020-01-01T00:00:00"/>
+	<LeapSecondInformation availabilityStartLeapOffset="0" nextAvailabilityStartLeapOffset="1" nextLeapChangeTime="2020-01-01T00:00:00Z"/>
 </MPD>
