@@ -28,7 +28,7 @@
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 		<xs:attribute name="id" type="xs:string"/>
-		<xs:attribute name="profiles" type="xs:string" use="required"/>
+		<xs:attribute name="profiles" type="ListOfProfilesType" use="required"/>
 		<xs:attribute name="type" type="PresentationType" default="static"/>
 		<xs:attribute name="availabilityStartTime" type="xs:dateTime"/>
 		<xs:attribute name="availabilityEndTime" type="xs:dateTime"/>
@@ -204,13 +204,19 @@
 		<xs:simpleContent>
 			<xs:extension base="UIntVectorType">
 				<xs:attribute name="id" type="xs:string" use="required"/>
-				<xs:attribute name="profiles" type="xs:string"/>
+				<xs:attribute name="profiles" type="ListOfProfilesType"/>
 				<xs:attribute name="contentType" type="RFC6838ContentTypeType"/>
 				<xs:anyAttribute namespace="##other" processContents="lax"/>
 			</xs:extension>
 		</xs:simpleContent>
 	</xs:complexType>
-	<!-- Adaptation Set -->
+	<!-- List of Profiles -->
+	<xs:simpleType name="ListOfProfilesType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(([A-Za-z0-9\-\._~&#xA0;-&#xFF;]|(&#37;[0-9A-Fa-f][0-9A-Fa-f])|[!$&amp;'()*+;=:@]))+(,(([A-Za-z0-9\-\._~&#xA0;-&#xFF;]|(&#37;[0-9A-Fa-f][0-9A-Fa-f])|[!$&amp;'()*+;=:@]))*)*" />
+		</xs:restriction>
+	</xs:simpleType>
+<!-- Adaptation Set -->
 	<xs:complexType name="AdaptationSetType">
 		<xs:complexContent>
 			<xs:extension base="RepresentationBaseType">
@@ -345,7 +351,7 @@
 			<xs:element name="ContentPopularityRate" type="ContentPopularityRateType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
-		<xs:attribute name="profiles" type="xs:string"/>
+		<xs:attribute name="profiles" type="ListOfProfilesType"/>
 		<xs:attribute name="width" type="xs:unsignedInt"/>
 		<xs:attribute name="height" type="xs:unsignedInt"/>
 		<xs:attribute name="sar" type="RatioType"/>
