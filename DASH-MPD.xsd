@@ -213,10 +213,10 @@
 	<!-- List of Profiles -->
 	<xs:simpleType name="ListOfProfilesType">
 		<xs:restriction base="xs:string">
-			<xs:pattern value="(([A-Za-z0-9\-\._~&#xA0;-&#xFF;]|(&#37;[0-9A-Fa-f][0-9A-Fa-f])|[!$&amp;'()*+;=:@]))+(,(([A-Za-z0-9\-\._~&#xA0;-&#xFF;]|(&#37;[0-9A-Fa-f][0-9A-Fa-f])|[!$&amp;'()*+;=:@]))*)*" />
+			<xs:pattern value="(([A-Za-z0-9\-\._~&#xA0;-&#xFF;]|(&#37;[0-9A-Fa-f][0-9A-Fa-f])|[!$&amp;'()*+;=:@]))+(,(([A-Za-z0-9\-\._~&#xA0;-&#xFF;]|(&#37;[0-9A-Fa-f][0-9A-Fa-f])|[!$&amp;'()*+;=:@]))*)*"/>
 		</xs:restriction>
 	</xs:simpleType>
-<!-- Adaptation Set -->
+	<!-- Adaptation Set -->
 	<xs:complexType name="AdaptationSetType">
 		<xs:complexContent>
 			<xs:extension base="RepresentationBaseType">
@@ -253,7 +253,7 @@
 				<xs:attribute name="subsegmentAlignment" type="xs:boolean" default="false"/>
 				<xs:attribute name="subsegmentStartsWithSAP" type="SAPType" default="0"/>
 				<xs:attribute name="bitstreamSwitching" type="xs:boolean"/>
-				<xs:attribute name="initializationRef" type="StringVectorType"/>
+				<xs:attribute name="initializationSetRef" type="StringVectorType"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
