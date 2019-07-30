@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MPD
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xmlns:dolby="http://www.dolby.com/ns/online/DASH"
  xmlns="urn:mpeg:dash:schema:mpd:2011"
  xsi:schemaLocation="urn:mpeg:dash:schema:mpd:2011"
  type="dynamic"
@@ -34,7 +33,7 @@
           <S t="0" d="90112" r="129"/>
         </SegmentTimeline>
       </SegmentTemplate>
-      <Representation id="2" bandwidth="434965" codecs="mhm2.0x0C" audioSamplingRate="48000"/>
+      <Representation id="2" bandwidth="434965" codecs="mhm1.0x0C" audioSamplingRate="48000"/>
     </AdaptationSet>
     <!-- Preselections -->
     <Preselection id="es" tag="1" preselectionComponents="2">
@@ -44,7 +43,7 @@
     </Preselection>
     <Preselection id="en" tag="2" preselectionComponents="2">
       <AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="2"/>
-      <Label id="2">Main English</Label>
+      <Label id="1">Main English</Label>
       <Role schemeIdUri="urn:mpeg:dash:role:2011" value="alternate"/>
     </Preselection>
  </Period>

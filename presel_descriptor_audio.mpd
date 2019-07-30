@@ -25,8 +25,8 @@
       <Representation id="1" bandwidth="3732256" codecs="hev1.1.6.L120.90" width="1920" height="1080"/>
     </AdaptationSet>
     <!-- Audio -->
-    <AdaptationSet id="2" mimeType="audio/mp4" segmentAlignment="true" startWithSAP="1">
-      <EssentialProperty schemeIdUri="urn:mpeg:dash:preselection:2016"/>
+    <AdaptationSet id="2" mimeType="audio/mp4" codecs="mhm2.0x0C" segmentAlignment="true" startWithSAP="1">
+      <SupplementalProperty schemeIdUri="urn:mpeg:dash:preselection:2016" value="es,2 3"/>
       <SegmentTemplate timescale="48000"
         media="audio0_$Number$.mp4"
         initialization="audio0.mp4"
@@ -35,13 +35,13 @@
           <S t="0" d="90112" r="133"/>
         </SegmentTimeline>
       </SegmentTemplate>
-      <Representation id="2" bandwidth="132669" codecs="mp4a.40.2" audioSamplingRate="48000">
+      <Representation id="2" bandwidth="132669" audioSamplingRate="48000">
         <AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="2"/>
       </Representation>
     </AdaptationSet>
     <!-- Audio -->
-    <AdaptationSet id="3" mimeType="audio/mp4" lang="es" segmentAlignment="true" startWithSAP="1">
-      <EssentialProperty schemeIdUri="urn:mpeg:dash:preselection:2016" value="es,2 3"/>
+    <AdaptationSet id="3" mimeType="audio/mp4" codecs="mhm2.0x0C" segmentAlignment="true" startWithSAP="1">
+      <EssentialProperty schemeIdUri="urn:mpeg:dash:preselection:2016"/>
       <SegmentTemplate timescale="48000"
         media="audio1_$Number$.mp4"
         initialization="audio1.mp4"
@@ -50,22 +50,7 @@
           <S t="0" d="90112" r="133"/>
         </SegmentTimeline>
       </SegmentTemplate>
-      <Representation id="3" bandwidth="32494" codecs="mp4a.40.2" audioSamplingRate="48000">
-        <AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="1"/>
-      </Representation>
-    </AdaptationSet>
-    <!-- Audio -->
-    <AdaptationSet id="4" mimeType="audio/mp4" lang="en" segmentAlignment="true" startWithSAP="1">
-      <EssentialProperty schemeIdUri="urn:mpeg:dash:preselection:2016" value="en,2 4"/>
-      <SegmentTemplate timescale="48000"
-        media="audio2_$Number$.mp4"
-        initialization="audio2.mp4"
-        startNumber="1">
-        <SegmentTimeline>
-          <S t="0" d="90112" r="133"/>
-        </SegmentTimeline>
-      </SegmentTemplate>
-      <Representation id="4" bandwidth="32825" codecs="mp4a.40.2" audioSamplingRate="48000">
+      <Representation id="3" bandwidth="32494" audioSamplingRate="48000">
         <AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="1"/>
       </Representation>
     </AdaptationSet>

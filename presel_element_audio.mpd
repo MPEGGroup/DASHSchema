@@ -34,7 +34,7 @@
           <S t="0" d="90112" r="133"/>
         </SegmentTimeline>
       </SegmentTemplate>
-      <Representation id="2" bandwidth="132669" codecs="mp4a.40.2" audioSamplingRate="48000">
+      <Representation id="2" bandwidth="132669" codecs="mhm2.0xC0" audioSamplingRate="48000">
         <AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="2"/>
       </Representation>
     </AdaptationSet>
@@ -49,7 +49,7 @@
           <S t="0" d="90112" r="133"/>
         </SegmentTimeline>
       </SegmentTemplate>
-      <Representation id="3" bandwidth="32494" codecs="mp4a.40.2" audioSamplingRate="48000">
+      <Representation id="3" bandwidth="32494" codecs="mhm2.0xC0" audioSamplingRate="48000">
         <AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="1"/>
       </Representation>
     </AdaptationSet>
@@ -64,7 +64,7 @@
           <S t="0" d="90112" r="133"/>
         </SegmentTimeline>
       </SegmentTemplate>
-      <Representation id="4" bandwidth="32825" codecs="mp4a.40.2" audioSamplingRate="48000">
+      <Representation id="4" bandwidth="32825" codecs="mhm2.0xC0" audioSamplingRate="48000">
         <AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="1"/>
       </Representation>
     </AdaptationSet>
@@ -74,7 +74,7 @@
       <Role schemeIdUri="urn:mpeg:dash:role:2011" value="main"/>
     </Preselection>
     <Preselection id="en" preselectionComponents="2 4">
-      <Label id="2">Main English</Label>
+      <Label id="1">Main English</Label>
       <Role schemeIdUri="urn:mpeg:dash:role:2011" value="alternate"/>
     </Preselection>
  </Period>
