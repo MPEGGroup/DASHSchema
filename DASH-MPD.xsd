@@ -21,7 +21,7 @@
 			<xs:element name="EssentialProperty" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="SupplementalProperty" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="UTCTiming" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element name="LeapSecondInformation" type="LeapSecondInformationType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="LeapSecondInformation" type="LeapSecondInformationType" minOccurs="0"/>
 			<xs:element name="InitializationSet" type="InitializationSetType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="InitializationGroup" type="UIntVWithIDType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="InitializationPresentation" type="UIntVWithIDType" minOccurs="0" maxOccurs="unbounded"/>
@@ -425,17 +425,24 @@
 	<!-- Producer Reference time -->
 	<xs:complexType name="ProducerReferenceTimeType">
 		<xs:sequence>
-			<xs:element name="Instance" minOccurs="0" maxOccurs="unbounded">
-				<xs:complexType>
-					<xs:attribute name="ntp" type="xs:unsignedLong" use="required"/>
-					<xs:attribute name="media" type="xs:unsignedLong"/>
-					<xs:anyAttribute namespace="##other" processContents="lax"/>
-				</xs:complexType>
-			</xs:element>
+			<xs:element name="UTCTiming" type="DescriptorType" minOccurs="0"/>
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
+		<xs:attribute name="id" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="inband" type="xs:boolean" default="false"/>
+		<xs:attribute name="type" type="ProducerReferenceTimeTypeType" default="encoder"/>
+		<xs:attribute name="applicationScheme" type="xs:string"/>
+		<xs:attribute name="wallClockTime" type="xs:string" use="required"/>
+		<xs:attribute name="presentationTime" type="xs:unsignedLong" use="required"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
+	<xs:simpleType name="ProducerReferenceTimeTypeType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="encoder"/>
+			<xs:enumeration value="captured"/>
+			<xs:enumeration value="application"/>
+		</xs:restriction>
+	</xs:simpleType>
 	<!-- Preselection -->
 	<xs:complexType name="PreselectionType">
 		<xs:complexContent>
@@ -449,6 +456,7 @@
 				<xs:attribute name="id" type="StringNoWhitespaceType" default="1"/>
 				<xs:attribute name="preselectionComponents" type="StringVectorType" use="required"/>
 				<xs:attribute name="lang" type="xs:language"/>
+				<xs:attribute name="order" type="PreselectionOrderType" default="unordered"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -511,6 +519,14 @@
 			<xs:enumeration value="closed"/>
 			<xs:enumeration value="open"/>
 			<xs:enumeration value="gradual"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--Preselection Order type-->
+	<xs:simpleType name="PreselectionOrderType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="unordered"/>
+			<xs:enumeration value="time-ordered"/>
+			<xs:enumeration value="fully-ordered"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<!-- Segment information base -->
