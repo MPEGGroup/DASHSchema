@@ -130,7 +130,6 @@
 				<xs:attribute ref="xlink:href"/>
 				<xs:attribute ref="xlink:actuate" default="onRequest"/>
 				<xs:attribute ref="xlink:type" fixed="simple"/>
-				<xs:attribute ref="xlink:show" fixed="embed"/>
 				<xs:attribute name="id" type="xs:unsignedInt" use="required"/>
 				<xs:attribute name="inAllPeriods" type="xs:boolean" default="true"/>
 				<xs:attribute name="contentType" type="RFC6838ContentTypeType"/>
@@ -554,11 +553,11 @@
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 		<xs:attribute name="timescale" type="xs:unsignedInt"/>
-		<xs:attribute name="eptDelta" type="xs:integer"/>
+		<xs:attribute name="eptDelta" type="xs:integer" default="0"/>
 		<xs:attribute name="presentationTimeOffset" type="xs:unsignedLong"/>
 		<xs:attribute name="presentationDuration" type="xs:unsignedLong"/>
 		<xs:attribute name="timeShiftBufferDepth" type="xs:duration"/>
-		<xs:attribute name="indexRange" type="xs:string"/>
+		<xs:attribute name="indexRange" type="SingleRFC7233RangeType"/>
 		<xs:attribute name="indexRangeExact" type="xs:boolean" default="false"/>
 		<xs:attribute name="availabilityTimeOffset" type="xs:double"/>
 		<xs:attribute name="availabilityTimeComplete" type="xs:boolean"/>
@@ -584,9 +583,15 @@
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 		<xs:attribute name="sourceURL" type="xs:anyURI"/>
-		<xs:attribute name="range" type="xs:string"/>
+		<xs:attribute name="range" type="SingleRFC7233RangeType"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
+	<xs:simpleType name="SingleRFC7233RangeType"> 
+		<xs:extension base="xs:string">
+			// optional 0 or 1 integer optionally followed by a hyphen and 0 or 1 integers
+			<xs:pattern value="([0-9]*)(\-([0-9]*))?"/>
+		</xs:extension>
+	</xs:simpleType>
 	<!-- Failover Content -->
 	<xs:complexType name="FailoverContentType">
 		<xs:sequence>
@@ -622,9 +627,9 @@
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 		<xs:attribute name="media" type="xs:anyURI"/>
-		<xs:attribute name="mediaRange" type="xs:string"/>
+		<xs:attribute name="mediaRange" type="SingleRFC7233RangeType"/>
 		<xs:attribute name="index" type="xs:anyURI"/>
-		<xs:attribute name="indexRange" type="xs:string"/>
+		<xs:attribute name="indexRange" type="SingleRFC7233RangeType"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
 	<!-- Segment Template -->
