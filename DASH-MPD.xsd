@@ -21,7 +21,7 @@
 			<xs:element name="EssentialProperty" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="SupplementalProperty" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="UTCTiming" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element name="LeapSecondInformation" type="LeapSecondInformationType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="LeapSecondInformation" type="LeapSecondInformationType" minOccurs="0"/>
 			<xs:element name="InitializationSet" type="InitializationSetType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="InitializationGroup" type="UIntVWithIDType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="InitializationPresentation" type="UIntVWithIDType" minOccurs="0" maxOccurs="unbounded"/>
@@ -449,6 +449,7 @@
 				<xs:attribute name="id" type="StringNoWhitespaceType" default="1"/>
 				<xs:attribute name="preselectionComponents" type="StringVectorType" use="required"/>
 				<xs:attribute name="lang" type="xs:language"/>
+				<xs:attribute name="order" type="PreselectionOrderType" default="unordered"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -511,6 +512,14 @@
 			<xs:enumeration value="closed"/>
 			<xs:enumeration value="open"/>
 			<xs:enumeration value="gradual"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--Preselection Order type-->
+	<xs:simpleType name="PreselectionOrderType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="unordered" />
+			<xs:enumeration value="time-ordered"/>
+			<xs:enumeration value="fully-ordered"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<!-- Segment information base -->
