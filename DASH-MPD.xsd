@@ -587,10 +587,9 @@
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
 	<xs:simpleType name="SingleRFC7233RangeType"> 
-		<xs:extension base="xs:string">
-			// optional 0 or 1 integer optionally followed by a hyphen and 0 or 1 integers
+		<xs:restriction base="xs:string">
 			<xs:pattern value="([0-9]*)(\-([0-9]*))?"/>
-		</xs:extension>
+		</xs:restriction>
 	</xs:simpleType>
 	<!-- Failover Content -->
 	<xs:complexType name="FailoverContentType">
