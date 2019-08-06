@@ -16,19 +16,19 @@
 			<xs:element name="BaseURL" type="BaseURLType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="Location" type="xs:anyURI" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="ServiceDescription" type="ServiceDescriptionType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="InitializationSet" type="InitializationSetType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="InitializationGroup" type="UIntVWithIDType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="InitializationPresentation" type="UIntVWithIDType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="Period" type="PeriodType" maxOccurs="unbounded"/>
 			<xs:element name="Metrics" type="MetricsType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="EssentialProperty" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="SupplementalProperty" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="UTCTiming" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element name="LeapSecondInformation" type="LeapSecondInformationType" minOccurs="0" maxOccurs="1"/>
-			<xs:element name="InitializationSet" type="InitializationSetType" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element name="InitializationGroup" type="UIntVWithIDType" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element name="InitializationPresentation" type="UIntVWithIDType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="LeapSecondInformation" type="LeapSecondInformationType" minOccurs="0"/>
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 		<xs:attribute name="id" type="xs:string"/>
-		<xs:attribute name="profiles" type="xs:string" use="required"/>
+		<xs:attribute name="profiles" type="ListOfProfilesType" use="required"/>
 		<xs:attribute name="type" type="PresentationType" default="static"/>
 		<xs:attribute name="availabilityStartTime" type="xs:dateTime"/>
 		<xs:attribute name="availabilityEndTime" type="xs:dateTime"/>
@@ -126,15 +126,15 @@
 					<xs:element name="Role" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element name="Rating" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element name="Viewpoint" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
-					<xs:element name="ContentComponent" type="ContentComponentType" minOccurs="0" maxOccurs="unbounded"/>
 				</xs:sequence>
 				<xs:attribute ref="xlink:href"/>
 				<xs:attribute ref="xlink:actuate" default="onRequest"/>
+				<xs:attribute ref="xlink:type" fixed="simple"/>
+				<xs:attribute ref="xlink:show" fixed="embed"/>
 				<xs:attribute name="id" type="xs:unsignedInt" use="required"/>
-				<xs:attribute name="lang" type="xs:language"/>
+				<xs:attribute name="inAllPeriods" type="xs:boolean" default="true"/>
 				<xs:attribute name="contentType" type="RFC6838ContentTypeType"/>
 				<xs:attribute name="par" type="RatioType"/>
-				<xs:attribute name="maxBandwidth" type="xs:unsignedInt"/>
 				<xs:attribute name="maxWidth" type="xs:unsignedInt"/>
 				<xs:attribute name="maxHeight" type="xs:unsignedInt"/>
 				<xs:attribute name="maxFrameRate" type="FrameRateType"/>
@@ -152,7 +152,7 @@
 			<xs:element name="OperatingBandwidth" type="PlaybackRateType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
-		<xs:attribute name="id" type="xs:string"/>
+		<xs:attribute name="id" type="xs:unsignedInt"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
 	<!-- Service Description Latency -->
@@ -176,17 +176,27 @@
 	<!-- Service Description Operating Quality -->
 	<xs:complexType name="OperatingQualityType">
 		<xs:attribute name="mediaType" type="xs:string"/>
-		<xs:attribute name="min" type="xs:double"/>
-		<xs:attribute name="max" type="xs:double"/>
+		<xs:attribute name="min" type="xs:unsignedInt"/>
+		<xs:attribute name="max" type="xs:unsignedInt"/>
 		<xs:attribute name="target" type="xs:unsignedInt"/>
 		<xs:attribute name="type" type="xs:anyURI"/>
+		<xs:attribute name="maxDifference" type="xs:unsignedInt"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
 	<!-- Service Description Operating Bandwidth -->
 	<xs:complexType name="OperatingBandwidthType">
-		<xs:attribute name="mediaType" type="xs:string"/>
-		<xs:attribute name="min" type="xs:double"/>
-		<xs:attribute name="max" type="xs:double"/>
+		<xs:attribute name="mediaType">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="video"/>
+					<xs:enumeration value="audio"/>
+					<xs:enumeration value="any"/>
+					<xs:enumeration value="all"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="min" type="xs:unsignedInt"/>
+		<xs:attribute name="max" type="xs:unsignedInt"/>
 		<xs:attribute name="target" type="xs:unsignedInt"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
@@ -203,13 +213,19 @@
 	<xs:complexType name="UIntVWithIDType">
 		<xs:simpleContent>
 			<xs:extension base="UIntVectorType">
-				<xs:attribute name="id" type="xs:string" use="required"/>
-				<xs:attribute name="profiles" type="xs:string"/>
+				<xs:attribute name="id" type="xs:unsignedInt" use="required"/>
+				<xs:attribute name="profiles" type="ListOfProfilesType"/>
 				<xs:attribute name="contentType" type="RFC6838ContentTypeType"/>
 				<xs:anyAttribute namespace="##other" processContents="lax"/>
 			</xs:extension>
 		</xs:simpleContent>
 	</xs:complexType>
+	<!-- List of Profiles -->
+	<xs:simpleType name="ListOfProfilesType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(([A-Za-z0-9\-\._~&#xA0;-&#xFF;]|(&#37;[0-9A-Fa-f][0-9A-Fa-f])|[!$&amp;'()*+;=:@]))+(,(([A-Za-z0-9\-\._~&#xA0;-&#xFF;]|(&#37;[0-9A-Fa-f][0-9A-Fa-f])|[!$&amp;'()*+;=:@]))*)*"/>
+		</xs:restriction>
+	</xs:simpleType>
 	<!-- Adaptation Set -->
 	<xs:complexType name="AdaptationSetType">
 		<xs:complexContent>
@@ -247,7 +263,7 @@
 				<xs:attribute name="subsegmentAlignment" type="xs:boolean" default="false"/>
 				<xs:attribute name="subsegmentStartsWithSAP" type="SAPType" default="0"/>
 				<xs:attribute name="bitstreamSwitching" type="xs:boolean"/>
-				<xs:attribute name="initializationRef" type="StringVectorType"/>
+				<xs:attribute name="initializationSetRef" type="UIntVectorType"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -285,7 +301,7 @@
 		</xs:sequence>
 		<xs:attribute name="id" type="xs:unsignedInt"/>
 		<xs:attribute name="lang" type="xs:language"/>
-		<xs:attribute name="contentType" type="xs:string"/>
+		<xs:attribute name="contentType" type="RFC6838ContentTypeType"/>
 		<xs:attribute name="par" type="RatioType"/>
 		<xs:attribute name="tag" type="TagType"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
@@ -345,7 +361,7 @@
 			<xs:element name="ContentPopularityRate" type="ContentPopularityRateType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
-		<xs:attribute name="profiles" type="xs:string"/>
+		<xs:attribute name="profiles" type="ListOfProfilesType"/>
 		<xs:attribute name="width" type="xs:unsignedInt"/>
 		<xs:attribute name="height" type="xs:unsignedInt"/>
 		<xs:attribute name="sar" type="RatioType"/>
@@ -376,7 +392,7 @@
 							</xs:restriction>
 						</xs:simpleType>
 					</xs:attribute>
-					<xs:attribute name="start" type="xs:unsignedInt" use="optional"/>
+					<xs:attribute name="start" type="xs:unsignedLong" use="optional"/>
 					<xs:attribute name="r" type="xs:int" use="optional" default="0"/>
 					<xs:anyAttribute namespace="##other" processContents="lax"/>
 				</xs:complexType>
@@ -425,17 +441,24 @@
 	<!-- Producer Reference time -->
 	<xs:complexType name="ProducerReferenceTimeType">
 		<xs:sequence>
-			<xs:element name="Instance" minOccurs="0" maxOccurs="unbounded">
-				<xs:complexType>
-					<xs:attribute name="ntp" type="xs:unsignedLong" use="required"/>
-					<xs:attribute name="media" type="xs:unsignedLong"/>
-					<xs:anyAttribute namespace="##other" processContents="lax"/>
-				</xs:complexType>
-			</xs:element>
+			<xs:element name="UTCTiming" type="DescriptorType" minOccurs="0"/>
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
+		<xs:attribute name="id" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="inband" type="xs:boolean" default="false"/>
+		<xs:attribute name="type" type="ProducerReferenceTimeTypeType" default="encoder"/>
+		<xs:attribute name="applicationScheme" type="xs:string"/>
+		<xs:attribute name="wallClockTime" type="xs:string" use="required"/>
+		<xs:attribute name="presentationTime" type="xs:unsignedLong" use="required"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
+	<xs:simpleType name="ProducerReferenceTimeTypeType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="encoder"/>
+			<xs:enumeration value="captured"/>
+			<xs:enumeration value="application"/>
+		</xs:restriction>
+	</xs:simpleType>
 	<!-- Preselection -->
 	<xs:complexType name="PreselectionType">
 		<xs:complexContent>
@@ -449,6 +472,7 @@
 				<xs:attribute name="id" type="StringNoWhitespaceType" default="1"/>
 				<xs:attribute name="preselectionComponents" type="StringVectorType" use="required"/>
 				<xs:attribute name="lang" type="xs:language"/>
+				<xs:attribute name="order" type="PreselectionOrderType" default="unordered"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -513,6 +537,14 @@
 			<xs:enumeration value="gradual"/>
 		</xs:restriction>
 	</xs:simpleType>
+	<!--Preselection Order type-->
+	<xs:simpleType name="PreselectionOrderType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="unordered"/>
+			<xs:enumeration value="time-ordered"/>
+			<xs:enumeration value="fully-ordered"/>
+		</xs:restriction>
+	</xs:simpleType>
 	<!-- Segment information base -->
 	<xs:complexType name="SegmentBaseType">
 		<xs:sequence>
@@ -542,6 +574,7 @@
 				</xs:sequence>
 				<xs:attribute name="duration" type="xs:unsignedInt"/>
 				<xs:attribute name="startNumber" type="xs:unsignedInt"/>
+				<xs:attribute name="endNumber" type="xs:unsignedInt"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -557,7 +590,7 @@
 	<!-- Failover Content -->
 	<xs:complexType name="FailoverContentType">
 		<xs:sequence>
-			<xs:element name="MS" maxOccurs="unbounded">
+			<xs:element name="FCS" maxOccurs="unbounded">
 				<xs:complexType>
 					<xs:attribute name="t" type="xs:unsignedLong" use="required"/>
 					<xs:attribute name="d" type="xs:unsignedLong"/>
@@ -566,6 +599,7 @@
 			</xs:element>
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
+		<xs:attribute name="valid" type="xs:boolean" default="true"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
 	<!-- Segment List -->
@@ -684,7 +718,7 @@
 	</xs:complexType>
 	<!-- Metrics Range -->
 	<xs:complexType name="RangeType">
-		<xs:attribute name="time" type="xs:duration"/>
+		<xs:attribute name="starttime" type="xs:duration"/>
 		<xs:attribute name="duration" type="xs:duration"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
