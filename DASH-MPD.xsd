@@ -147,8 +147,8 @@
 			<xs:element name="Scope" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="Latency" type="LatencyType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="PlaybackRate" type="PlaybackRateType" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element name="OperatingQuality" type="PlaybackRateType" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element name="OperatingBandwidth" type="PlaybackRateType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="OperatingQuality" type="OperatingQualityType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="OperatingBandwidth" type="OperatingBandwidthType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 		<xs:attribute name="id" type="xs:unsignedInt"/>
@@ -174,7 +174,15 @@
 	</xs:complexType>
 	<!-- Service Description Operating Quality -->
 	<xs:complexType name="OperatingQualityType">
-		<xs:attribute name="mediaType" type="xs:string"/>
+		<xs:attribute name="mediaType" default="any">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="video"/>
+					<xs:enumeration value="audio"/>
+					<xs:enumeration value="any"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
 		<xs:attribute name="min" type="xs:unsignedInt"/>
 		<xs:attribute name="max" type="xs:unsignedInt"/>
 		<xs:attribute name="target" type="xs:unsignedInt"/>
@@ -184,7 +192,7 @@
 	</xs:complexType>
 	<!-- Service Description Operating Bandwidth -->
 	<xs:complexType name="OperatingBandwidthType">
-		<xs:attribute name="mediaType">
+		<xs:attribute name="mediaType" default="all">
 			<xs:simpleType>
 				<xs:restriction base="xs:string">
 					<xs:enumeration value="video"/>
@@ -471,7 +479,7 @@
 				<xs:attribute name="id" type="StringNoWhitespaceType" default="1"/>
 				<xs:attribute name="preselectionComponents" type="StringVectorType" use="required"/>
 				<xs:attribute name="lang" type="xs:language"/>
-				<xs:attribute name="order" type="PreselectionOrderType" default="unordered"/>
+				<xs:attribute name="order" type="PreselectionOrderType" default="undefined"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -539,7 +547,7 @@
 	<!--Preselection Order type-->
 	<xs:simpleType name="PreselectionOrderType">
 		<xs:restriction base="xs:string">
-			<xs:enumeration value="unordered"/>
+			<xs:enumeration value="undefined"/>
 			<xs:enumeration value="time-ordered"/>
 			<xs:enumeration value="fully-ordered"/>
 		</xs:restriction>
@@ -553,7 +561,7 @@
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 		<xs:attribute name="timescale" type="xs:unsignedInt"/>
-		<xs:attribute name="eptDelta" type="xs:integer" default="0"/>
+		<xs:attribute name="eptDelta" type="xs:integer"/>
 		<xs:attribute name="presentationTimeOffset" type="xs:unsignedLong"/>
 		<xs:attribute name="presentationDuration" type="xs:unsignedLong"/>
 		<xs:attribute name="timeShiftBufferDepth" type="xs:duration"/>
