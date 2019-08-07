@@ -471,7 +471,7 @@
 				<xs:attribute name="id" type="StringNoWhitespaceType" default="1"/>
 				<xs:attribute name="preselectionComponents" type="StringVectorType" use="required"/>
 				<xs:attribute name="lang" type="xs:language"/>
-				<xs:attribute name="order" type="PreselectionOrderType" default="unordered"/>
+				<xs:attribute name="order" type="PreselectionOrderType" default="undefined"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -539,7 +539,7 @@
 	<!--Preselection Order type-->
 	<xs:simpleType name="PreselectionOrderType">
 		<xs:restriction base="xs:string">
-			<xs:enumeration value="unordered"/>
+			<xs:enumeration value="undefined"/>
 			<xs:enumeration value="time-ordered"/>
 			<xs:enumeration value="fully-ordered"/>
 		</xs:restriction>
