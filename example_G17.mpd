@@ -22,7 +22,6 @@
     </AdaptationSet>
     <!-- Audio -->
     <AdaptationSet id="2" mimeType="audio/mp4" codecs="mp4a.40.2,mp4a.40.2,mp4a.40.2" segmentAlignment="true" startWithSAP="1">
-      <AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="2"/>
       <EssentialProperty schemeIdUri="urn:mpeg:dash:preselection:2016"/>
       <ContentComponent id="3">
         <Role schemeIdUri="urn:mpeg:dash:role:2011" value="main"/>
@@ -41,11 +40,13 @@
       <Representation id="2" bandwidth="132669" audioSamplingRate="48000"/>
     </AdaptationSet>
     <!-- Preselections -->
-    <Preselection id="1" lang="en" preselectionComponents="3 4">
+    <Preselection id="1" tag="1" lang="en" preselectionComponents="3 4">
+      <AudioChannelConfiguration schemeIdUri="urn:mpeg:mpegB:cicp:ChannelConfiguration" value="2"/>
       <Label id="1">Main English</Label>
       <Role schemeIdUri="urn:mpeg:dash:role:2011" value="main"/>
     </Preselection>
-    <Preselection id="2" lang="es" preselectionComponents="3 5">
+    <Preselection id="2" tag="2" lang="es" preselectionComponents="3 5">
+      <AudioChannelConfiguration schemeIdUri="urn:mpeg:mpegB:cicp:ChannelConfiguration" value="2"/>
       <Label id="1">Main Spanish</Label>
       <Role schemeIdUri="urn:mpeg:dash:role:2011" value="dub"/>
     </Preselection>

@@ -1,45 +1,28 @@
-<?xml version="1.0" encoding="utf-8"?>
-<MPD
- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xmlns="urn:mpeg:dash:schema:mpd:2011"
- xsi:schemaLocation="urn:mpeg:dash:schema:mpd:2011 DASH-MPD.xsd"
- type="dynamic"
- availabilityStartTime="2018-12-20T06:28:37Z"
- publishTime="2018-12-20T06:28:37Z"
- minimumUpdatePeriod="PT2S"
- mediaPresentationDuration="PT0H0M54.554S"
- minBufferTime="PT4S"
- profiles="urn:mpeg:dash:profile:isoff-live:2011">
- <Period id="1" start="PT0S">
-    <!-- Video -->
-    <AdaptationSet id="1" mimeType="video/mp4" segmentAlignment="true" startWithSAP="1">
-      <Role schemeIdUri="urn:mpeg:dash:role:2011" value="main"/>
-      <SegmentTemplate timescale="5994" media="video_$Number$.mp4" initialization="video.mp4">
-        <SegmentTimeline>
-          <S t="0" d="12000" r="33"/>
-        </SegmentTimeline>
-      </SegmentTemplate>
-      <Representation id="1" bandwidth="2030173" codecs="hev1.1.6.L120.90" width="1920" height="1080"/>
-    </AdaptationSet>
-    <!-- Audio -->
-    <AdaptationSet id="2" mimeType="audio/mp4" segmentAlignment="true" startWithSAP="1">
-      <SegmentTemplate timescale="48000" media="audio_$Number$.mp4" initialization="audio.mp4">
-        <SegmentTimeline>
-          <S t="0" d="90112" r="129"/>
-        </SegmentTimeline>
-      </SegmentTemplate>
-      <Representation id="2" bandwidth="434965" codecs="mhm1.0x0C" audioSamplingRate="48000"/>
-    </AdaptationSet>
-    <!-- Preselections -->
-    <Preselection id="1" lang="en" tag="101" preselectionComponents="2">
-      <AudioChannelConfiguration schemeIdUri="urn:mpeg:mpegB:cicp:ChannelConfiguration" value="2"/>
-      <Label id="1">Main English</Label>
-      <Role schemeIdUri="urn:mpeg:dash:role:2011" value="main"/>
-    </Preselection>
-    <Preselection id="2" lang="es" tag="202" preselectionComponents="2">
-      <AudioChannelConfiguration schemeIdUri="urn:mpeg:mpegB:cicp:ChannelConfiguration" value="2"/>
-      <Label id="1">Main Spanish</Label>
-      <Role schemeIdUri="urn:mpeg:dash:role:2011" value="dub"/>
-    </Preselection>
- </Period>
+<?xml version="1.0" encoding="UTF-8"?>
+<MPD type="dynamic" xmlns="urn:mpeg:dash:schema:mpd:2011"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:mpeg:dash:schema:mpd:2011 DASH-MPD.xsd" profiles="urn:mpeg:dash:profile:isoff-ext-live:2014" minBufferTime="PT1.143S" maxSegmentDuration="PT3.84S" minimumUpdatePeriod="PT1H" timeShiftBufferDepth="PT2M" availabilityStartTime="2019-08-06T13:31:00Z"  publishTime="2019-08-06T13:31:00Z">
+	<ServiceDescription id="0">
+		<Scope schemeIdUri="tag:example.com,082019:lowlatencyclients" value="2"/>
+		<Latency min="4800" max="34800" target="6800" referenceId="7"/>
+		<PlaybackRate min="0.96" max="1.04"/>
+	</ServiceDescription>
+	<Period id="first" start="PT0S">
+		<AdaptationSet startWithSAP="2" segmentAlignment="true" par="16:9" id="1" contentType="video" mimeType="video/mp4" >
+			<InbandEventStream schemeIdUri="urn:mpeg:dash:event:2012" value="1" />
+			<ProducerReferenceTime id="7" wallClockTime="2019-08-06T13:44:12Z" presentationTime="158400">
+				<UTCTiming schemeIdUri="urn:mpeg:dash:utc:http-xsdate:2014" value="https://example.com/iso"/>
+			</ProducerReferenceTime>
+			<Role schemeIdUri="urn:mpeg:dash:role:2011" value="main"/>
+		    <SegmentTemplate startNumber="404547501" presentationTimeOffset="310692480000" timescale="200" duration="768" media="$RepresentationID$/$Number%06d$.m4s" initialization="$RepresentationID$/IS.mp4" availabilityTimeOffset="2.88" availabilityTimeComplete="false"/>
+			<Representation id="1280x720p50" codecs="avc3.640020" height="720" width="1280" frameRate="50" bandwidth="5447392" scanType="progressive" />
+		</AdaptationSet>
+		<AdaptationSet startWithSAP="2" segmentAlignment="true" id="6" codecs="mp4a.40.2" audioSamplingRate="48000" contentType="audio" lang="eng" mimeType="audio/mp4" >
+			<AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="6"/>
+			<InbandEventStream schemeIdUri="urn:mpeg:dash:event:2012" value="1"/>
+			<Role schemeIdUri="urn:mpeg:dash:role:2011" value="main"/>
+			<SegmentTemplate startNumber="404547501" presentationTimeOffset="74566195200000" timescale="48000" duration="184320" media="$RepresentationID$/$Number%06d$.m4s" initialization="$RepresentationID$/IS.mp4" availabilityTimeOffset="2.88" availabilityTimeComplete="false" />
+			<Representation id="320kbps-5_1" bandwidth="319520" />
+		</AdaptationSet>
+	</Period>
+	<UTCTiming schemeIdUri="urn:mpeg:dash:utc:http-xsdate:2014" value="https://example.com/iso"/>
+	<LeapSecondInformation availabilityStartLeapOffset="37"/>
 </MPD>

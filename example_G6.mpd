@@ -25,7 +25,7 @@
                 <SubRepresentation level="0" contentComponent="0" bandwidth="128000" codecs="avc1.4D401E" maxPlayoutRate="4"/> 
                 <SubRepresentation level="1" dependencyLevel="0" contentComponent="0" bandwidth="320000" codecs="avc2.4D401E"/>
                 <SubRepresentation level="2" contentComponent="1" bandwidth="64000" codecs="mp4a.40"/> 
-                <SegmentBase indexRange="7632" />
+                <SegmentBase indexRange="7632-7632" />
             </Representation> 
         </AdaptationSet> 
     </Period> 
