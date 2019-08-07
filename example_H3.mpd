@@ -36,7 +36,7 @@
     </AdaptationSet>
 
     <AdaptationSet segmentAlignment="true" subsegmentAlignment="true" subsegmentStartsWithSAP="1">
-      <Representation id="roi-coordinates" mimeType="application/octet-stream" associationId="zoomed" associationType="cdsc" codecs="2dcc" bandwidth="100">
+      <Representation id="roi-coordinates" mimeType="application/mp4" associationId="zoomed" associationType="cdsc" codecs="2dcc" bandwidth="100">
         <BaseURL>roi_coordinates.mp4</BaseURL>
       </Representation>
     </AdaptationSet>
