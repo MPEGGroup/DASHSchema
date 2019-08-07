@@ -24,7 +24,6 @@
     </AdaptationSet>
     <!-- Audio (M&E) -->
     <AdaptationSet id="2" mimeType="audio/mp4" codecs="mhm2.0x0C" segmentAlignment="true" startWithSAP="1">
-      <AudioChannelConfiguration schemeIdUri="urn:mpeg:mpegB:cicp:ChannelConfiguration" value="2"/>
       <EssentialProperty schemeIdUri="urn:mpeg:dash:preselection:2016" value="1,2 3"/>
       <EssentialProperty schemeIdUri="urn:mpeg:dash:preselection:2016" value="2,2 4"/>
       <Role schemeIdUri="urn:mpeg:dash:role:2011" value="main"/>
@@ -37,7 +36,6 @@
     </AdaptationSet>
     <!-- Audio (English) -->
     <AdaptationSet id="3" mimeType="audio/mp4" lang="en" codecs="mhm2.0x0C" segmentAlignment="true" startWithSAP="1">
-      <AudioChannelConfiguration schemeIdUri="urn:mpeg:mpegB:cicp:ChannelConfiguration" value="1"/>
       <EssentialProperty schemeIdUri="urn:mpeg:dash:preselection:2016"/>
       <Role schemeIdUri="urn:mpeg:dash:role:2011" value="main"/>
       <SegmentTemplate timescale="48000" media="audio1_$Number$.mp4" initialization="audio1.mp4">
@@ -49,7 +47,6 @@
     </AdaptationSet>
     <!-- Audio (Spanish) -->
     <AdaptationSet id="4" mimeType="audio/mp4" lang="es" codecs="mhm2.0x0C" segmentAlignment="true" startWithSAP="1">
-      <AudioChannelConfiguration schemeIdUri="urn:mpeg:mpegB:cicp:ChannelConfiguration" value="1"/>
       <EssentialProperty schemeIdUri="urn:mpeg:dash:preselection:2016"/>
       <Role schemeIdUri="urn:mpeg:dash:role:2011" value="dub"/>
       <SegmentTemplate timescale="48000" media="audio2_$Number$.mp4" initialization="audio2.mp4">
