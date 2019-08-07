@@ -23,7 +23,6 @@
     </AdaptationSet>
     <!-- Audio (M&E) -->
     <AdaptationSet id="2" mimeType="audio/mp4" segmentAlignment="true" startWithSAP="1">
-      <AudioChannelConfiguration schemeIdUri="urn:mpeg:mpegB:cicp:ChannelConfiguration" value="2"/>
       <EssentialProperty schemeIdUri="urn:mpeg:dash:preselection:2016"/>
       <SegmentTemplate timescale="48000" media="audio0_$Number$.mp4" initialization="audio0.mp4">
         <SegmentTimeline>
@@ -34,7 +33,6 @@
     </AdaptationSet>
     <!-- Audio (English) -->
     <AdaptationSet id="3" mimeType="audio/mp4" lang="en" segmentAlignment="true" startWithSAP="1">
-      <AudioChannelConfiguration schemeIdUri="urn:mpeg:mpegB:cicp:ChannelConfiguration" value="1"/>
       <EssentialProperty schemeIdUri="urn:mpeg:dash:preselection:2016"/>
       <SegmentTemplate timescale="48000" media="audio1_$Number$.mp4" initialization="audio1.mp4">
         <SegmentTimeline>
@@ -45,7 +43,6 @@
     </AdaptationSet>
     <!-- Audio (Spanish) -->
     <AdaptationSet id="4" mimeType="audio/mp4" lang="es" segmentAlignment="true" startWithSAP="1">
-      <AudioChannelConfiguration schemeIdUri="urn:mpeg:mpegB:cicp:ChannelConfiguration" value="1"/>
       <EssentialProperty schemeIdUri="urn:mpeg:dash:preselection:2016"/>
       <SegmentTemplate timescale="48000" media="audio2_$Number$.mp4" initialization="audio2.mp4">
         <SegmentTimeline>
@@ -56,10 +53,12 @@
     </AdaptationSet>
     <!-- Preselections -->
     <Preselection id="1" lang="en" preselectionComponents="2 3">
+      <AudioChannelConfiguration schemeIdUri="urn:mpeg:mpegB:cicp:ChannelConfiguration" value="2"/>
       <Label id="1">Main English</Label>
       <Role schemeIdUri="urn:mpeg:dash:role:2011" value="main"/>
     </Preselection>
     <Preselection id="2" lang="es" preselectionComponents="2 4">
+      <AudioChannelConfiguration schemeIdUri="urn:mpeg:mpegB:cicp:ChannelConfiguration" value="2"/>
       <Label id="1">Main Spanish</Label>
       <Role schemeIdUri="urn:mpeg:dash:role:2011" value="dub"/>
     </Preselection>
