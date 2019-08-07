@@ -9,6 +9,7 @@
     minBufferTime="PT10.00S"
     profiles="urn:mpeg:dash:profile:isoff-on-demand:2011">
     <Period>
+        <BaseURL>.</BaseURL>
         <AdaptationSet mimeType="video/mp4" group="1">
             <Role schemeIdUri="urn:mpeg:dash:role:2011" value="main"/>
             <Viewpoint schemeIdUri="urn:mpeg:dash:viewpoint:2011" value="vp1"/>
@@ -20,8 +21,8 @@
         <AdaptationSet mimeType="video/mp4" group="1">
             <Role schemeIdUri="urn:mpeg:dash:role:2011" value="main"/>
             <Viewpoint schemeIdUri="urn:mpeg:dash:viewpoint:2011" value="vp2"/>
-            <Representation id="11" bandwidth="1024000"><!-- ... --></Representation>
-            <Representation id="12" bandwidth="512000"><!-- ... --></Representation>
+            <Representation id="21" bandwidth="1024000"><!-- ... --></Representation>
+            <Representation id="22" bandwidth="512000"><!-- ... --></Representation>
             <!-- ... -->
         </AdaptationSet>
 
@@ -29,8 +30,8 @@
             <Role schemeIdUri="urn:mpeg:dash:role:2011" value="main"/>
             <Role schemeIdUri="urn:mpeg:dash:role:2011" value="supplementary"/>
             <Viewpoint schemeIdUri="urn:mpeg:dash:viewpoint:2011" value="vp1"/>
-            <Representation id="11" bandwidth="1024000"><!-- ... --></Representation>
-            <Representation id="12" bandwidth="512000"><!-- ... --></Representation>
+            <Representation id="31" bandwidth="1024000"><!-- ... --></Representation>
+            <Representation id="32" bandwidth="512000"><!-- ... --></Representation>
             <!-- ... -->
         </AdaptationSet>
 
@@ -38,8 +39,8 @@
             <Role schemeIdUri="urn:mpeg:dash:role:2011" value="main"/>
             <Role schemeIdUri="urn:mpeg:dash:role:2011" value="supplementary"/>
             <Viewpoint schemeIdUri="urn:mpeg:dash:viewpoint:2011" value="vp2"/>
-            <Representation id="11" bandwidth="1024000"><!-- ... --></Representation>
-            <Representation id="12" bandwidth="512000"><!-- ... --></Representation>
+            <Representation id="41" bandwidth="1024000"><!-- ... --></Representation>
+            <Representation id="42" bandwidth="512000"><!-- ... --></Representation>
             <!-- ... -->
         </AdaptationSet>
 
