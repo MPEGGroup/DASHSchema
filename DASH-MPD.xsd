@@ -147,8 +147,8 @@
 			<xs:element name="Scope" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="Latency" type="LatencyType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="PlaybackRate" type="PlaybackRateType" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element name="OperatingQuality" type="PlaybackRateType" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element name="OperatingBandwidth" type="PlaybackRateType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="OperatingQuality" type="OperatingQualityType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="OperatingBandwidth" type="OperatingBandwidthType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 		<xs:attribute name="id" type="xs:unsignedInt"/>
@@ -174,13 +174,12 @@
 	</xs:complexType>
 	<!-- Service Description Operating Quality -->
 	<xs:complexType name="OperatingQualityType">
-		<xs:attribute name="mediaType" type="xs:string" default="any">
+		<xs:attribute name="mediaType" default="any">
 			<xs:simpleType>
 				<xs:restriction base="xs:string">
 					<xs:enumeration value="video"/>
 					<xs:enumeration value="audio"/>
 					<xs:enumeration value="any"/>
-					<xs:enumeration value="all"/>
 				</xs:restriction>
 			</xs:simpleType>
 		</xs:attribute>
@@ -192,8 +191,8 @@
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
 	<!-- Service Description Operating Bandwidth -->
-	<xs:complexType name="OperatingBandwidthType" default="all">
-		<xs:attribute name="mediaType">
+	<xs:complexType name="OperatingBandwidthType">
+		<xs:attribute name="mediaType" default="all">
 			<xs:simpleType>
 				<xs:restriction base="xs:string">
 					<xs:enumeration value="video"/>
