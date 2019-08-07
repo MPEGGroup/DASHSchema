@@ -174,7 +174,16 @@
 	</xs:complexType>
 	<!-- Service Description Operating Quality -->
 	<xs:complexType name="OperatingQualityType">
-		<xs:attribute name="mediaType" type="xs:string"/>
+		<xs:attribute name="mediaType" type="xs:string" default="any">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="video"/>
+					<xs:enumeration value="audio"/>
+					<xs:enumeration value="any"/>
+					<xs:enumeration value="all"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
 		<xs:attribute name="min" type="xs:unsignedInt"/>
 		<xs:attribute name="max" type="xs:unsignedInt"/>
 		<xs:attribute name="target" type="xs:unsignedInt"/>
@@ -183,7 +192,7 @@
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
 	<!-- Service Description Operating Bandwidth -->
-	<xs:complexType name="OperatingBandwidthType">
+	<xs:complexType name="OperatingBandwidthType" default="all">
 		<xs:attribute name="mediaType">
 			<xs:simpleType>
 				<xs:restriction base="xs:string">
