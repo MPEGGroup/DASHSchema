@@ -40,12 +40,12 @@
       <Representation id="2" bandwidth="132669" audioSamplingRate="48000"/>
     </AdaptationSet>
     <!-- Preselections -->
-    <Preselection id="1" lang="en" preselectionComponents="3 4">
+    <Preselection id="1" tag="101" lang="en" preselectionComponents="3 4">
       <AudioChannelConfiguration schemeIdUri="urn:mpeg:mpegB:cicp:ChannelConfiguration" value="2"/>
       <Label id="1">Main English</Label>
       <Role schemeIdUri="urn:mpeg:dash:role:2011" value="main"/>
     </Preselection>
-    <Preselection id="2" lang="es" preselectionComponents="3 5">
+    <Preselection id="2" tag="102" lang="es" preselectionComponents="3 5">
       <AudioChannelConfiguration schemeIdUri="urn:mpeg:mpegB:cicp:ChannelConfiguration" value="2"/>
       <Label id="1">Main Spanish</Label>
       <Role schemeIdUri="urn:mpeg:dash:role:2011" value="dub"/>
