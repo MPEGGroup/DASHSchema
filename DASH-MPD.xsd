@@ -418,23 +418,6 @@
 		<xs:attribute name="source_description" type="xs:string"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
-	<!--Request Rate Timeline -->
-	<xs:complexType name="RequestRateTimelineType">
-		<xs:sequence>
-			<xs:element name="RR" maxOccurs="unbounded">
-				<xs:complexType>
-					<xs:attribute name="requestRate" type="xs:unsignedLong" use="required"/>
-					<xs:attribute name="s" type="xs:unsignedInt" use="optional"/>
-					<xs:attribute name="r" type="xs:int" use="optional" default="0"/>
-					<xs:anyAttribute namespace="##other" processContents="lax"/>
-				</xs:complexType>
-			</xs:element>
-			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
-		</xs:sequence>
-		<xs:attribute name="source" type="xs:string"/>
-		<xs:attribute name="source_description" type="xs:string"/>
-		<xs:anyAttribute namespace="##other" processContents="lax"/>
-	</xs:complexType>
 	<!-- Label and Group Label -->
 	<xs:complexType name="LabelType">
 		<xs:simpleContent>
