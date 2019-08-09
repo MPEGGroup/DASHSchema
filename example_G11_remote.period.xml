@@ -1,5 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<MPD xmlns="urn:mpeg:dash:schema:mpd:2011" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:mpeg:dash:schema:mpd:2011 DASH-MPD.xsd" minBufferTime="PT1.500000S" type="static" mediaPresentationDuration="PT704S" profiles="urn:mpeg:dash:profile:isoff-live:2011">
 <Period id="1" duration="PT110S" start="PT250S" xmlns="urn:mpeg:dash:schema:mpd:2011">
   <AdaptationSet segmentAlignment="true" maxWidth="1280" maxHeight="720" maxFrameRate="24" par="16:9">
     <Representation id="1" mimeType="video/mp4" codecs="avc1.4d401f" width="1280" height="720" frameRate="24" sar="1:1" startWithSAP="1" bandwidth="927434">
@@ -19,4 +17,3 @@
     </Representation>
   </AdaptationSet>
 </Period>
-</MPD>
