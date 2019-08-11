@@ -21,7 +21,7 @@
 			</Representation>
 		</AdaptationSet>
 	</Period>
-	<Period xlink:href="example_G11_remote.period.mpd" xlink:actuate="onRequest" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+	<Period xlink:href="example_G11_remote.period.xml" xlink:actuate="onRequest" xmlns:xlink="http://www.w3.org/1999/xlink"/>
 	<Period id="2" duration="PT344S">
 		<AssetIdentifier schemeIdUri="urn:org:dashif:asset-id:2013" value="md:cid:EIDR:10.5240%2f0EFB-02CD-126E-8092-1E49-W"/>
 		<AdaptationSet segmentAlignment="true" maxWidth="1280" maxHeight="720" maxFrameRate="24" par="16:9">
