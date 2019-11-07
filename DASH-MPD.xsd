@@ -333,6 +333,7 @@
 				<xs:attribute name="associationId" type="StringVectorType"/>
 				<xs:attribute name="associationType" type="ListOf4CCType"/>
 				<xs:attribute name="mediaStreamStructureId" type="StringVectorType"/>
+				<xs:attribute name="maxAverageBitrate" type="xs:unsignedInt"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
