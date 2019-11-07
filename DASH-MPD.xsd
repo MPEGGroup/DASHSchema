@@ -16,6 +16,7 @@
 			<xs:element name="ProgramInformation" type="ProgramInformationType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="BaseURL" type="BaseURLType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="Location" type="xs:anyURI" minOccurs="0" maxOccurs="unbounded"/>
+		        <xs:element name="PatchLocation" type="PatchLocationType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="ServiceDescription" type="ServiceDescriptionType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="InitializationSet" type="InitializationSetType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="InitializationGroup" type="UIntVWithIDType" minOccurs="0" maxOccurs="unbounded"/>
@@ -367,6 +368,7 @@
 			<xs:element name="Label" type="LabelType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="ProducerReferenceTime" type="ProducerReferenceTimeType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="ContentPopularityRate" type="ContentPopularityRateType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Resync" type="ResyncType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 		<xs:attribute name="profiles" type="ListOfProfilesType"/>
@@ -743,3 +745,21 @@
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
 </xs:schema>
+<!-- Resynchronization Point  -->
+<xs:complexType name="ResyncType">
+	<xs:attribute name="type" type="SAPType" default="0"/>
+	<xs:attribute name="dT" type="xs:unsignedInt"/>
+	<xs:attribute name="dImax" type="xs:float"/>
+	<xs:attribute name="dImin" type="xs:float" default="0"/>
+	<xs:attribute name="marker" type="xs:boolean" default="false"/>
+	<xs:attribute name="index" type="xs:anyURI"/>
+	<xs:anyAttribute namespace="##other" processContents="lax"/>
+</xs:complexType>
+<xs:complexType name="PatchLocationType">
+       <xs:simpleContent>
+           <xs:extension base="xs:anyURI">
+                 <xs:attribute name="ttl" type="xs:unsignedInt"/>
+                 <xs:anyAttribute namespace="##other" processContents="lax"/>
+            </xs:extension>
+        </xs:simpleContent>
+</xs:complexType>
