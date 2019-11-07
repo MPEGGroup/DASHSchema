@@ -1,0 +1,21 @@
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+           targetNamespace="urn:mpeg:dash:schema:mpd-patch:2020" attributeFormDefault="unqualified"
+  elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:patch="urn:ietf:params:xml:schema:patch-ops" xmlns="urn:mpeg:dash:schema:mpd-patch:2020">
+
+    <xs:element name="Patch" type="PatchType"/>
+
+    <!-- MPD Type -->
+    <xs:complexType name="PatchType">
+        <xs:sequence>
+            <xs:element ref="patch:add"/>
+            <xs:element ref="patch:remove"/>
+            <xs:element ref="patch:replace"/>
+            <xs:any namespace="##other" processContents="lax”/>
+        </xs:sequence>
+        <xs:attribute name="mpdId" type="xs:string"/>
+        <xs:attribute name="publishTime" type="xs:dateTime"/>
+        <xs:attribute name="originalPublishTime" type="xs:dateTime"/>
+        <xs:anyAttribute namespace="##other" processContents="lax"/>
+    </xs:complexType>
+</xs:schema>
