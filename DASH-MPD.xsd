@@ -20,7 +20,7 @@
 			<xs:element name="InitializationSet" type="InitializationSetType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="InitializationGroup" type="UIntVWithIDType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="InitializationPresentation" type="UIntVWithIDType" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element name="Period" maxOccurs="unbounded"/>
+			<xs:element ref="Period" maxOccurs="unbounded"/>
 			<xs:element name="Metrics" type="MetricsType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="EssentialProperty" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="SupplementalProperty" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
