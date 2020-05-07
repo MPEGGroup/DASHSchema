@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="urn:mpeg:dash:schema:mpd:2011" targetNamespace="urn:mpeg:dash:schema:mpd:2011" elementFormDefault="qualified" attributeFormDefault="unqualified">
-<!-- xlink import. URL is per https://www.w3.org/TR/xlink/  Users are encouraged to store a local copy -->
+	<!-- xlink import. URL is per https://www.w3.org/TR/xlink/  Users are encouraged to store a local copy -->
 	<xs:import namespace="http://www.w3.org/1999/xlink" schemaLocation="http://www.w3.org/XML/2008/06/xlink.xsd"/>
 	<xs:annotation>
 		<xs:appinfo>Media Presentation Description</xs:appinfo>
@@ -372,6 +372,7 @@
 			<xs:element name="Label" type="LabelType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="ProducerReferenceTime" type="ProducerReferenceTimeType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="ContentPopularityRate" type="ContentPopularityRateType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Resync" type="ResyncType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 		<xs:attribute name="profiles" type="ListOfProfilesType"/>
@@ -390,6 +391,17 @@
 		<xs:attribute name="scanType" type="VideoScanType"/>
 		<xs:attribute name="selectionPriority" type="xs:unsignedInt"/>
 		<xs:attribute name="tag" type="TagType"/>
+		<xs:anyAttribute namespace="##other" processContents="lax"/>
+	</xs:complexType>
+<!-- Resynchronization Point  -->
+	<xs:complexType name="ResyncType">
+		<xs:attribute name="type" type="SAPType" default="0"/>
+		<xs:attribute name="dT" type="xs:unsignedInt"/>
+		<xs:attribute name="dImax" type="xs:float"/>
+		<xs:attribute name="dImin" type="xs:float" default="0"/>
+		<xs:attribute name="marker" type="xs:boolean" default="false"/>
+		<xs:attribute name="rangeAccess" type="xs:boolean" default="false"/>
+		<xs:attribute name="index" type="xs:anyURI"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
 	<!-- Content Popularity Rate -->
