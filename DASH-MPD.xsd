@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="urn:mpeg:dash:schema:mpd:2011" targetNamespace="urn:mpeg:dash:schema:mpd:2011" elementFormDefault="qualified" attributeFormDefault="unqualified">
-	<xs:import namespace="http://www.w3.org/1999/xlink" schemaLocation="xlink.xsd"/>
+<!-- xlink import. URL is per https://www.w3.org/TR/xlink/  Users are encouraged to store a local copy -->
+	<xs:import namespace="http://www.w3.org/1999/xlink" schemaLocation="http://www.w3.org/XML/2008/06/xlink.xsd"/>
 	<xs:annotation>
 		<xs:appinfo>Media Presentation Description</xs:appinfo>
 		<xs:documentation xml:lang="en">
