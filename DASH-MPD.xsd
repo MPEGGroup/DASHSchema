@@ -27,6 +27,7 @@
 			<xs:element name="SupplementalProperty" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="UTCTiming" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="LeapSecondInformation" type="LeapSecondInformationType" minOccurs="0"/>
+			<xs:element name="PatchLocation" type="PatchLocationType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 		<xs:attribute name="id" type="xs:string"/>
@@ -43,6 +44,15 @@
 		<xs:attribute name="maxSegmentDuration" type="xs:duration"/>
 		<xs:attribute name="maxSubsegmentDuration" type="xs:duration"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
+	</xs:complexType>
+	<!-- Patch Location Type -->
+	<xs:complexType name="PatchLocationType">
+		<xs:simpleContent>
+			<xs:extension base="xs:anyURI">
+				<xs:attribute name="ttl" type="xs:unsignedInt" use="required"/>
+				<xs:anyAttribute namespace="##other" processContents="lax"/>
+			</xs:extension>
+		</xs:simpleContent>
 	</xs:complexType>
 	<!-- Presentation Type enumeration -->
 	<xs:simpleType name="PresentationType">
@@ -393,7 +403,7 @@
 		<xs:attribute name="tag" type="TagType"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
-<!-- Resynchronization Point  -->
+	<!-- Resynchronization Point  -->
 	<xs:complexType name="ResyncType">
 		<xs:attribute name="type" type="SAPType" default="0"/>
 		<xs:attribute name="dT" type="xs:unsignedInt"/>
