@@ -9,6 +9,8 @@
     minBufferTime="PT1.0S"
     profiles="urn:mpeg:dash:profile:isoff-live:2011">
 
+    <PatchLocation ttl="60">live-stream/patch.mpd?publishTime=2020-05-13T05%3A34%3A06%2B00%3A00</PatchLocation>
+
     <Period id="1588435200" start="PT95725984.571S">
         <AdaptationSet
             id="1"
@@ -109,6 +111,4 @@
             </Representation>
         </AdaptationSet>
     </Period>
-
-    <PatchLocation ttl="60">live-stream/patch.mpd?publishTime=2020-05-13T05%3A34%3A06%2B00%3A00</PatchLocation>
 </MPD>
