@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Patch
     xmlns="urn:mpeg:dash:schema:mpd-patch:2020"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="urn:mpeg:dash:schema:mpd-patch:2020 DASH-MPD-PATCH-RESTRICTED.xsd"
     mpdId="live-stream"
     originalPublishTime="2020-05-13T05:34:06+00:00"
     publishTime="2020-05-13T05:34:28.601Z">
