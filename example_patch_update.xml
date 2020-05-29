@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Patch
+    xmlns="urn:mpeg:dash:schema:mpd-patch:2020"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="urn:mpeg:dash:schema:mpd-patch:2020 DASH-MPD-PATCH.xsd"
+    mpdId="live-stream"
+    originalPublishTime="2020-05-13T05:34:06+00:00"
+    publishTime="2020-05-13T05:34:28.601Z">
+    <replace sel="/MPD/@publishTime">2020-05-13T05:34:28.601Z</replace>
+    <replace sel="/MPD/PatchLocation[0]">
+        <PatchLocation ttl="60">live-stream/patch.mpd?publishTime=2020-05-13T05%3A34%3A28.601Z</PatchLocation>
+    </replace>
+    <add sel="/MPD/Period[@id='1588435200']/AdaptationSet[@id='1']/SegmentTemplate/SegmentTimeline">
+        <S d="360360" r="6" t="5494659049"/>
+    </add>
+    <add sel="/MPD/Period[@id='1588435200']/AdaptationSet[@id='2']/SegmentTemplate/SegmentTimeline">
+        <S d="360960" t="5494660288"/>
+        <S d="359040"/>
+        <S d="360960" r="1"/>
+        <S d="359040"/>
+        <S d="360960" r="1"/>
+    </add>
+</Patch>
