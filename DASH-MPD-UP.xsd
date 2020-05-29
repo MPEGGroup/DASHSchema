@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="urn:mpeg:dash:schema:urlparam:2014" targetNamespace="urn:mpeg:dash:schema:urlparam:2014" elementFormDefault="qualified" attributeFormDefault="unqualified">
-	<xs:import namespace="http://www.w3.org/1999/xlink" schemaLocation="xlink.xsd"/>
+	<xs:import namespace="http://www.w3.org/1999/xlink" schemaLocation="http://www.w3.org/XML/2008/06/xlink.xsd"/>
 	<xs:element name="UrlQueryInfo" type="UrlQueryInfoType"/>
 	<xs:complexType name="UrlQueryInfoType">
 		<xs:sequence>
