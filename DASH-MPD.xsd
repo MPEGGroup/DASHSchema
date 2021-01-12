@@ -1,18 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="urn:mpeg:dash:schema:mpd:2011" targetNamespace="urn:mpeg:dash:schema:mpd:2011" elementFormDefault="qualified" attributeFormDefault="unqualified">
-	<!-- xlink import. URL is per https://www.w3.org/TR/xlink/  Users are encouraged to store a local copy -->
-	<xs:import namespace="http://www.w3.org/1999/xlink" schemaLocation="http://www.w3.org/XML/2008/06/xlink.xsd"/>
+	<xs:import namespace="http://www.w3.org/1999/xlink" schemaLocation="http://www.w3.org/XML/2008/06/xlink.xsd">
+		<xs:annotation><xs:documentation xml:lang="en">
+			xlink import. URL is per https://www.w3.org/TR/xlink/  Users are encouraged to store a local copy
+		</xs:documentation></xs:annotation>
+	</xs:import>
 	<xs:annotation>
 		<xs:appinfo>Media Presentation Description</xs:appinfo>
 		<xs:documentation xml:lang="en">
-      This Schema defines the Media Presentation Description for MPEG-DASH.
-    </xs:documentation>
+			This Schema defines the Media Presentation Description for MPEG-DASH.
+		</xs:documentation>
 	</xs:annotation>
-	<!-- MPD: main element -->
-	<xs:element name="MPD" type="MPDtype"/>
+	<xs:element name="MPD" type="MPDtype">
+		<xs:annotation><xs:documentation xml:lang="en">
+			MPD: main element
+		</xs:documentation></xs:annotation>
+	</xs:element>
 	<xs:element name="Period" type="PeriodType"/>
-	<!-- MPD Type -->
 	<xs:complexType name="MPDtype">
+		<xs:annotation><xs:documentation xml:lang="en">
+			MPD Type
+		</xs:documentation></xs:annotation>
 		<xs:sequence>
 			<xs:element name="ProgramInformation" type="ProgramInformationType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="BaseURL" type="BaseURLType" minOccurs="0" maxOccurs="unbounded"/>
@@ -46,8 +54,10 @@
 		<xs:attribute name="maxSubsegmentDuration" type="xs:duration"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
-	<!-- Patch Location Type -->
 	<xs:complexType name="PatchLocationType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			Patch Location Type
+		</xs:documentation></xs:annotation>
 		<xs:simpleContent>
 			<xs:extension base="xs:anyURI">
 				<xs:attribute name="ttl" type="xs:unsignedInt" use="required"/>
@@ -55,15 +65,19 @@
 			</xs:extension>
 		</xs:simpleContent>
 	</xs:complexType>
-	<!-- Presentation Type enumeration -->
 	<xs:simpleType name="PresentationType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			Presentation Type enumeration
+		</xs:documentation></xs:annotation>
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="static"/>
 			<xs:enumeration value="dynamic"/>
 		</xs:restriction>
 	</xs:simpleType>
-	<!-- Period -->
 	<xs:complexType name="PeriodType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			Period
+		</xs:documentation></xs:annotation>
 		<xs:sequence>
 			<xs:element name="BaseURL" type="BaseURLType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="SegmentBase" type="SegmentBaseType" minOccurs="0"/>
@@ -90,8 +104,10 @@
 		<xs:attribute name="bitstreamSwitching" type="xs:boolean" default="false"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
-	<!-- Event Stream -->
 	<xs:complexType name="EventStreamType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			Event Stream
+		</xs:documentation></xs:annotation>
 		<xs:sequence>
 			<xs:element name="Event" type="EventType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
@@ -105,8 +121,10 @@
 		<xs:attribute name="timescale" type="xs:unsignedInt"/>
 		<xs:attribute name="presentationTimeOffset" type="xs:unsignedLong" default="0"/>
 	</xs:complexType>
-	<!-- Event  -->
 	<xs:complexType name="EventType" mixed="true">
+		<xs:annotation><xs:documentation xml:lang="en">
+			Event
+		</xs:documentation></xs:annotation>
 		<xs:sequence>
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
@@ -116,7 +134,7 @@
 		<xs:attribute name="contentEncoding" type="ContentEncodingType"/>
 		<xs:attribute name="messageData" type="xs:string">
 			<xs:annotation>
-				<xs:documentation>
+				<xs:documentation xml:lang="en">
 					Deprecated in favor of carrying the message information in the
 					value space of the event
 				</xs:documentation>
@@ -124,14 +142,18 @@
 		</xs:attribute>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
-	<!-- Event Coding -->
 	<xs:simpleType name="ContentEncodingType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			Event Coding
+		</xs:documentation></xs:annotation>
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="base64"/>
 		</xs:restriction>
 	</xs:simpleType>
-	<!-- Initialization Set -->
 	<xs:complexType name="InitializationSetType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			Initialization Set
+		</xs:documentation></xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="RepresentationBaseType">
 				<xs:sequence>
@@ -154,8 +176,10 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<!-- Service Description -->
 	<xs:complexType name="ServiceDescriptionType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			Service Description
+		</xs:documentation></xs:annotation>
 		<xs:sequence>
 			<xs:element name="Scope" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="Latency" type="LatencyType" minOccurs="0" maxOccurs="unbounded"/>
@@ -167,8 +191,10 @@
 		<xs:attribute name="id" type="xs:unsignedInt"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
-	<!-- Service Description Latency -->
 	<xs:complexType name="LatencyType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			Service Description Latency
+		</xs:documentation></xs:annotation>
 		<xs:sequence>
 			<xs:element name="QualityLatency" type="UIntPairsWithIDType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
@@ -179,14 +205,18 @@
 		<xs:attribute name="min" type="xs:unsignedInt"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
-	<!-- Service Description Playback Rate -->
 	<xs:complexType name="PlaybackRateType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			Service Description Playback Rate
+		</xs:documentation></xs:annotation>
 		<xs:attribute name="max" type="xs:double"/>
 		<xs:attribute name="min" type="xs:double"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
-	<!-- Service Description Operating Quality -->
 	<xs:complexType name="OperatingQualityType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			Service Description Operating Quality
+		</xs:documentation></xs:annotation>
 		<xs:attribute name="mediaType" default="any">
 			<xs:simpleType>
 				<xs:restriction base="xs:string">
@@ -203,8 +233,10 @@
 		<xs:attribute name="maxDifference" type="xs:unsignedInt"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
-	<!-- Service Description Operating Bandwidth -->
 	<xs:complexType name="OperatingBandwidthType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			Service Description Operating Bandwidth
+		</xs:documentation></xs:annotation>
 		<xs:attribute name="mediaType" default="all">
 			<xs:simpleType>
 				<xs:restriction base="xs:string">
@@ -220,8 +252,10 @@
 		<xs:attribute name="target" type="xs:unsignedInt"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
-	<!-- UInt Pairs With ID -->
 	<xs:complexType name="UIntPairsWithIDType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			UInt Pairs With ID
+		</xs:documentation></xs:annotation>
 		<xs:simpleContent>
 			<xs:extension base="UIntVectorType">
 				<xs:attribute name="type" type="xs:anyURI"/>
@@ -229,8 +263,10 @@
 			</xs:extension>
 		</xs:simpleContent>
 	</xs:complexType>
-	<!-- UInt Vector With ID -->
 	<xs:complexType name="UIntVWithIDType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			UInt Vector With ID
+		</xs:documentation></xs:annotation>
 		<xs:simpleContent>
 			<xs:extension base="UIntVectorType">
 				<xs:attribute name="id" type="xs:unsignedInt" use="required"/>
@@ -240,14 +276,18 @@
 			</xs:extension>
 		</xs:simpleContent>
 	</xs:complexType>
-	<!-- List of Profiles -->
 	<xs:simpleType name="ListOfProfilesType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			List of Profiles
+		</xs:documentation></xs:annotation>
 		<xs:restriction base="xs:string">
 			<xs:pattern value="(([A-Za-z0-9\-\._~&#xA0;-&#xFF;]|(&#37;[0-9A-Fa-f][0-9A-Fa-f])|[!$&amp;/#'()*+;=:@]))+(,(([A-Za-z0-9\-\._~&#xA0;-&#xFF;]|(&#37;[0-9A-Fa-f][0-9A-Fa-f])|[!$&amp;/#'()*+;=:@]))*)*"/>
 		</xs:restriction>
 	</xs:simpleType>
-	<!-- Adaptation Set -->
 	<xs:complexType name="AdaptationSetType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			Adaptation Set
+		</xs:documentation></xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="RepresentationBaseType">
 				<xs:sequence>
@@ -287,24 +327,32 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<!-- Conditional Unsigned Integer (unsignedInt or boolean) -->
 	<xs:simpleType name="ConditionalUintType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			Conditional Unsigned Integer (unsignedInt or boolean)
+		</xs:documentation></xs:annotation>
 		<xs:union memberTypes="xs:unsignedInt xs:boolean"/>
 	</xs:simpleType>
-	<!-- Ratio Type for sar and par -->
 	<xs:simpleType name="RatioType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			Ratio Type for sar and par
+		</xs:documentation></xs:annotation>
 		<xs:restriction base="xs:string">
 			<xs:pattern value="[0-9]*:[0-9]*"/>
 		</xs:restriction>
 	</xs:simpleType>
-	<!-- Type for Frame Rate -->
 	<xs:simpleType name="FrameRateType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			Type for Frame Rate
+		</xs:documentation></xs:annotation>
 		<xs:restriction base="xs:string">
 			<xs:pattern value="[0-9]+(/[1-9][0-9]*)?"/>
 		</xs:restriction>
 	</xs:simpleType>
-	<!-- Type for RFC6838 Content Type -->
 	<xs:simpleType name="RFC6838ContentTypeType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			Type for RFC6838 Content Type
+		</xs:documentation></xs:annotation>
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="text"/>
 			<xs:enumeration value="image"/>
@@ -314,8 +362,10 @@
 			<xs:enumeration value="font"/>
 		</xs:restriction>
 	</xs:simpleType>
-	<!-- Content Component -->
 	<xs:complexType name="ContentComponentType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			Content Component
+		</xs:documentation></xs:annotation>
 		<xs:sequence>
 			<xs:element name="Accessibility" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="Role" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
@@ -330,8 +380,10 @@
 		<xs:attribute name="tag" type="TagType"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
-	<!-- Representation -->
 	<xs:complexType name="RepresentationType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			Representation
+		</xs:documentation></xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="RepresentationBaseType">
 				<xs:sequence>
@@ -351,14 +403,18 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<!-- String without white spaces -->
 	<xs:simpleType name="StringNoWhitespaceType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			String without white spaces
+		</xs:documentation></xs:annotation>
 		<xs:restriction base="xs:string">
 			<xs:pattern value="[^\r\n\t \p{Z}]*"/>
 		</xs:restriction>
 	</xs:simpleType>
-	<!-- SubRepresentation -->
 	<xs:complexType name="SubRepresentationType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			SubRepresentation
+		</xs:documentation></xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="RepresentationBaseType">
 				<xs:attribute name="level" type="xs:unsignedInt"/>
@@ -368,8 +424,10 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<!-- Representation base (common attributes and elements) -->
 	<xs:complexType name="RepresentationBaseType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			Representation base (common attributes and elements)
+		</xs:documentation></xs:annotation>
 		<xs:sequence>
 			<xs:element name="FramePacking" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="AudioChannelConfiguration" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
@@ -405,18 +463,22 @@
 		<xs:attribute name="tag" type="TagType"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
-	<!-- Content Protection -->
 	<xs:complexType name="ContentProtectionType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			Content Protection
+		</xs:documentation></xs:annotation>
 		<xs:complexContent>
-			<xs:extension base="DescriptorType" >
+			<xs:extension base="DescriptorType">
 				<xs:attribute name="robustness" type="StringNoWhitespaceType"/>
 				<xs:attribute name="refId" type="xs:ID"/>
 				<xs:attribute name="ref" type="xs:IDREF"/>
 			</xs:extension>
-		 </xs:complexContent>
+		</xs:complexContent>
 	</xs:complexType>
-	<!-- Resynchronization Point  -->
 	<xs:complexType name="ResyncType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			Resynchronization Point
+		</xs:documentation></xs:annotation>
 		<xs:attribute name="type" type="SAPType" default="0"/>
 		<xs:attribute name="dT" type="xs:unsignedInt"/>
 		<xs:attribute name="dImax" type="xs:float"/>
@@ -426,8 +488,10 @@
 		<xs:attribute name="index" type="xs:anyURI"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
-	<!-- Content Popularity Rate -->
 	<xs:complexType name="ContentPopularityRateType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			Content Popularity Rate
+		</xs:documentation></xs:annotation>
 		<xs:sequence>
 			<xs:element name="PR" maxOccurs="unbounded">
 				<xs:complexType>
@@ -458,8 +522,10 @@
 		<xs:attribute name="source_description" type="xs:string"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
-	<!-- Label and Group Label -->
 	<xs:complexType name="LabelType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			Label and Group Label
+		</xs:documentation></xs:annotation>
 		<xs:simpleContent>
 			<xs:extension base="xs:string">
 				<xs:attribute name="id" type="xs:unsignedInt" default="0"/>
@@ -468,8 +534,10 @@
 			</xs:extension>
 		</xs:simpleContent>
 	</xs:complexType>
-	<!-- Producer Reference time -->
 	<xs:complexType name="ProducerReferenceTimeType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			Producer Reference time
+		</xs:documentation></xs:annotation>
 		<xs:sequence>
 			<xs:element name="UTCTiming" type="DescriptorType" minOccurs="0"/>
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
@@ -489,8 +557,10 @@
 			<xs:enumeration value="application"/>
 		</xs:restriction>
 	</xs:simpleType>
-	<!-- Preselection -->
 	<xs:complexType name="PreselectionType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			Preselection
+		</xs:documentation></xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="RepresentationBaseType">
 				<xs:sequence>
@@ -506,77 +576,99 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<!-- Audio Sampling Rate -->
 	<xs:simpleType name="AudioSamplingRateType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			Audio Sampling Rate
+		</xs:documentation></xs:annotation>
 		<xs:restriction base="UIntVectorType">
 			<xs:minLength value="1"/>
 			<xs:maxLength value="2"/>
 		</xs:restriction>
 	</xs:simpleType>
-	<!-- Stream Access Point type enumeration -->
 	<xs:simpleType name="SAPType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			Stream Access Point type enumeration
+		</xs:documentation></xs:annotation>
 		<xs:restriction base="xs:unsignedInt">
 			<xs:minInclusive value="0"/>
 			<xs:maxInclusive value="6"/>
 		</xs:restriction>
 	</xs:simpleType>
-	<!-- Video Scan type enumeration -->
 	<xs:simpleType name="VideoScanType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			Video Scan type enumeration
+		</xs:documentation></xs:annotation>
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="progressive"/>
 			<xs:enumeration value="interlaced"/>
 			<xs:enumeration value="unknown"/>
 		</xs:restriction>
 	</xs:simpleType>
-	<!-- Tag -->
 	<xs:simpleType name="TagType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			Tag
+		</xs:documentation></xs:annotation>
 		<xs:restriction base="xs:string"/>
 	</xs:simpleType>
-	<!-- Subset  -->
 	<xs:complexType name="SubsetType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			Subset
+		</xs:documentation></xs:annotation>
 		<xs:attribute name="contains" type="UIntVectorType" use="required"/>
 		<xs:attribute name="id" type="xs:string"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
-	<!-- Switching  -->
 	<xs:complexType name="SwitchingType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			Switching
+		</xs:documentation></xs:annotation>
 		<xs:attribute name="interval" type="xs:unsignedInt" use="required"/>
 		<xs:attribute name="type" type="SwitchingTypeType"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
-	<!--Switching Type type enumeration -->
 	<xs:simpleType name="SwitchingTypeType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			Switching Type type enumeration
+		</xs:documentation></xs:annotation>
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="media"/>
 			<xs:enumeration value="bitstream"/>
 		</xs:restriction>
 	</xs:simpleType>
-	<!-- Random Access  -->
 	<xs:complexType name="RandomAccessType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			Random Access
+		</xs:documentation></xs:annotation>
 		<xs:attribute name="interval" type="xs:unsignedInt" use="required"/>
 		<xs:attribute name="type" type="RandomAccessTypeType" default="closed"/>
 		<xs:attribute name="minBufferTime" type="xs:duration"/>
 		<xs:attribute name="bandwidth" type="xs:unsignedInt"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
-	<!-- Random Access Type type enumeration -->
 	<xs:simpleType name="RandomAccessTypeType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			Random Access Type type enumeration
+		</xs:documentation></xs:annotation>
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="closed"/>
 			<xs:enumeration value="open"/>
 			<xs:enumeration value="gradual"/>
 		</xs:restriction>
 	</xs:simpleType>
-	<!--Preselection Order type-->
 	<xs:simpleType name="PreselectionOrderType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			Preselection Order type
+		</xs:documentation></xs:annotation>
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="undefined"/>
 			<xs:enumeration value="time-ordered"/>
 			<xs:enumeration value="fully-ordered"/>
 		</xs:restriction>
 	</xs:simpleType>
-	<!-- Segment information base -->
 	<xs:complexType name="SegmentBaseType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			Segment information base
+		</xs:documentation></xs:annotation>
 		<xs:sequence>
 			<xs:element name="Initialization" type="URLType" minOccurs="0"/>
 			<xs:element name="RepresentationIndex" type="URLType" minOccurs="0"/>
@@ -594,8 +686,10 @@
 		<xs:attribute name="availabilityTimeComplete" type="xs:boolean"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
-	<!-- Multiple Segment information base -->
 	<xs:complexType name="MultipleSegmentBaseType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			Multiple Segment information base
+		</xs:documentation></xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="SegmentBaseType">
 				<xs:sequence>
@@ -608,8 +702,10 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<!-- Segment Info item URL/range -->
 	<xs:complexType name="URLType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			Segment Info item URL/range
+		</xs:documentation></xs:annotation>
 		<xs:sequence>
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
@@ -622,8 +718,10 @@
 			<xs:pattern value="([0-9]*)(\-([0-9]*))?"/>
 		</xs:restriction>
 	</xs:simpleType>
-	<!-- Failover Content -->
 	<xs:complexType name="FailoverContentType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			Failover Content
+		</xs:documentation></xs:annotation>
 		<xs:sequence>
 			<xs:element name="FCS" maxOccurs="unbounded">
 				<xs:complexType>
@@ -637,8 +735,10 @@
 		<xs:attribute name="valid" type="xs:boolean" default="true"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
-	<!-- Segment List -->
 	<xs:complexType name="SegmentListType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			Segment List
+		</xs:documentation></xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="MultipleSegmentBaseType">
 				<xs:sequence>
@@ -651,8 +751,10 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<!-- Segment URL  -->
 	<xs:complexType name="SegmentURLType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			Segment URL
+		</xs:documentation></xs:annotation>
 		<xs:sequence>
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
@@ -662,8 +764,10 @@
 		<xs:attribute name="indexRange" type="SingleRFC7233RangeType"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
-	<!-- Segment Template -->
 	<xs:complexType name="SegmentTemplateType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			Segment Template
+		</xs:documentation></xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="MultipleSegmentBaseType">
 				<xs:attribute name="media" type="xs:string"/>
@@ -673,8 +777,10 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<!-- Segment Timeline -->
 	<xs:complexType name="SegmentTimelineType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			Segment Timeline
+		</xs:documentation></xs:annotation>
 		<xs:sequence>
 			<xs:element name="S" minOccurs="0" maxOccurs="unbounded">
 				<xs:complexType>
@@ -690,24 +796,34 @@
 		</xs:sequence>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
-	<!-- Whitespace-separated list of strings -->
 	<xs:simpleType name="StringVectorType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			Whitespace-separated list of strings
+		</xs:documentation></xs:annotation>
 		<xs:list itemType="xs:string"/>
 	</xs:simpleType>
-	<!-- Whitespace separated list of 4CC -->
 	<xs:simpleType name="ListOf4CCType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			Whitespace separated list of 4CC
+		</xs:documentation></xs:annotation>
 		<xs:list itemType="FourCCType"/>
 	</xs:simpleType>
-	<!-- 4CC as per latest 14496-12 -->
 	<xs:simpleType name="FourCCType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			4CC as per latest 14496-12
+		</xs:documentation></xs:annotation>
 		<xs:restriction base="xs:string"/>
 	</xs:simpleType>
-	<!-- Whitespace-separated list of unsigned integers -->
 	<xs:simpleType name="UIntVectorType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			Whitespace-separated list of unsigned integers
+		</xs:documentation></xs:annotation>
 		<xs:list itemType="xs:unsignedInt"/>
 	</xs:simpleType>
-	<!-- Base URL -->
 	<xs:complexType name="BaseURLType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			Base URL
+		</xs:documentation></xs:annotation>
 		<xs:simpleContent>
 			<xs:extension base="xs:anyURI">
 				<xs:attribute name="serviceLocation" type="xs:string"/>
@@ -719,8 +835,10 @@
 			</xs:extension>
 		</xs:simpleContent>
 	</xs:complexType>
-	<!-- Program Information -->
 	<xs:complexType name="ProgramInformationType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			Program Information
+		</xs:documentation></xs:annotation>
 		<xs:sequence>
 			<xs:element name="Title" type="xs:string" minOccurs="0"/>
 			<xs:element name="Source" type="xs:string" minOccurs="0"/>
@@ -731,8 +849,10 @@
 		<xs:attribute name="moreInformationURL" type="xs:anyURI"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
-	<!-- Descriptor -->
 	<xs:complexType name="DescriptorType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			Descriptor
+		</xs:documentation></xs:annotation>
 		<xs:sequence>
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
@@ -741,8 +861,10 @@
 		<xs:attribute name="id" type="xs:string"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
-	<!-- Metrics -->
 	<xs:complexType name="MetricsType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			Metrics
+		</xs:documentation></xs:annotation>
 		<xs:sequence>
 			<xs:element name="Range" type="RangeType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="Reporting" type="DescriptorType" maxOccurs="unbounded"/>
@@ -751,8 +873,11 @@
 		<xs:attribute name="metrics" type="xs:string" use="required"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
-	<!-- Metrics Range -->
+	<!--  -->
 	<xs:complexType name="RangeType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			Metrics Range
+		</xs:documentation></xs:annotation>
 		<xs:attribute name="starttime" type="xs:duration"/>
 		<xs:attribute name="duration" type="xs:duration"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
@@ -771,8 +896,10 @@
 			</xs:pattern>
 		</xs:restriction>
 	</xs:simpleType>
-	<!-- Leap Second Information -->
 	<xs:complexType name="LeapSecondInformationType">
+		<xs:annotation><xs:documentation xml:lang="en">
+			Leap Second Information
+		</xs:documentation></xs:annotation>
 		<xs:sequence>
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
