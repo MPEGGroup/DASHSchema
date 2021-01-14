@@ -2,9 +2,9 @@ name: Test MPDs
 
 on:
   push:
-    branches: [ master ]
+    branches: [ 5th-Ed ]
   pull_request:
-    branches: [ master ]
+    branches: [ 5th-Ed ]
 
 jobs:
   build:
