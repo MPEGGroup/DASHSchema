@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="@codecs-validation.xsd">
+
+	<simple>sevc,s263</simple>
+	<simple>samr</simple>
+	<simple>mp4a.E1</simple>
+	<simple>mp4v.20.9,mp4a.E1</simple>
+	<simple>avc1.640028</simple>
+	<simple>svc1.56401E,avc1.4D401E</simple>
+	<simple>mvc1.800030,avc1.640030</simple>
+	<fancy>US-ASCII'en'avc1</fancy>
+	<fancy>ISO-8859-2'de'avc1</fancy>
+	
+	<!-- from RFC2231 https://tools.ietf.org/html/rfc2231 section 4 -->
+	<fancy>us-ascii'en-us'This%20is%20%2A%2A%2Afun%2A%2A%2A</fancy>
+	<fancy>us-ascii'en'This%20is%20even%20more%20%2A%2A%2Afun%2A%2A%2A%20isn't it!</fancy>
+</Tests>

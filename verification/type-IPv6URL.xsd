@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE root-element SYSTEM "../DASH-entities.dtd">
+ 
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+	<xs:element name="Tests">
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element name="v6url">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:pattern value="(&Scheme;:(//(&User;(:&Password;)?@)?&IPv6Host;&Port;?&Path;*/?|&PathNoAuthority;)|(&RelativePath;/?|&AbsolutePath;/?))&Query;?&Fragment;?"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element> 
+
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

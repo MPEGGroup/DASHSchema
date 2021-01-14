@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE root-element SYSTEM "DASH-entities.dtd">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="urn:mpeg:dash:schema:mpd:types" targetNamespace="urn:mpeg:dash:schema:mpd:types" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:simpleType name="URNandURLlist">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(&URN;|&URL;)(,(&URN;|&URL;))*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AspectRatio">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[&digit;]*:[&digit;]*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FrameRate">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[&digit;]+(/[1-9][&digit;]*)?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RFC7233Range">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="([&digit;]*)(\-([&digit;]*))?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RFC6381FancyList">
+		<xs:annotation>
+			<xs:documentation>RFC6381 fancy-list</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="&fancy-list;"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RFC6381SimpleList">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">RFC6381 simp-list</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="&simp-list;"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FourCCType">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">
+				4CC as per latest ISO/IEC 14496-12
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="&FourCC;"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

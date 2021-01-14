@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE root-element SYSTEM "../DASH-entities.dtd">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:dt="urn:mpeg:dash:schema:mpd:types">
+	<xs:import namespace="urn:mpeg:dash:schema:mpd:types" schemaLocation="../DASH-types.xsd"/>
+	<xs:element name="Tests">
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element name="fancy">
+					<xs:simpleType>
+						<xs:restriction base="dt:RFC6381FancyList"/>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="simple">
+					<xs:simpleType>
+						<xs:restriction base="dt:RFC6381SimpleList"/>
+					</xs:simpleType>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
+
