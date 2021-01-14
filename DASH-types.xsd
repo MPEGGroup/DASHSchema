@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- <!DOCTYPE root-element SYSTEM "DASH-entities.dtd"> -->
 <!DOCTYPE schema [
 	<!-- % -->
 	<!ENTITY pct "&#x25;">
@@ -8,7 +7,6 @@
 	<!ENTITY quot "&#x22;">
 	<!-- -->
 	<!ENTITY space "&#x20;">
-	
 	<!-- RFC 1738 -->
 	<!ENTITY lowalpha "a-z">
 	<!ENTITY hialpha "A-Z">
@@ -52,7 +50,6 @@
 	<!ENTITY NamespaceSpecific "[&alpha;&digit;&NSS-others;&NSS-reserved;]+">
 	<!ENTITY URN "urn:&NamespaceID;:&NamespaceSpecific;">
 	<!ENTITY URL "(&Scheme;:(&AuthorityAndPath;|&PathNoAuthority;)|(&RelativePath;/?|&AbsolutePath;/?))&Query;?&Fragment;?">
-	
 	<!-- -->
 	<!-- RFC 2045 -->
 	<!ENTITY tspecials "()&lt;&gt;@,;:\\&quot;/\[\]?=">
@@ -85,7 +82,6 @@
 	<!-- -->
 	<!ENTITY FourCCchar "[&lowalpha;&hialpha;&digit;]">
 	<!ENTITY FourCC "(&FourCCchar;{4}|&FourCCchar;{3}&space;|&FourCCchar;{2}&space;{2}|&FourCCchar;&space;{3})">
-
 ]>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="urn:mpeg:dash:schema:mpd:types" targetNamespace="urn:mpeg:dash:schema:mpd:types" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xs:simpleType name="URNandURLlist">
