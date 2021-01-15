@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <MPD xmlns="urn:mpeg:dash:schema:mpd:2011" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:mpeg:dash:schema:mpd:2011 DASH-MPD.xsd" type="dynamic" availabilityStartTime="2015-05-30T09:30:10Z" minimumUpdatePeriod="PT10S" minBufferTime="PT1S" profiles="urn:mpeg:dash:profile:isoff-live:2011" publishTime="2015-05-30T09:30:10Z">
 	<ProgramInformation>
 		<Title>Example of a DASH Media Presentation Description using Spatial Relationships Description to indicate tiles of a video</Title>
