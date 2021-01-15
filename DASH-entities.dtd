@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <!-- % -->
 <!ENTITY pct "&#x25;">
 <!-- -->
@@ -52,13 +51,15 @@
 <!ENTITY URL "(&Scheme;:(&AuthorityAndPath;|&PathNoAuthority;)|(&RelativePath;/?|&AbsolutePath;/?))&Query;?&Fragment;?">
 
 <!-- -->
-<!-- RFC 2045 -->
-<!ENTITY tspecials "()&lt;&gt;@,;:\\&quot;/\[\]?=">
-<!ENTITY token2047 "[^ &#x01;-&#x1f;&especials;]+">
-<!ENTITY TOKEN "[^ &#x01;-&#x1f;&tspecials;]">
-<!-- -->
 <!-- RFC 2047 -->
 <!ENTITY especials "()&lt;&gt;@,;:&quot;/\[\]?\.=">
+<!-- -->
+<!-- RFC 2045 -->
+<!ENTITY tspecials "()&lt;&gt;@,;:\\&quot;/\[\]?=">
+<!-- ERROR: lxml not allowing &#x01;-&#x1f;  <!ENTITY token2047 "[^ &#x01;-&#x1f;&especials;]+">  -->
+<!-- ERROR: lxml not allowing &#x01;-&#x1f;  <!ENTITY TOKEN "[^ &#x01;-&#x1f;&tspecials;]"> -->
+<!ENTITY token2047 "[^ &especials;]+">
+<!ENTITY TOKEN "[^ &tspecials;]">
 <!-- -->
 <!-- RFC 6381 -->
 <!ENTITY octet-sim "&TOKEN;+">
@@ -71,7 +72,8 @@
 <!-- language := <registered language tag [RFC-1766]> -->
 <!ENTITY language "[&alpha;]{1,8}(\-[&alpha;]{1,8})*">
 <!ENTITY ext-octet "&escape;">
-<!ENTITY attribute-char "[^ &#x01;-&#x1f;*'&pct;&tspecials;]">
+<!-- ERROR: lxml not allowing &#x01;-&#x1f;  <!ENTITY attribute-char "[^ &#x01;-&#x1f;*'&pct;&tspecials;]"> -->
+<!ENTITY attribute-char "[^ *'&pct;&tspecials;]">
 <!-- -->
 <!-- RFC 6381 -->
 <!ENTITY octet-fancy "(&ext-octet;|&attribute-char;)">
