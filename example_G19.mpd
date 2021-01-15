@@ -19,7 +19,7 @@
             maxWidth="1080"
             maxHeight="720"
             maxFrameRate="30"
-            segmentProfiles="cmfs,cmff" 
+            segmentProfiles="cmfs cmff" 
             segmentAlignment="true" 
             startWithSAP="1">
             <SegmentTemplate timescale="30" initialization="$RepresentationID$/0" media="$RepresentationID$/$Number$">
@@ -37,7 +37,7 @@
             id="1" 
             mimeType="audio/mp4 profiles='cmfc'" 
             codecs="mp4a.40.5" 
-            segmentProfiles="cmfs,cmff" 
+            segmentProfiles="cmfs cmff" 
             segmentAlignment="true" 
             startWithSAP="1">
             <SegmentTemplate timescale="48" initialization="$RepresentationID$/0" media="$RepresentationID$/$Number$">
@@ -46,6 +46,7 @@
                 </SegmentTimeline>
             </SegmentTemplate>
             <Representation id="audio1/1" bandwidth="2500"/>
-            <Representation id="audio1/2" bandwidth="500000"/>	        </AdaptationSet>
+            <Representation id="audio1/2" bandwidth="500000"/>
+        </AdaptationSet>
     </Period>
 </MPD>
