@@ -7,7 +7,7 @@
 	<!ENTITY quot "&#x22;">
 	<!-- -->
 	<!ENTITY space "&#x20;">
-	
+	<!-- -->
 	<!-- RFC 1738 -->
 	<!ENTITY lowalpha "a-z">
 	<!ENTITY hialpha "A-Z">
@@ -51,17 +51,17 @@
 	<!ENTITY NamespaceSpecific "[&alpha;&digit;&NSS-others;&NSS-reserved;]+">
 	<!ENTITY URN "urn:&NamespaceID;:&NamespaceSpecific;">
 	<!ENTITY URL "(&Scheme;:(&AuthorityAndPath;|&PathNoAuthority;)|(&RelativePath;/?|&AbsolutePath;/?))&Query;?&Fragment;?">
-	
+	<!-- -->
+	<!-- these are the <ctrl> characters that are permitted in XML (TAB, LF, CR) -->
+	<!ENTITY CTLs "&#x09;&#x0a;&#x0d;"><!-- -->
 	<!-- -->
 	<!-- RFC 2047 -->
 	<!ENTITY especials "()&lt;&gt;@,;:&quot;/\[\]?\.=">
-	<!-- ERROR: lxml not allowing &#x01;-&#x1f;  <!ENTITY token2047 "[^ &#x01;-&#x1f;&especials;]+">  -->
-	<!ENTITY token2047 "[^ &especials;]+">
+	<!ENTITY token2047 "[^ &CTLs;&especials;]+">
 	<!-- -->
 	<!-- RFC 2045 -->
 	<!ENTITY tspecials "()&lt;&gt;@,;:\\&quot;/\[\]?=">
-	<!-- ERROR: lxml not allowing &#x01;-&#x1f;  <!ENTITY TOKEN "[^ &#x01;-&#x1f;&tspecials;]"> -->
-	<!ENTITY TOKEN "[^ &#x09;&#x0a;&#x0d;&tspecials;]">
+	<!ENTITY TOKEN "[^ &CTLs;&tspecials;]">
 	<!-- -->
 	<!-- RFC 6381 -->
 	<!ENTITY octet-sim "&TOKEN;+">
@@ -74,8 +74,7 @@
 	<!-- language := <registered language tag [RFC-1766]> -->
 	<!ENTITY language "[&alpha;]{1,8}(\-[&alpha;]{1,8})*">
 	<!ENTITY ext-octet "&escape;">
-	<!-- ERROR: lxml not allowing &#x01;-&#x1f;  <!ENTITY attribute-char "[^ &#x01;-&#x1f;*'&pct;&tspecials;]"> -->
-	<!ENTITY attribute-char "[^ *'&pct;&tspecials;]">
+	<!ENTITY attribute-char "[^ &CTLs;*'&pct;&tspecials;]">
 	<!-- -->
 	<!-- RFC 6381 -->
 	<!ENTITY octet-fancy "(&ext-octet;|&attribute-char;)">
