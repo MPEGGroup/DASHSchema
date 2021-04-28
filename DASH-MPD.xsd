@@ -55,17 +55,17 @@
 	<!ENTITY URN "urn:&NamespaceID;:&NamespaceSpecific;">
 	<!ENTITY URL "(&Scheme;:(&AuthorityAndPath;|&PathNoAuthority;)|(&RelativePath;/?|&AbsolutePath;/?))&Query;?&Fragment;?">
 	<!-- IETF RFC 2045 -->
-	<!ENTITY TOKEN "[&alpha;&digit;&safe;&carat;&pipe;&squote;&grave;&pct;!*#\\~&amp;]"> 
+	<!ENTITY TOKEN "[&alpha;&digit;&safe;&carat;&pipe;&squote;&grave;&pct;!*#\\~&amp;]">
 	<!-- IETF RFC 2231 -->
-	<!ENTITY ext_octet "&pct;[&hex;]{2}"> 
-	<!ENTITY attribute_char "[&alpha;&digit;&safe;!#\\^{}|`~&amp;]">	
+	<!ENTITY ext_octet "&pct;[&hex;]{2}">
+	<!ENTITY attribute_char "[&alpha;&digit;&safe;!#\\^{}|`~&amp;]">
 	<!-- IETF RFC 6381 -->
-	<!ENTITY octet_sim "&TOKEN;"> 
+	<!ENTITY octet_sim "&TOKEN;">
 	<!ENTITY id_simple "&octet_sim;+">
 	<!ENTITY simp_list "&quot;&id_simple;(,&id_simple;)*&quot;">
 	<!ENTITY charset "[&alpha;\-]+">
-	<!ENTITY language "[&alpha;]{1,8}(=[&alpha;]{1,8})*">
-	<!ENTITY octet_fancy "(&ext_octet;|&attribute_char;)"> 
+	<!ENTITY language "[&alpha;]{1,8}(-[&alpha;]{1,8})*">
+	<!ENTITY octet_fancy "(&ext_octet;|&attribute_char;)">
 	<!ENTITY encoded_elm "&octet_fancy;+">
 	<!ENTITY id_encoded "&encoded_elm;(\.&encoded_elm;)*">
 	<!ENTITY id_list "&id_encoded;(,&id_encoded;)*">
