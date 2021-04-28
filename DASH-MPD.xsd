@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE schema [
-	<!ENTITY pct "&#x25;">
 	<!-- % -->
-	<!ENTITY quot "&#x22;">
+	<!ENTITY pct "&#x25;">
 	<!-- " -->
+	<!ENTITY quot "&#x22;">
+	<!-- ^ -->
+	<!ENTITY carat "&#94;">
+	<!-- | -->
+	<!ENTITY pipe "&#124;">
+	<!-- ' -->
+	<!ENTITY squote "&#39;">
+	<!-- ` -->
+	<!ENTITY grave "&#96;">
 	<!-- RFC 1738 -->
 	<!ENTITY lowalpha "a-z">
 	<!ENTITY hialpha "A-Z">
@@ -46,6 +54,22 @@
 	<!ENTITY NamespaceSpecific "[&alpha;&digit;&NSS-others;&NSS-reserved;]+">
 	<!ENTITY URN "urn:&NamespaceID;:&NamespaceSpecific;">
 	<!ENTITY URL "(&Scheme;:(&AuthorityAndPath;|&PathNoAuthority;)|(&RelativePath;/?|&AbsolutePath;/?))&Query;?&Fragment;?">
+	<!-- IETF RFC 2045 -->
+	<!ENTITY TOKEN "[&alpha;&digit;&safe;&carat;&pipe;&squote;&grave;&pct;!*#\\~&amp;]"> 
+	<!-- IETF RFC 2231 -->
+	<!ENTITY ext_octet "&pct;[&hex;]{2}"> 
+	<!ENTITY attribute_char "[&alpha;&digit;&safe;!#\\^{}|`~&amp;]">	
+	<!-- IETF RFC 6381 -->
+	<!ENTITY octet_sim "&TOKEN;"> 
+	<!ENTITY id_simple "&octet_sim;+">
+	<!ENTITY simp_list "&quot;&id_simple;(,&id_simple;)*&quot;">
+	<!ENTITY charset "[&alpha;\-]+">
+	<!ENTITY language "[&alpha;]{1,8}(=[&alpha;]{1,8})*">
+	<!ENTITY octet_fancy "(&ext_octet;|&attribute_char;)"> 
+	<!ENTITY encoded_elm "&octet_fancy;+">
+	<!ENTITY id_encoded "&encoded_elm;(\.&encoded_elm;)*">
+	<!ENTITY id_list "&id_encoded;(,&id_encoded;)*">
+	<!ENTITY fancy_list "&quot;&charset;&squote;&language;&squote;&id_list;&quot;">
 ]>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="urn:mpeg:dash:schema:mpd:2011" targetNamespace="urn:mpeg:dash:schema:mpd:2011" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xs:import namespace="http://www.w3.org/1999/xlink" schemaLocation="http://www.w3.org/XML/2008/06/xlink.xsd">
@@ -1054,14 +1078,14 @@
 	</xs:complexType>
 	<xs:simpleType name="CodecsType">
 		<xs:restriction base="xs:string">
-			<xs:pattern value="[a-zA-Z\-]+'[a-zA-Z]{1,8}(=[a-zA-Z]{1,8})*'(%[0-9A-F]{2}|[a-zA-Z0-9!#\\$\^_\-\+\{\}\|\.`~&#038;])+(.(%[0-9A-F]{2}|[a-zA-Z0-9!#\\$\^_\-\+\{\}\|\.`~&#038;])+)*(,(%[0-9A-F]{2}|[a-zA-Z0-9!#\\$\^_\-\+\{\}\|\.`~&#038;])+(.(%[0-9A-F]{2}|[a-zA-Z0-9!#\\$\^_\-\+\{\}\|\.`~&#038;])+)*)*">
+			<xs:pattern value="&charset;&squote;&language;&squote;&id_list;">
 				<xs:annotation>
-					<xs:documentation>RFC6381 fancy-list</xs:documentation>
+					<xs:documentation>RFC6381 fancy-list without enclosing double quotes</xs:documentation>
 				</xs:annotation>
 			</xs:pattern>
-			<xs:pattern value="[a-zA-Z0-9!#\\$%\^\*_\-\+\{\}\|'\.`~&#038;]+(,[a-zA-Z0-9!#\\$%\^\*_\-\+\{\}\|'\.`~&#038;]+)*">
+			<xs:pattern value="&id_simple;(,&id_simple;)*">
 				<xs:annotation>
-					<xs:documentation>RFC6381 simp-list</xs:documentation>
+					<xs:documentation>RFC6381 simp-list without enclosing double quotes</xs:documentation>
 				</xs:annotation>
 			</xs:pattern>
 		</xs:restriction>
