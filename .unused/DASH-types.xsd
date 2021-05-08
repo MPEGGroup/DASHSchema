@@ -53,7 +53,8 @@
 	<!ENTITY URL "(&Scheme;:(&AuthorityAndPath;|&PathNoAuthority;)|(&RelativePath;/?|&AbsolutePath;/?))&Query;?&Fragment;?">
 	<!-- -->
 	<!-- these are the <ctrl> characters that are permitted in XML (TAB, LF, CR) -->
-	<!ENTITY CTLs "&#x09;&#x0a;&#x0d;"><!-- -->
+	<!ENTITY CTLs "&#x09;&#x0a;&#x0d;">
+	<!-- -->
 	<!-- -->
 	<!-- RFC 2047 -->
 	<!ENTITY especials "()&lt;&gt;@,;:&quot;/\[\]?\.=">
@@ -84,6 +85,7 @@
 	<!ENTITY fancy-list "&charset;'&language;'&id-list;">
 	<!-- -->
 	<!-- -->
+	<!ENTITY comma_sep ",[&#x25;&#09;]*">
 	<!ENTITY FourCCchar "[&lowalpha;&hialpha;&digit;]">
 	<!ENTITY FourCC "(&FourCCchar;{4}|&FourCCchar;{3}&space;|&FourCCchar;{2}&space;{2}|&FourCCchar;&space;{3})">
 ]>

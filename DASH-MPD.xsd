@@ -70,6 +70,9 @@
 	<!ENTITY id_encoded "&encoded_elm;(\.&encoded_elm;)*">
 	<!ENTITY id_list "&id_encoded;(,&id_encoded;)*">
 	<!ENTITY fancy_list "&quot;&charset;&squote;&language;&squote;&id_list;&quot;">
+	<!-- -->
+	<!-- -->
+	<!ENTITY comma_sep ",[&#x25;&#09;]*">
 ]>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="urn:mpeg:dash:schema:mpd:2011" targetNamespace="urn:mpeg:dash:schema:mpd:2011" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xs:import namespace="http://www.w3.org/1999/xlink" schemaLocation="http://www.w3.org/XML/2008/06/xlink.xsd">
@@ -388,8 +391,8 @@
 			List of Profiles
 		</xs:documentation>
 		</xs:annotation>
-		<xs:restriction base="xs:string">
-			<xs:pattern value="(&URN;|&URL;)(,(&URN;|&URL;))*"/>
+		<xs:restriction base="xs:string"> 
+			<xs:pattern value="(&URN;|&URL;)(&comma_sep;(&URN;|&URL;))*"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:complexType name="AdaptationSetType">
