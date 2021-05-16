@@ -13,7 +13,7 @@ class TestStringMethods(unittest.TestCase):
     def setUp(self):
         self.log = logging.getLogger('TestLog')
         logging.basicConfig(stream=sys.stderr, level=logging.DEBUG)
-        parser=etree.XMLParser(load_dtd=True, huge_tree=True, resolve_enities=True)
+        parser=etree.XMLParser(load_dtd=True, huge_tree=True, resolve_entities=True)
         with open('../DASH-MPD.xsd', 'r') as schema_file:
             self.mpd_schema = etree.XMLSchema(etree.parse(schema_file, parser))
 
