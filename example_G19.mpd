@@ -47,6 +47,6 @@
             </SegmentTemplate>
             <Representation id="audio1/1" bandwidth="2500"/>
             <Representation id="audio1/2" bandwidth="500000"/>
-        </AdaptationSet>
+	    </AdaptationSet>
     </Period>
 </MPD>
