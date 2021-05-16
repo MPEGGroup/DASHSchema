@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE root-element SYSTEM "../DASH-entities.dtd">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+	<xs:element name="Tests">
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element name="profiles">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:pattern value="(&URN;|&URL;)(,(&URN;|&URL;))*"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element> 
+				<xs:element name="port">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:pattern value="&Port;"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="byte">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:pattern value="&DecimalByte;"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="urn">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:pattern value="&URN;"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="v6">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:pattern value="&IPv6Host;"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="v6u">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:pattern value="&URL;"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="v64">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:pattern value="::(&allFs;(0{1,4}){0,1}:){0,1}&IPv4Host;"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

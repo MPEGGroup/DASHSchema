@@ -1,88 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE schema [
-    <!-- space  -->
-    <!ENTITY space "&#x20;">
-    <!-- ^T - horizontal tab -->
-    <!ENTITY tab "&#x09;">
-	<!-- % -->
-	<!ENTITY pct "&#x25;">
-	<!-- " -->
-	<!ENTITY quot "&#x22;">
-	<!-- ^ -->
-	<!ENTITY carat "&#94;">
-	<!-- | -->
-	<!ENTITY pipe "&#124;">
-	<!-- ' -->
-	<!ENTITY squote "&#39;">
-	<!-- ` -->
-	<!ENTITY grave "&#96;">
-	<!-- RFC 1738 -->
-	<!ENTITY lowalpha "a-z">
-	<!ENTITY hialpha "A-Z">
-	<!ENTITY alpha "&lowalpha;&hialpha;">
-	<!ENTITY digit "0-9">
-	<!ENTITY safe "$\-_.+">
-	<!ENTITY extra "!*(),&quot;">
-	<!ENTITY national "{}|\\^~[]`">
-	<!ENTITY punctuation "<>#&pct;&quot;">
-	<!ENTITY x-reserved ";/?:@=">
-	<!ENTITY reserved "&x-reserved;&amp;">
-	<!ENTITY hex "&digit;A-Fa-f">
-	<!ENTITY escape "&pct;&hex;&hex;">
-	<!ENTITY unreserved "&alpha;&digit;&safe;&extra;">
-	<!ENTITY hex16 "[&hex;]{1,4}">
-	<!ENTITY allFs "[fF]{4}">
-	<!ENTITY chrs "&unreserved;&pct;&amp;~;=:@">
-	<!ENTITY uword "(:([&digit;]{1,4}|[1-5][&digit;]{4}|6[0-4][&digit;]{3}|65[0-4][&digit;]{2}|655[0-2][&digit;]|6553[0-5]))">
-	<!ENTITY DecimalByte "((25[0-5]|(2[0-4]|1{0,1}[&digit;]){0,1}[&digit;]))">
-	<!ENTITY Scheme "[&alpha;][&alpha;&digit;+\-.]*">
-	<!ENTITY User "([&unreserved;&pct;&amp;~;=]+)">
-	<!ENTITY Password "([&unreserved;&pct;&amp;~;=]+)">
-	<!ENTITY NamedHost "[&alpha;&digit;&pct;\-._~]+">
-	<!ENTITY IPv4Host "&DecimalByte;(.&DecimalByte;){3}">
-	<!ENTITY IPv6Address "((&hex16;:){7,7}&hex16;|(&hex16;:){1,7}:|(&hex16;:){1,6}:&hex16;|(&hex16;:){1,5}(:&hex16;){1,2}|(&hex16;:){1,4}(:&hex16;){1,3}|(&hex16;:){1,3}(:&hex16;){1,4}|(&hex16;:){1,2}(:&hex16;){1,5}|&hex16;:((:&hex16;){1,6})|:((:&hex16;){1,7}|:)|fe80:(:&hex16;){0,4}&pct;[&hex;]{1,}|::(&allFs;(0{1,4}){0,1}:){0,1}&IPv4Host;|(&hex16;:){1,4}:&IPv4Host;)">
-	<!ENTITY IPv6Host "\[&IPv6Address;\]">
-	<!ENTITY IPvFutureHost "\[v[a-f&digit;][&unreserved;&pct;&amp;~;=:]+\]">
-	<!ENTITY Port "&uword;">
-	<!ENTITY Path "(/[&chrs;]+)">
-	<!ENTITY AuthorityAndPath "//(&User;(:&Password;)?@)?(&NamedHost;|&IPv6Host;|&IPvFutureHost;)&Port;?&Path;*/?">
-	<!ENTITY PathNoAuthority "(/?[&chrs;]+&Path;*/?)">
-	<!ENTITY RelativePath "[&chrs;]+&Path;*">
-	<!ENTITY AbsolutePath "&Path;+">
-	<!ENTITY Query "(\?[&chrs;/?]*)">
-	<!ENTITY Fragment "(#[&chrs;/?]*)">
-	<!-- IETF RFC 2141 -->
-	<!ENTITY NamespaceID "[&alpha;&digit;][&alpha;&digit;-]{1,31}">
-	<!ENTITY NSS-others "()+,\-\.:=@;$_!*'">
-	<!ENTITY NSS-reserved "&pct;/?#">
-	<!ENTITY NamespaceSpecific "[&alpha;&digit;&NSS-others;&NSS-reserved;]+">
-	<!ENTITY URN "urn:&NamespaceID;:&NamespaceSpecific;">
-	<!ENTITY URL "(&Scheme;:(&AuthorityAndPath;|&PathNoAuthority;)|(&RelativePath;/?|&AbsolutePath;/?))&Query;?&Fragment;?">
-	<!-- IETF RFC 2045 -->
-	<!ENTITY TOKEN "[&alpha;&digit;&safe;&carat;&pipe;&squote;&grave;&pct;!*#\\~&amp;]">
-	<!-- IETF RFC 2231 -->
-	<!ENTITY ext_octet "&pct;[&hex;]{2}">
-	<!ENTITY attribute_char "[&alpha;&digit;&safe;!#\\^{}|`~&amp;]">
-	<!-- IETF RFC 6381 -->
-	<!ENTITY octet_sim "&TOKEN;">
-	<!ENTITY id_simple "&octet_sim;+">
-	<!ENTITY simp_list "&quot;&id_simple;(,&id_simple;)*&quot;">
-	<!ENTITY charset "[&alpha;\-]+">
-	<!ENTITY language "[&alpha;]{1,8}(-[&alpha;]{1,8})*">
-	<!ENTITY octet_fancy "(&ext_octet;|&attribute_char;)">
-	<!ENTITY encoded_elm "&octet_fancy;+">
-	<!ENTITY id_encoded "&encoded_elm;(\.&encoded_elm;)*">
-	<!ENTITY id_list "&id_encoded;(,&id_encoded;)*">
-	<!ENTITY fancy_list "&quot;&charset;&squote;&language;&squote;&id_list;&quot;">
-	<!-- -->
-	<!-- -->
-	<!ENTITY comma_sep ",[&space;&tab;]*">
-]>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="urn:mpeg:dash:schema:mpd:2011" targetNamespace="urn:mpeg:dash:schema:mpd:2011" elementFormDefault="qualified" attributeFormDefault="unqualified">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dt="urn:mpeg:dash:schema:mpd:types" xmlns="urn:mpeg:dash:schema:mpd:2011" targetNamespace="urn:mpeg:dash:schema:mpd:2011" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xs:import namespace="http://www.w3.org/1999/xlink" schemaLocation="http://www.w3.org/XML/2008/06/xlink.xsd">
 		<xs:annotation>
 			<xs:documentation xml:lang="en">
 			xlink import. URL is per https://www.w3.org/TR/xlink/  Users are encouraged to store a local copy
+		</xs:documentation>
+		</xs:annotation>
+	</xs:import>
+	<xs:import namespace="urn:mpeg:dash:schema:mpd:types" schemaLocation="DASH-types.xsd">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">
+			DASH basic datatypes
 		</xs:documentation>
 		</xs:annotation>
 	</xs:import>
@@ -395,9 +323,7 @@
 			List of Profiles
 		</xs:documentation>
 		</xs:annotation>
-		<xs:restriction base="xs:string">
-			<xs:pattern value="(&URN;|&URL;)(&comma_sep;(&URN;|&URL;))*"/>
-		</xs:restriction>
+		<xs:restriction base="dt:URNandURLlist"/>
 	</xs:simpleType>
 	<xs:complexType name="AdaptationSetType">
 		<xs:annotation>
@@ -458,9 +384,7 @@
 			Ratio Type for sar and par
 		</xs:documentation>
 		</xs:annotation>
-		<xs:restriction base="xs:string">
-			<xs:pattern value="[0-9]*:[0-9]*"/>
-		</xs:restriction>
+		<xs:restriction base="dt:AspectRatio"/>
 	</xs:simpleType>
 	<xs:simpleType name="FrameRateType">
 		<xs:annotation>
@@ -468,9 +392,7 @@
 			Type for Frame Rate
 		</xs:documentation>
 		</xs:annotation>
-		<xs:restriction base="xs:string">
-			<xs:pattern value="[0-9]+(/[1-9][0-9]*)?"/>
-		</xs:restriction>
+		<xs:restriction base="dt:FrameRate"/>
 	</xs:simpleType>
 	<xs:simpleType name="RFC6838ContentTypeType">
 		<xs:annotation>
@@ -887,9 +809,7 @@
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
 	<xs:simpleType name="SingleRFC7233RangeType">
-		<xs:restriction base="xs:string">
-			<xs:pattern value="([0-9]*)(\-([0-9]*))?"/>
-		</xs:restriction>
+		<xs:restriction base="dt:RFC7233Range"/>
 	</xs:simpleType>
 	<xs:complexType name="FailoverContentType">
 		<xs:annotation>
@@ -993,15 +913,7 @@
 			Whitespace separated list of 4CC
 		</xs:documentation>
 		</xs:annotation>
-		<xs:list itemType="FourCCType"/>
-	</xs:simpleType>
-	<xs:simpleType name="FourCCType">
-		<xs:annotation>
-			<xs:documentation xml:lang="en">
-			4CC as per latest 14496-12
-		</xs:documentation>
-		</xs:annotation>
-		<xs:restriction base="xs:string"/>
+		<xs:list itemType="dt:FourCCType"/>
 	</xs:simpleType>
 	<xs:simpleType name="UIntVectorType">
 		<xs:annotation>
@@ -1072,7 +984,6 @@
 		<xs:attribute name="metrics" type="xs:string" use="required"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
-	<!--  -->
 	<xs:complexType name="RangeType">
 		<xs:annotation>
 			<xs:documentation xml:lang="en">
@@ -1084,18 +995,7 @@
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
 	<xs:simpleType name="CodecsType">
-		<xs:restriction base="xs:string">
-			<xs:pattern value="&charset;&squote;&language;&squote;&id_list;">
-				<xs:annotation>
-					<xs:documentation>RFC6381 fancy-list without enclosing double quotes</xs:documentation>
-				</xs:annotation>
-			</xs:pattern>
-			<xs:pattern value="&id_simple;(,&id_simple;)*">
-				<xs:annotation>
-					<xs:documentation>RFC6381 simp-list without enclosing double quotes</xs:documentation>
-				</xs:annotation>
-			</xs:pattern>
-		</xs:restriction>
+		<xs:union memberTypes="dt:RFC6381FancyList dt:RFC6381SimpleList"/>
 	</xs:simpleType>
 	<xs:complexType name="LeapSecondInformationType">
 		<xs:annotation>
