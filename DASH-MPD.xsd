@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE schema [
-    <!-- space  -->
-    <!ENTITY space "&#x20;">
-    <!-- ^T - horizontal tab -->
-    <!ENTITY tab "&#x09;">
+	<!-- space  -->
+	<!ENTITY space "&#x20;">
+	<!-- ^T - horizontal tab -->
+	<!ENTITY tab "&#x09;">
 	<!-- % -->
 	<!ENTITY pct "&#x25;">
 	<!-- " -->
@@ -1024,6 +1024,7 @@
 				<xs:attribute name="availabilityTimeOffset" type="xs:double"/>
 				<xs:attribute name="availabilityTimeComplete" type="xs:boolean"/>
 				<xs:attribute name="timeShiftBufferDepth" type="xs:duration"/>
+				<xs:attribute name="rangeAccess" type="xs:boolean" default="false"/>
 				<xs:anyAttribute namespace="##other" processContents="lax"/>
 			</xs:extension>
 		</xs:simpleContent>
