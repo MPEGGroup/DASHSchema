@@ -846,6 +846,7 @@
 		</xs:sequence>
 		<xs:attribute name="timescale" type="xs:unsignedInt"/>
 		<xs:attribute name="eptDelta" type="xs:integer"/>
+		<xs:attribute name="pdDelta" type="xs:integer"/>
 		<xs:attribute name="presentationTimeOffset" type="xs:unsignedLong"/>
 		<xs:attribute name="presentationDuration" type="xs:unsignedLong"/>
 		<xs:attribute name="timeShiftBufferDepth" type="xs:duration"/>
