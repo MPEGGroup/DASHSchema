@@ -618,6 +618,7 @@
 		<xs:attribute name="mimeType" type="xs:string"/>
 		<xs:attribute name="segmentProfiles" type="ListOf4CCType"/>
 		<xs:attribute name="codecs" type="CodecsType"/>
+		<xs:attribute name="containerProfiles" type="ListOf4CCType"/>
 		<xs:attribute name="maximumSAPPeriod" type="xs:double"/>
 		<xs:attribute name="startWithSAP" type="SAPType"/>
 		<xs:attribute name="maxPlayoutRate" type="xs:double"/>
