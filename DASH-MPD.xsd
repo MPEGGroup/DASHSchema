@@ -623,8 +623,6 @@
 		<xs:attribute name="dImax" type="xs:float"/>
 		<xs:attribute name="dImin" type="xs:float" default="0"/>
 		<xs:attribute name="marker" type="xs:boolean" default="false"/>
-		<xs:attribute name="rangeAccess" type="xs:boolean" default="false"/>
-		<xs:attribute name="index" type="xs:anyURI"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
 	<xs:complexType name="ContentPopularityRateType">
