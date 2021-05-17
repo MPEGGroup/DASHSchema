@@ -441,6 +441,7 @@
 				<xs:attribute name="subsegmentStartsWithSAP" type="SAPType" default="0"/>
 				<xs:attribute name="bitstreamSwitching" type="xs:boolean"/>
 				<xs:attribute name="initializationSetRef" type="UIntVectorType"/>
+				<xs:attribute name="initializationPrincipal" type="xs:anyURI"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
