@@ -177,6 +177,7 @@
 			<xs:element name="AssetIdentifier" type="DescriptorType" minOccurs="0"/>
 			<xs:element name="EventStream" type="EventStreamType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="ServiceDescription" type="ServiceDescriptionType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ContentProtection" type="ContentProtectionType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="AdaptationSet" type="AdaptationSetType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="Subset" type="SubsetType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="SupplementalProperty" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
