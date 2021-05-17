@@ -519,6 +519,7 @@
 			<xs:extension base="RepresentationBaseType">
 				<xs:sequence>
 					<xs:element name="BaseURL" type="BaseURLType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="ExtendedBandwidth" type="ExtendedBandwidthType" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element name="SubRepresentation" type="SubRepresentationType" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element name="SegmentBase" type="SegmentBaseType" minOccurs="0"/>
 					<xs:element name="SegmentList" type="SegmentListType" minOccurs="0"/>
@@ -533,6 +534,32 @@
 				<xs:attribute name="mediaStreamStructureId" type="StringVectorType"/>
 			</xs:extension>
 		</xs:complexContent>
+	</xs:complexType>
+		<xs:complexType name="ExtendedBandwidthType">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">
+			Extended Bandwidth Model
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ModelPair" type="ModelPairType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="vbr" type="xs:boolean" default="false"/>
+		<xs:anyAttribute namespace="##other" processContents="lax"/>
+	</xs:complexType>
+	<xs:complexType name="ModelPairType">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">
+			Model Pair
+			</xs:documentation>
+		</xs:annotation>		
+		<xs:sequence>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="bufferTime" type="xs:duration"/>
+		<xs:attribute name="bandwidth" type="xs:unsignedInt"/>
+		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
 	<xs:simpleType name="StringNoWhitespaceType">
 		<xs:annotation>
