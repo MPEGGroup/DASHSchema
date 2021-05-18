@@ -1,6 +1,11 @@
 """
 evaluate manifests from other organisations against the MPEG DASH schema
+
 developed by Paul Higgs using Python 3.9.1
+uses the following libraries
+ * requests,    python -m pip install requests
+ * lxml,        python -m pip install lxml
+
 """
 
 import sys
