@@ -622,7 +622,7 @@
 		<xs:attribute name="maxPlayoutRate" type="xs:double"/>
 		<xs:attribute name="codingDependency" type="xs:boolean"/>
 		<xs:attribute name="scanType" type="VideoScanType"/>
-		<xs:attribute name="selectionPriority" type="xs:unsignedInt"/>
+		<xs:attribute name="selectionPriority" type="xs:unsignedInt" default="1"/>
 		<xs:attribute name="tag" type="TagType"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
