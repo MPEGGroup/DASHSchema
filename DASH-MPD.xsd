@@ -808,7 +808,7 @@
 		</xs:documentation>
 		</xs:annotation>
 		<xs:attribute name="interval" type="xs:unsignedInt" use="required"/>
-		<xs:attribute name="type" type="SwitchingTypeType"/>
+		<xs:attribute name="type" type="SwitchingTypeType" default="media"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
 	<xs:simpleType name="SwitchingTypeType">
