@@ -21,7 +21,7 @@
 		<xs:complexContent>
 			<xs:extension base="UrlQueryInfoType">
 				<xs:attribute name="includeInRequests" type="xs:string" default="segment"/>
-				<xs:attribute name="headerParamSource" type="xs:string" default=""/>
+				<xs:attribute name="headerParamSource" type="xs:string" default="segment"/>
 				<xs:attribute name="sameOriginOnly" type="xs:boolean" default="false"/>
 			</xs:extension>
 		</xs:complexContent>
