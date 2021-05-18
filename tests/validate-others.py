@@ -462,6 +462,8 @@ class TestManifests(unittest.TestCase):
 				mpd=etree.fromstring((mpdRequest.text).encode('utf8'), self.xmlParser)
 				if not self.mpd_schema.validate(mpd):
 					self.fail(self.mpd_schema.error_log.filter_from_errors())
+				else:
+					pass
 			else:
 				self.fail("Request error, expected 200, got %d" % mpdRequest.status_code)			
 
@@ -491,12 +493,14 @@ class TestManifests(unittest.TestCase):
 	#only check URLS that are not in the loaded DASH-IF dataset
 		self.loadDASHIFdataset()
 		for mpdURL in DASHIFManifests:
+			x = -2;
 			try:
 				x=self.DASHIFdataset.index(mpdURL)
 			except ValueError:
-				self.check_a_manifest(mpdURL, "DASH-IF Local List")
-			else:
-				pass
+				x = -1;
+				
+			if x == -1:
+				self.check_a_manifest(mpdURL, "DASH-IF Local List")	
 				
 	def test_DASH_IF_dataset(self):
 		self.loadDASHIFdataset()
