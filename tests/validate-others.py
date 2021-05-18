@@ -13,6 +13,7 @@ import unittest
 import logging
 import glob
 import requests
+import json
 
 from lxml import etree
 
@@ -437,45 +438,69 @@ DASHIFManifests=[
  "https://raw.githubusercontent.com/Dash-Industry-Forum/SAND-Test-Vectors/master/mpd/dash-if/WSSQuery-OK-MultiRes.mpd",
 ]
 
-class TestStringMethods(unittest.TestCase):
-    def setUp(self):
-        self.log = logging.getLogger('TestLog')
-        logging.basicConfig(stream=sys.stderr, level=logging.INFO)
-        self.xsdParser=etree.XMLParser(load_dtd=True, huge_tree=True, resolve_entities=True)
-        with open('../DASH-MPD.xsd', 'r') as schema_file:
-            self.mpd_schema = etree.XMLSchema(etree.parse(schema_file, self.xsdParser))
-        is_python3 = sys.version_info.major == 3
-        self.xmlParser=etree.XMLParser(load_dtd=True, huge_tree=True, resolve_entities=True)
 
-    def check_a_manifest(self, mpdURL):
-        with self.subTest(mpd=mpdURL):		
-            self.log.info('Validating %s', mpdURL)	
-            mpd = requests.get(mpdURL, allow_redirects=True)	
-            self.assertEqual(mpd.status_code, 200)
-            if mpd.status_code == 200:
-                MPDtext=(mpd.text).encode('utf8')
-                self.mpd_schema.assertValid(etree.fromstring(MPDtext, self.xmlParser))
-	
-    def test_DVB(self):
-        for mpdURL in DVBManifests:
-            self.check_a_manifest(mpdURL)
+DASHIF_dataset_url = "https://raw.githubusercontent.com/Dash-Industry-Forum/Test-Assets-Dataset-Public/master/dataset/data/testvector.json"
 
-    def test_HbbTV(self):
-        for mpdURL in HbbTVManifests:
-            self.check_a_manifest(mpdURL)
+class TestManifests(unittest.TestCase):
+	def setUp(self):
+		self.log = logging.getLogger('MDP_tests')
+		logging.basicConfig(stream=sys.stderr, level=logging.INFO)
+		self.log.info('Initialising schema')
+		self.xsdParser=etree.XMLParser(load_dtd=True, huge_tree=True, resolve_entities=True)
+		with open('../DASH-MPD.xsd', 'r') as schema_file:
+			self.mpd_schema = etree.XMLSchema(etree.parse(schema_file, self.xsdParser))
+#		is_python3 = sys.version_info.major == 3
+		self.xmlParser=etree.XMLParser(load_dtd=True, huge_tree=True, resolve_entities=True)
 
-    def test_MPEG_CMAF(self):
-        for mpdURL in MPEGCMAFManifests:
-            self.check_a_manifest(mpdURL)
 
-    def test_DASH_IF(self):
-        for mpdURL in DASHIFManifests:
-            self.check_a_manifest(mpdURL)
+	def check_a_manifest(self, mpdURL, source):
+		with self.subTest(msg=mpdURL):		
+			self.log.info('Validating {%s} %s', source, mpdURL)	
+			mpdRequest=requests.get(mpdURL, allow_redirects=True)	
+			self.assertEqual(mpdRequest.status_code, 200, "Request error, expected 200, got %d" % mpdRequest.status_code)
+			if mpdRequest.status_code == 200:
+				mpd=etree.fromstring((mpdRequest.text).encode('utf8'), self.xmlParser)
+				if not self.mpd_schema.validate(mpd):
+					self.fail(self.mpd_schema.error_log.filter_from_errors())
+			else:
+				self.fail("Request error, expected 200, got %d" % mpdRequest.status_code)			
+
+	def loadDASHIFdataset(self):
+		self.log.info('Loading DASH-IF dataset')
+		self.DASHIFdataset=[]
+		DASHIFrequest=requests.get(DASHIF_dataset_url, allow_redirects=True)
+		dataset=json.loads(DASHIFrequest.text)
+		for item in dataset:
+			self.DASHIFdataset.append(item["url"])
 			
-#            with open(mpd_path) as mpd_file:
-#                with self.subTest(mpd=mpd_path):
-#                    mpd = etree.parse(mpd_file, self.xmlParser)
-#                    self.mpd_schema.assertValid(mpd)
+	def check_manifests(self, mpdList, source):
+		for mpdURL in mpdList:
+			self.check_a_manifest(mpdURL, source)
 
+			
+	def test_DVB(self):
+		self.check_manifests(DVBManifests, "DVB")
+
+	def test_HbbTV(self):
+		self.check_manifests(HbbTVManifests, "HbbTV")
+
+	def test_MPEG_CMAF(self):
+		self.check_manifests(MPEGCMAFManifests, "MPEG CMAF")
+		
+	def test_DASH_IF_list(self):
+	#only check URLS that are not in the loaded DASH-IF dataset
+		self.loadDASHIFdataset()
+		for mpdURL in DASHIFManifests:
+			try:
+				x=self.DASHIFdataset.index(mpdURL)
+			except ValueError:
+				self.check_a_manifest(mpdURL, "DASH-IF Local List")
+			else:
+				pass
+				
+	def test_DASH_IF_dataset(self):
+		self.loadDASHIFdataset()
+		self.check_manifests(self.DASHIFdataset, "DASH-IF Dataset")
+		
 if __name__ == '__main__':
     unittest.main()
