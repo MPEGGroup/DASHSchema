@@ -556,8 +556,8 @@
 		<xs:sequence>
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
-		<xs:attribute name="bufferTime" type="xs:duration"/>
-		<xs:attribute name="bandwidth" type="xs:unsignedInt"/>
+		<xs:attribute name="bufferTime" type="xs:duration" use="required"/>
+		<xs:attribute name="bandwidth" type="xs:unsignedInt" use="required"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
 	<xs:simpleType name="StringNoWhitespaceType">
