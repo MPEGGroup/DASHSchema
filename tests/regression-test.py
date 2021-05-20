@@ -438,34 +438,33 @@ DASHIFManifests=[
  "https://raw.githubusercontent.com/Dash-Industry-Forum/SAND-Test-Vectors/master/mpd/dash-if/WSSQuery-OK-MultiRes.mpd",
 ]
 
-
 DASHIF_dataset_url = "https://raw.githubusercontent.com/Dash-Industry-Forum/Test-Assets-Dataset-Public/master/dataset/data/testvector.json"
+
 
 class TestManifests(unittest.TestCase):
 	def setUp(self):
 		self.log = logging.getLogger('MDP_tests')
 		logging.basicConfig(stream=sys.stderr, level=logging.INFO)
-		self.log.info('Initialising schema')
+		self.log.info('Loading MPEG DASH schema')
 		self.xsdParser=etree.XMLParser(load_dtd=True, huge_tree=True, resolve_entities=True)
-		with open('../DASH-MPD.xsd', 'r') as schema_file:
+		with open('../DASH-MPD_local_xlink.xsd', 'r') as schema_file:
 			self.mpd_schema = etree.XMLSchema(etree.parse(schema_file, self.xsdParser))
 #		is_python3 = sys.version_info.major == 3
 		self.xmlParser=etree.XMLParser(load_dtd=True, huge_tree=True, resolve_entities=True)
 
-
 	def check_a_manifest(self, mpdURL, source):
 		with self.subTest(msg=mpdURL):		
 			self.log.info('Validating {%s} %s', source, mpdURL)	
-			mpdRequest=requests.get(mpdURL, allow_redirects=True)	
-			self.assertEqual(mpdRequest.status_code, 200, "Request error, expected 200, got %d" % mpdRequest.status_code)
-			if mpdRequest.status_code == 200:
-				mpd=etree.fromstring((mpdRequest.text).encode('utf8'), self.xmlParser)
-				if not self.mpd_schema.validate(mpd):
-					self.fail(self.mpd_schema.error_log.filter_from_errors())
-				else:
-					pass
+			try:
+				mpdRequest=requests.get(mpdURL, allow_redirects=True)	
+			except Exception as err:
+				self.fail(err)
 			else:
-				self.fail("Request error, expected 200, got %d" % mpdRequest.status_code)			
+				self.assertEqual(mpdRequest.status_code, 200, "Request error; expected 200, got %d" % mpdRequest.status_code)
+				if mpdRequest.status_code == 200:
+					mpd=etree.fromstring((mpdRequest.text).encode('utf8'), self.xmlParser)
+					if not self.mpd_schema.validate(mpd):
+						self.fail(self.mpd_schema.error_log.filter_from_errors())
 
 	def loadDASHIFdataset(self):
 		self.log.info('Loading DASH-IF dataset')
@@ -479,7 +478,7 @@ class TestManifests(unittest.TestCase):
 		for mpdURL in mpdList:
 			self.check_a_manifest(mpdURL, source)
 
-			
+
 	def test_DVB(self):
 		self.check_manifests(DVBManifests, "DVB")
 
@@ -496,7 +495,7 @@ class TestManifests(unittest.TestCase):
 			x = -2;
 			try:
 				x=self.DASHIFdataset.index(mpdURL)
-			except ValueError:
+			except:
 				x = -1;
 				
 			if x == -1:
@@ -505,6 +504,10 @@ class TestManifests(unittest.TestCase):
 	def test_DASH_IF_dataset(self):
 		self.loadDASHIFdataset()
 		self.check_manifests(self.DASHIFdataset, "DASH-IF Dataset")
+	
+#	def test_one(self):
+#		mpd="http://html5.cablelabs.com:8100/cenc/prwv/dash.mpd"
+#		self.check_a_manifest(mpd, "debugging1")
 		
 if __name__ == '__main__':
     unittest.main()
