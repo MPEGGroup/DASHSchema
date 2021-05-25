@@ -31,7 +31,7 @@ class TestManifests(unittest.TestCase):
 		logging.basicConfig(stream=sys.stderr, level=logging.INFO)
 		self.log.info('Loading MPEG DASH schema')
 		self.xsdParser=etree.XMLParser(load_dtd=True, huge_tree=True, resolve_entities=True)
-		with open('../DASH-MPD_local_xlink.xsd', 'r') as schema_file:
+		with open('../DASH-MPD.xsd', 'r') as schema_file:
 			self.mpd_schema = etree.XMLSchema(etree.parse(schema_file, self.xsdParser))
 #		is_python3 = sys.version_info.major == 3
 		self.xmlParser=etree.XMLParser(load_dtd=True, huge_tree=True, resolve_entities=True)
