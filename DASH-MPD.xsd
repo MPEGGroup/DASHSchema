@@ -146,7 +146,7 @@
 		</xs:annotation>
 		<xs:simpleContent>
 			<xs:extension base="xs:anyURI">
-				<xs:attribute name="ttl" type="xs:double" use="required"/>
+				<xs:attribute name="ttl" type="xs:double" use="optional"/>
 				<xs:anyAttribute namespace="##other" processContents="lax"/>
 			</xs:extension>
 		</xs:simpleContent>
