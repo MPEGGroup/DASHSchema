@@ -114,7 +114,8 @@
 			<xs:element name="InitializationSet" type="InitializationSetType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="InitializationGroup" type="UIntVWithIDType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="InitializationPresentation" type="UIntVWithIDType" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element name="Period"  type="PeriodType" maxOccurs="unbounded"/>
+			<xs:element name="ContentProtection" type="ContentProtectionType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Period" type="PeriodType" maxOccurs="unbounded"/>
 			<xs:element name="Metrics" type="MetricsType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="EssentialProperty" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="SupplementalProperty" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
@@ -145,7 +146,7 @@
 		</xs:annotation>
 		<xs:simpleContent>
 			<xs:extension base="xs:anyURI">
-				<xs:attribute name="ttl" type="xs:double" use="required"/>
+				<xs:attribute name="ttl" type="xs:double" use="optional"/>
 				<xs:anyAttribute namespace="##other" processContents="lax"/>
 			</xs:extension>
 		</xs:simpleContent>
@@ -435,8 +436,8 @@
 				<xs:attribute name="maxHeight" type="xs:unsignedInt"/>
 				<xs:attribute name="minFrameRate" type="FrameRateType"/>
 				<xs:attribute name="maxFrameRate" type="FrameRateType"/>
-				<xs:attribute name="segmentAlignment" type="ConditionalUintType" default="false"/>
-				<xs:attribute name="subsegmentAlignment" type="ConditionalUintType" default="false"/>
+				<xs:attribute name="segmentAlignment" type="xs:boolean" default="false"/>
+				<xs:attribute name="subsegmentAlignment" type="xs:boolean" default="false"/>
 				<xs:attribute name="subsegmentStartsWithSAP" type="SAPType" default="0"/>
 				<xs:attribute name="bitstreamSwitching" type="xs:boolean"/>
 				<xs:attribute name="initializationSetRef" type="UIntVectorType"/>
@@ -444,14 +445,6 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:simpleType name="ConditionalUintType">
-		<xs:annotation>
-			<xs:documentation xml:lang="en">
-			Conditional Unsigned Integer (unsignedInt or boolean)
-		</xs:documentation>
-		</xs:annotation>
-		<xs:union memberTypes="xs:unsignedInt xs:boolean"/>
-	</xs:simpleType>
 	<xs:simpleType name="RatioType">
 		<xs:annotation>
 			<xs:documentation xml:lang="en">
@@ -533,7 +526,7 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-		<xs:complexType name="ExtendedBandwidthType">
+	<xs:complexType name="ExtendedBandwidthType">
 		<xs:annotation>
 			<xs:documentation xml:lang="en">
 			Extended Bandwidth Model
@@ -551,12 +544,12 @@
 			<xs:documentation xml:lang="en">
 			Model Pair
 			</xs:documentation>
-		</xs:annotation>		
+		</xs:annotation>
 		<xs:sequence>
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
-		<xs:attribute name="bufferTime" type="xs:duration"/>
-		<xs:attribute name="bandwidth" type="xs:unsignedInt"/>
+		<xs:attribute name="bufferTime" type="xs:duration" use="required"/>
+		<xs:attribute name="bandwidth" type="xs:unsignedInt" use="required"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
 	<xs:simpleType name="StringNoWhitespaceType">
