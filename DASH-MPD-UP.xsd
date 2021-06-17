@@ -7,7 +7,7 @@
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 		<xs:attribute name="queryTemplate" type="xs:string"/>
-		<xs:attribute name="useMPDUrlQuery" type="xs:boolean"/>
+		<xs:attribute name="useMPDUrlQuery" type="xs:boolean" default="false"/>
 		<xs:attribute name="queryString" type="xs:string"/>
 		<xs:attribute ref="xlink:href"/>
 		<xs:attribute ref="xlink:actuate" default="onRequest"/>
@@ -21,7 +21,7 @@
 		<xs:complexContent>
 			<xs:extension base="UrlQueryInfoType">
 				<xs:attribute name="includeInRequests" type="xs:string" default="segment"/>
-				<xs:attribute name="headerParamSource" type="xs:string" default=""/>
+				<xs:attribute name="headerParamSource" type="xs:string" default="segment"/>
 				<xs:attribute name="sameOriginOnly" type="xs:boolean" default="false"/>
 			</xs:extension>
 		</xs:complexContent>
