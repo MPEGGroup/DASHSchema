@@ -436,8 +436,8 @@
 				<xs:attribute name="maxHeight" type="xs:unsignedInt"/>
 				<xs:attribute name="minFrameRate" type="FrameRateType"/>
 				<xs:attribute name="maxFrameRate" type="FrameRateType"/>
-				<xs:attribute name="segmentAlignment" type="ConditionalUintType" default="false"/>
-				<xs:attribute name="subsegmentAlignment" type="ConditionalUintType" default="false"/>
+				<xs:attribute name="segmentAlignment" type="xs:boolean" default="false"/>
+				<xs:attribute name="subsegmentAlignment" type="xs:boolean" default="false"/>
 				<xs:attribute name="subsegmentStartsWithSAP" type="SAPType" default="0"/>
 				<xs:attribute name="bitstreamSwitching" type="xs:boolean"/>
 				<xs:attribute name="initializationSetRef" type="UIntVectorType"/>
@@ -445,14 +445,6 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:simpleType name="ConditionalUintType">
-		<xs:annotation>
-			<xs:documentation xml:lang="en">
-			Conditional Unsigned Integer (unsignedInt or boolean)
-		</xs:documentation>
-		</xs:annotation>
-		<xs:union memberTypes="xs:unsignedInt xs:boolean"/>
-	</xs:simpleType>
 	<xs:simpleType name="RatioType">
 		<xs:annotation>
 			<xs:documentation xml:lang="en">
