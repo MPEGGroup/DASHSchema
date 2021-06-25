@@ -30,7 +30,7 @@ class TestDASH(unittest.TestCase):
 
     def test_mpps(self):
         """ Test all MPPs found in the repository."""
-		with open('../DASH-MPD-PATCH.xsd', 'r') as schema_file:
+        with open('../DASH-MPD-PATCH.xsd', 'r') as schema_file:
             self.mpd_schema = etree.XMLSchema(etree.parse(schema_file, parser))
         for mpp_path in glob.glob('../*.mpp'):
             self.log.debug('Validating %s', mpp_path)
