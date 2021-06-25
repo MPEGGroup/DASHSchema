@@ -1,5 +1,5 @@
 """
-MPD valication tests.
+MPD validation tests.
 
 """
 
@@ -9,7 +9,7 @@ import logging
 import glob
 from lxml import etree
 
-class TestStringMethods(unittest.TestCase):
+class TestDASH(unittest.TestCase):
     def setUp(self):
         self.log = logging.getLogger('TestLog')
         logging.basicConfig(stream=sys.stderr, level=logging.DEBUG)
@@ -27,7 +27,8 @@ class TestStringMethods(unittest.TestCase):
                     mpd = etree.parse(mpd_file)
                     self.mpd_schema.assertValid(mpd)
 
-    def test_mpdps(self):
+
+    def test_mpps(self):
         """ Test all MPPs found in the repository."""
 		with open('../DASH-MPD-PATCH.xsd', 'r') as schema_file:
             self.mpd_schema = etree.XMLSchema(etree.parse(schema_file, parser))
