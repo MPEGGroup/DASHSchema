@@ -223,6 +223,10 @@
 		<xs:sequence>
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
+		<xs:sequence>
+			<xs:element name="SelectionInfo" type="SelectionInfoType" minOccurs="1" maxOccurs="unbounded"/>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
 		<xs:attribute name="presentationTime" type="xs:unsignedLong" default="0"/>
 		<xs:attribute name="duration" type="xs:unsignedLong"/>
 		<xs:attribute name="id" type="xs:unsignedInt"/>
@@ -235,7 +239,22 @@
 				</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
+		<xs:attribute name="selectionInfo" type="xs:string"/>
+		<xs:attribute name="contactURL" type="xs:anyURI"  use="required"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
+	</xs:complexType>
+		<xs:complexType name="SelectionInfoType" mixed="true">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">
+			SelectionInfo
+		</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="dataEncoding" type="ContentEncodingType">
+		<xs:attribute name="parameter" type="xs:string" use="required"/>
+	    <xs:attribute name="data" type="xs:string"/>
 	</xs:complexType>
 	<xs:simpleType name="ContentEncodingType">
 		<xs:annotation>
