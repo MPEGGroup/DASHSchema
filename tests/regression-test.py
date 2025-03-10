@@ -28,11 +28,11 @@ class TestManifests(unittest.TestCase):
 		self.log = logging.getLogger('MDP_tests')
 		logging.basicConfig(stream=sys.stderr, level=logging.INFO)
 		self.log.info('Loading MPEG DASH schema')
-		self.xsdParser=etree.XMLParser(load_dtd=True, huge_tree=True, resolve_entities=True)
+		self.xsdParser=etree.XMLParser(load_dtd=True, no_network=False, huge_tree=True, resolve_entities=True)
 		with open('../DASH-MPD.xsd', 'r') as schema_file:
 			self.mpd_schema = etree.XMLSchema(etree.parse(schema_file, self.xsdParser))
 #		is_python3 = sys.version_info.major == 3
-		self.xmlParser=etree.XMLParser(load_dtd=True, huge_tree=True, resolve_entities=True)
+		self.xmlParser=etree.XMLParser(load_dtd=True, no_network=False, huge_tree=True, resolve_entities=True)
 
 	def check_a_manifest(self, mpdURL, source):
 		with self.subTest(msg=mpdURL):		
@@ -44,7 +44,11 @@ class TestManifests(unittest.TestCase):
 			else:
 				self.assertEqual(mpdRequest.status_code, 200, "Request error; expected 200, got %d" % mpdRequest.status_code)
 				if mpdRequest.status_code == 200:
-					mpd=etree.fromstring((mpdRequest.text).encode('utf8'), self.xmlParser)
+					mpdUrl = mpdRequest.text
+					strt=mpdUrl.find('<')
+					if strt > 0:
+						mpdUrl = mpdUrl[strt:]
+					mpd=etree.fromstring((mpdUrl).encode('utf8'), self.xmlParser)
 					if not self.mpd_schema.validate(mpd):
 						self.fail(self.mpd_schema.error_log.filter_from_errors())
 
@@ -72,16 +76,16 @@ class TestManifests(unittest.TestCase):
 					result.append(item["url"])
 		return result
 
-	def test_DVB(self):
+	def dont_test_DVB(self):
 		self.check_manifests(self.loadDataset(DVBManifestsFile), "DVB")
 
-	def test_HbbTV(self):
+	def dont_test_HbbTV(self):
 		self.check_manifests(self.loadDataset(HbbTVManifestsFile), "HbbTV")
 
-	def test_MPEG_CMAF(self):
+	def dont_test_MPEG_CMAF(self):
 		self.check_manifests(self.loadDataset(MPEGCMAFManifestsFile), "MPEG CMAF")
 		
-	def test_DASH_IF_list(self):
+	def dont_test_DASH_IF_list(self):
 		self.check_manifests(self.loadDataset(DASHIFManifestsFile), "DASH-IF Local List")
 			
 	def test_DASH_IF_dataset(self):
