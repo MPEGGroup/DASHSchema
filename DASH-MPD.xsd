@@ -2,89 +2,88 @@
 
 <!DOCTYPE schema [
 	<!-- space  -->
-	<!ENTITY space "&#x20;">
-	<!-- ^T - horizontal tab -->
-	<!ENTITY tab "&#x09;">
-	<!-- % -->
-	<!ENTITY pct "&#x25;">
-	<!-- " -->
-	<!ENTITY quot "&#x22;">
-	<!-- ^ -->
-	<!ENTITY carat "&#94;">
-	<!-- | -->
-	<!ENTITY pipe "&#124;">
-	<!-- ' -->
-	<!ENTITY squote "&#39;">
-	<!-- ` -->
-	<!ENTITY grave "&#96;">
-	<!-- RFC 1738 -->
-	<!ENTITY lowalpha "a-z">
-	<!ENTITY hialpha "A-Z">
-	<!ENTITY alpha "&lowalpha;&hialpha;">
-	<!ENTITY digit "0-9">
-	<!ENTITY safe "$\-_.+">
-	<!ENTITY extra "!*(),&quot;">
-	<!ENTITY national "{}|\\^~[]`">
-	<!ENTITY punctuation "<>#&pct;&quot;">
-	<!ENTITY x-reserved ";/?:@=">
-	<!ENTITY reserved "&x-reserved;&amp;">
-	<!ENTITY hex "&digit;A-Fa-f">
-	<!ENTITY escape "&pct;&hex;&hex;">
-	<!ENTITY unreserved "&alpha;&digit;&safe;&extra;">
-	<!ENTITY hex16 "[&hex;]{1,4}">
-	<!ENTITY allFs "[fF]{4}">
-	<!ENTITY chrs "&unreserved;&pct;&amp;~;=:@">
-	<!ENTITY uword "(:([&digit;]{1,4}|[1-5][&digit;]{4}|6[0-4][&digit;]{3}|65[0-4][&digit;]{2}|655[0-2][&digit;]|6553[0-5]))">
-	<!ENTITY DecimalByte "((25[0-5]|(2[0-4]|1{0,1}[&digit;]){0,1}[&digit;]))">
-	<!ENTITY Scheme "[&alpha;][&alpha;&digit;+\-.]*">
-	<!ENTITY User "([&unreserved;&pct;&amp;~;=]+)">
-	<!ENTITY Password "([&unreserved;&pct;&amp;~;=]+)">
-	<!ENTITY NamedHost "[&alpha;&digit;&pct;\-._~]+">
-	<!ENTITY IPv4Host "&DecimalByte;(.&DecimalByte;){3}">
-	<!ENTITY IPv6Address "((&hex16;:){7,7}&hex16;|(&hex16;:){1,7}:|(&hex16;:){1,6}:&hex16;|(&hex16;:){1,5}(:&hex16;){1,2}|(&hex16;:){1,4}(:&hex16;){1,3}|(&hex16;:){1,3}(:&hex16;){1,4}|(&hex16;:){1,2}(:&hex16;){1,5}|&hex16;:((:&hex16;){1,6})|:((:&hex16;){1,7}|:)|fe80:(:&hex16;){0,4}&pct;[&hex;]{1,}|::(&allFs;(0{1,4}){0,1}:){0,1}&IPv4Host;|(&hex16;:){1,4}:&IPv4Host;)">
-	<!ENTITY IPv6Host "\[&IPv6Address;\]">
-	<!ENTITY IPvFutureHost "\[v[a-f&digit;][&unreserved;&pct;&amp;~;=:]+\]">
-	<!ENTITY Port "&uword;">
-	<!ENTITY Path "(/[&chrs;]+)">
-	<!ENTITY AuthorityAndPath "//(&User;(:&Password;)?@)?(&NamedHost;|&IPv6Host;|&IPvFutureHost;)&Port;?&Path;*/?">
-	<!ENTITY PathNoAuthority "(/?[&chrs;]+&Path;*/?)">
-	<!ENTITY RelativePath "[&chrs;]+&Path;*">
-	<!ENTITY AbsolutePath "&Path;+">
-	<!ENTITY Query "(\?[&chrs;/?]*)">
-	<!ENTITY Fragment "(#[&chrs;/?]*)">
-	<!-- IETF RFC 2141 -->
-	<!ENTITY NamespaceID "[&alpha;&digit;][&alpha;&digit;-]{1,31}">
-	<!ENTITY NSS-others "()+,\-\.:=@;$_!*'">
-	<!ENTITY NSS-reserved "&pct;/?#">
-	<!ENTITY NamespaceSpecific "[&alpha;&digit;&NSS-others;&NSS-reserved;]+">
-	<!ENTITY URN "urn:&NamespaceID;:&NamespaceSpecific;">
-	<!ENTITY URL "(&Scheme;:(&AuthorityAndPath;|&PathNoAuthority;)|(&RelativePath;/?|&AbsolutePath;/?))&Query;?&Fragment;?">
-	<!-- IETF RFC 2045 -->
-	<!ENTITY TOKEN "[&alpha;&digit;&safe;&carat;&pipe;&squote;&grave;&pct;!*#\\~&amp;]">
-	<!-- IETF RFC 2231 -->
-	<!ENTITY ext_octet "&pct;[&hex;]{2}">
-	<!ENTITY attribute_char "[&alpha;&digit;&safe;!#\\^{}|`~&amp;]">
-	<!-- IETF RFC 6381 -->
-	<!ENTITY octet_sim "&TOKEN;">
-	<!ENTITY id_simple "&octet_sim;+">
-	<!ENTITY simp_list "&quot;&id_simple;(,&id_simple;)*&quot;">
-	<!ENTITY charset "[&alpha;\-]+">
-	<!ENTITY language "[&alpha;]{1,8}(-[&alpha;]{1,8})*">
-	<!ENTITY octet_fancy "(&ext_octet;|&attribute_char;)">
-	<!ENTITY encoded_elm "&octet_fancy;+">
-	<!ENTITY id_encoded "&encoded_elm;(\.&encoded_elm;)*">
-	<!ENTITY id_list "&id_encoded;(,&id_encoded;)*">
-	<!ENTITY fancy_list "&quot;&charset;&squote;&language;&squote;&id_list;&quot;">
-	<!-- -->
-	<!-- -->
-	<!ENTITY comma_sep ",[&space;&tab;]*">
+<!ENTITY space "&#x20;">
+<!-- ^T - horizontal tab -->
+<!ENTITY tab "&#x09;">
+<!-- % -->
+<!ENTITY pct "&#x25;">
+<!-- " -->
+<!ENTITY quot "&#x22;">
+<!-- ^ -->
+<!ENTITY carat "&#94;">
+<!-- | -->
+<!ENTITY pipe "&#124;">
+<!-- ' -->
+<!ENTITY squote "&#39;">
+<!-- ` -->
+<!ENTITY grave "&#96;">
+<!-- RFC 1738 -->
+<!ENTITY lowalpha "a-z">
+<!ENTITY hialpha "A-Z">
+<!ENTITY alpha "&lowalpha;&hialpha;">
+<!ENTITY digit "0-9">
+<!ENTITY safe "$\-_.+">
+<!ENTITY extra "!*(),&quot;">
+<!ENTITY national "{}|\\^~[]`">
+<!ENTITY punctuation "<>#&pct;&quot;">
+<!ENTITY x-reserved ";/?:@=">
+<!ENTITY reserved "&x-reserved;&amp;">
+<!ENTITY hex "&digit;A-Fa-f">
+<!ENTITY escape "&pct;&hex;&hex;">
+<!ENTITY unreserved "&alpha;&digit;&safe;&extra;">
+<!ENTITY hex16 "[&hex;]{1,4}">
+<!ENTITY allFs "[fF]{4}">
+<!ENTITY chrs "&unreserved;&pct;&amp;~;=:@">
+<!ENTITY uword "(:([&digit;]{1,4}|[1-5][&digit;]{4}|6[0-4][&digit;]{3}|65[0-4][&digit;]{2}|655[0-2][&digit;]|6553[0-5]))">
+<!ENTITY DecimalByte "((25[0-5]|(2[0-4]|1{0,1}[&digit;]){0,1}[&digit;]))">
+<!ENTITY Scheme "[&alpha;][&alpha;&digit;+\-.]*">
+<!ENTITY User "([&unreserved;&pct;&amp;~;=]+)">
+<!ENTITY Password "([&unreserved;&pct;&amp;~;=]+)">
+<!ENTITY NamedHost "[&alpha;&digit;&pct;\-._~]+">
+<!ENTITY IPv4Host "&DecimalByte;(.&DecimalByte;){3}">
+<!ENTITY IPv6Address "((&hex16;:){7,7}&hex16;|(&hex16;:){1,7}:|(&hex16;:){1,6}:&hex16;|(&hex16;:){1,5}(:&hex16;){1,2}|(&hex16;:){1,4}(:&hex16;){1,3}|(&hex16;:){1,3}(:&hex16;){1,4}|(&hex16;:){1,2}(:&hex16;){1,5}|&hex16;:((:&hex16;){1,6})|:((:&hex16;){1,7}|:)|fe80:(:&hex16;){0,4}&pct;[&hex;]{1,}|::(&allFs;(0{1,4}){0,1}:){0,1}&IPv4Host;|(&hex16;:){1,4}:&IPv4Host;)">
+<!ENTITY IPv6Host "\[&IPv6Address;\]">
+<!ENTITY IPvFutureHost "\[v[a-f&digit;][&unreserved;&pct;&amp;~;=:]+\]">
+<!ENTITY Port "&uword;">
+<!ENTITY Path "(/[&chrs;]+)">
+<!ENTITY AuthorityAndPath "//(&User;(:&Password;)?@)?(&NamedHost;|&IPv6Host;|&IPvFutureHost;)&Port;?&Path;*/?">
+<!ENTITY PathNoAuthority "(/?[&chrs;]+&Path;*/?)">
+<!ENTITY RelativePath "[&chrs;]+&Path;*">
+<!ENTITY AbsolutePath "&Path;+">
+<!ENTITY Query "(\?[&chrs;/?]*)">
+<!ENTITY Fragment "(#[&chrs;/?]*)">
+<!-- IETF RFC 2141 -->
+<!ENTITY NamespaceID "[&alpha;&digit;][&alpha;&digit;-]{1,31}">
+<!ENTITY NSS-others "()+,\-\.:=@;$_!*'">
+<!ENTITY NSS-reserved "&pct;/?#">
+<!ENTITY NamespaceSpecific "[&alpha;&digit;&NSS-others;&NSS-reserved;]+">
+<!ENTITY URN "urn:&NamespaceID;:&NamespaceSpecific;">
+<!ENTITY URL "(&Scheme;:(&AuthorityAndPath;|&PathNoAuthority;)|(&RelativePath;/?|&AbsolutePath;/?))&Query;?&Fragment;?">
+<!-- IETF RFC 2045 -->
+<!ENTITY TOKEN "[&alpha;&digit;&safe;&carat;&pipe;&squote;&grave;&pct;!*#\\~&amp;]">
+<!-- IETF RFC 2231 -->
+<!ENTITY ext_octet "&pct;[&hex;]{2}">
+<!ENTITY attribute_char "[&alpha;&digit;&safe;!#\\^{}|`~&amp;]">
+<!-- IETF RFC 6381 -->
+<!ENTITY octet_sim "&TOKEN;">
+<!ENTITY id_simple "&octet_sim;+">
+<!ENTITY simp_list "&quot;&id_simple;(,&id_simple;)*&quot;">
+<!ENTITY charset "[&alpha;\-]+">
+<!ENTITY language "[&alpha;]{1,8}(-[&alpha;]{1,8})*">
+<!ENTITY octet_fancy "(&ext_octet;|&attribute_char;)">
+<!ENTITY encoded_elm "&octet_fancy;+">
+<!ENTITY id_encoded "&encoded_elm;(\.&encoded_elm;)*">
+<!ENTITY id_list "&id_encoded;(,&id_encoded;)*">
+<!ENTITY fancy_list "&quot;&charset;&squote;&language;&squote;&id_list;&quot;">
+<!-- -->
+<!-- -->
+<!ENTITY comma_sep ",[&space;&tab;]*">
 ]>
 
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xlink="http://www.w3.org/1999/xlink"
-	xmlns="urn:mpeg:dash:schema:mpd:2011" targetNamespace="urn:mpeg:dash:schema:mpd:2011"
-	elementFormDefault="qualified" attributeFormDefault="unqualified">
-	<xs:import namespace="http://www.w3.org/1999/xlink"
-		schemaLocation="http://www.w3.org/XML/2008/06/xlink.xsd">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	xmlns="urn:mpeg:dash:schema:mpd:2011" targetNamespace="urn:mpeg:dash:schema:mpd:2011" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.w3.org/1999/xlink" schemaLocation="http://www.w3.org/XML/2008/06/xlink.xsd">
 		<xs:annotation>
 			<xs:documentation xml:lang="en"> xlink import. URL is per https://www.w3.org/TR/xlink/
 				Users are encouraged to store a local copy </xs:documentation>
@@ -105,28 +104,19 @@
 			<xs:documentation xml:lang="en"> MPD Type </xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
-			<xs:element name="ProgramInformation" type="ProgramInformationType" minOccurs="0"
-				maxOccurs="unbounded"/>
+			<xs:element name="ProgramInformation" type="ProgramInformationType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="BaseURL" type="BaseURLType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="Location" type="LocationType" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element name="PatchLocation" type="PatchLocationType" minOccurs="0"
-				maxOccurs="unbounded"/>
-			<xs:element name="ServiceDescription" type="ServiceDescriptionType" minOccurs="0"
-				maxOccurs="unbounded"/>
-			<xs:element name="InitializationSet" type="InitializationSetType" minOccurs="0"
-				maxOccurs="unbounded"/>
-			<xs:element name="InitializationGroup" type="UIntVWithIDType" minOccurs="0"
-				maxOccurs="unbounded"/>
-			<xs:element name="InitializationPresentation" type="UIntVWithIDType" minOccurs="0"
-				maxOccurs="unbounded"/>
-			<xs:element name="ContentProtection" type="ContentProtectionType" minOccurs="0"
-				maxOccurs="unbounded"/>
+			<xs:element name="PatchLocation" type="PatchLocationType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ServiceDescription" type="ServiceDescriptionType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="InitializationSet" type="InitializationSetType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="InitializationGroup" type="UIntVWithIDType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="InitializationPresentation" type="UIntVWithIDType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ContentProtection" type="ContentProtectionType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="Period" type="PeriodType" maxOccurs="unbounded"/>
 			<xs:element name="Metrics" type="MetricsType" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element name="EssentialProperty" type="DescriptorType" minOccurs="0"
-				maxOccurs="unbounded"/>
-			<xs:element name="SupplementalProperty" type="DescriptorType" minOccurs="0"
-				maxOccurs="unbounded"/>
+			<xs:element name="EssentialProperty" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="SupplementalProperty" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="UTCTiming" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="LeapSecondInformation" type="LeapSecondInformationType" minOccurs="0"/>
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
@@ -165,7 +155,7 @@
 				<xs:anyAttribute namespace="##other" processContents="lax"/>
 			</xs:extension>
 		</xs:simpleContent>
-	</xs:complexType>	
+	</xs:complexType>
 	<xs:simpleType name="PresentationType">
 		<xs:annotation>
 			<xs:documentation xml:lang="en"> Presentation Type enumeration </xs:documentation>
@@ -185,22 +175,15 @@
 			<xs:element name="SegmentList" type="SegmentListType" minOccurs="0"/>
 			<xs:element name="SegmentTemplate" type="SegmentTemplateType" minOccurs="0"/>
 			<xs:element name="AssetIdentifier" type="DescriptorType" minOccurs="0"/>
-			<xs:element name="EventStream" type="EventStreamType" minOccurs="0"
-				maxOccurs="unbounded"/>
-			<xs:element name="ServiceDescription" type="ServiceDescriptionType" minOccurs="0"
-				maxOccurs="unbounded"/>
-			<xs:element name="ContentProtection" type="ContentProtectionType" minOccurs="0"
-				maxOccurs="unbounded"/>
-			<xs:element name="AdaptationSet" type="AdaptationSetType" minOccurs="0"
-				maxOccurs="unbounded"/>
+			<xs:element name="EventStream" type="EventStreamType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ServiceDescription" type="ServiceDescriptionType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ContentProtection" type="ContentProtectionType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="AdaptationSet" type="AdaptationSetType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="Subset" type="SubsetType" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element name="SupplementalProperty" type="DescriptorType" minOccurs="0"
-				maxOccurs="unbounded"/>
-			<xs:element name="EmptyAdaptationSet" type="AdaptationSetType" minOccurs="0"
-				maxOccurs="unbounded"/>
+			<xs:element name="SupplementalProperty" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="EmptyAdaptationSet" type="AdaptationSetType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="GroupLabel" type="LabelType" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element name="Preselection" type="PreselectionType" minOccurs="0"
-				maxOccurs="unbounded"/>
+			<xs:element name="Preselection" type="PreselectionType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 		<xs:attribute ref="xlink:href"/>
@@ -285,14 +268,10 @@
 		<xs:complexContent>
 			<xs:extension base="RepresentationBaseType">
 				<xs:sequence>
-					<xs:element name="Accessibility" type="DescriptorType" minOccurs="0"
-						maxOccurs="unbounded"/>
-					<xs:element name="Role" type="DescriptorType" minOccurs="0"
-						maxOccurs="unbounded"/>
-					<xs:element name="Rating" type="DescriptorType" minOccurs="0"
-						maxOccurs="unbounded"/>
-					<xs:element name="Viewpoint" type="DescriptorType" minOccurs="0"
-						maxOccurs="unbounded"/>
+					<xs:element name="Accessibility" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="Role" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="Rating" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="Viewpoint" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
 				</xs:sequence>
 				<xs:attribute ref="xlink:href"/>
 				<xs:attribute ref="xlink:actuate" default="onRequest"/>
@@ -315,16 +294,11 @@
 		<xs:sequence>
 			<xs:element name="Scope" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="Latency" type="LatencyType" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element name="PlaybackRate" type="PlaybackRateType" minOccurs="0"
-				maxOccurs="unbounded"/>
-			<xs:element name="OperatingQuality" type="OperatingQualityType" minOccurs="0"
-				maxOccurs="unbounded"/>
-			<xs:element name="OperatingBandwidth" type="OperatingBandwidthType" minOccurs="0"
-				maxOccurs="unbounded"/>
-			<xs:element name="ContentSteering" type="ContentSteeringType" minOccurs="0"
-				maxOccurs="unbounded"/>
-			<xs:element name="ClientDataReporting" type="ClientDataReportingType" minOccurs="0"
-				maxOccurs="unbounded"/>
+			<xs:element name="PlaybackRate" type="PlaybackRateType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="OperatingQuality" type="OperatingQualityType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="OperatingBandwidth" type="OperatingBandwidthType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ContentSteering" type="ContentSteeringType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ClientDataReporting" type="ClientDataReportingType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 		<xs:attribute name="id" type="xs:unsignedInt"/>
@@ -335,8 +309,7 @@
 			<xs:documentation xml:lang="en"> Service Description Latency </xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
-			<xs:element name="QualityLatency" type="UIntPairsWithIDType" minOccurs="0"
-				maxOccurs="unbounded"/>
+			<xs:element name="QualityLatency" type="UIntPairsWithIDType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 		<xs:attribute name="referenceId" type="xs:unsignedInt"/>
@@ -433,23 +406,16 @@
 		<xs:complexContent>
 			<xs:extension base="RepresentationBaseType">
 				<xs:sequence>
-					<xs:element name="Accessibility" type="DescriptorType" minOccurs="0"
-						maxOccurs="unbounded"/>
-					<xs:element name="Role" type="DescriptorType" minOccurs="0"
-						maxOccurs="unbounded"/>
-					<xs:element name="Rating" type="DescriptorType" minOccurs="0"
-						maxOccurs="unbounded"/>
-					<xs:element name="Viewpoint" type="DescriptorType" minOccurs="0"
-						maxOccurs="unbounded"/>
-					<xs:element name="ContentComponent" type="ContentComponentType" minOccurs="0"
-						maxOccurs="unbounded"/>
-					<xs:element name="BaseURL" type="BaseURLType" minOccurs="0"
-						maxOccurs="unbounded"/>
+					<xs:element name="Accessibility" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="Role" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="Rating" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="Viewpoint" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="ContentComponent" type="ContentComponentType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="BaseURL" type="BaseURLType" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element name="SegmentBase" type="SegmentBaseType" minOccurs="0"/>
 					<xs:element name="SegmentList" type="SegmentListType" minOccurs="0"/>
 					<xs:element name="SegmentTemplate" type="SegmentTemplateType" minOccurs="0"/>
-					<xs:element name="Representation" type="RepresentationType" minOccurs="0"
-						maxOccurs="unbounded"/>
+					<xs:element name="Representation" type="RepresentationType" minOccurs="0" maxOccurs="unbounded"/>
 				</xs:sequence>
 				<xs:attribute ref="xlink:href"/>
 				<xs:attribute ref="xlink:actuate" default="onRequest"/>
@@ -511,8 +477,7 @@
 			<xs:documentation xml:lang="en"> Content Component </xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
-			<xs:element name="Accessibility" type="DescriptorType" minOccurs="0"
-				maxOccurs="unbounded"/>
+			<xs:element name="Accessibility" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="Role" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="Rating" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="Viewpoint" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
@@ -532,12 +497,9 @@
 		<xs:complexContent>
 			<xs:extension base="RepresentationBaseType">
 				<xs:sequence>
-					<xs:element name="BaseURL" type="BaseURLType" minOccurs="0"
-						maxOccurs="unbounded"/>
-					<xs:element name="ExtendedBandwidth" type="ExtendedBandwidthType" minOccurs="0"
-						maxOccurs="unbounded"/>
-					<xs:element name="SubRepresentation" type="SubRepresentationType" minOccurs="0"
-						maxOccurs="unbounded"/>
+					<xs:element name="BaseURL" type="BaseURLType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="ExtendedBandwidth" type="ExtendedBandwidthType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="SubRepresentation" type="SubRepresentationType" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element name="SegmentBase" type="SegmentBaseType" minOccurs="0"/>
 					<xs:element name="SegmentList" type="SegmentListType" minOccurs="0"/>
 					<xs:element name="SegmentTemplate" type="SegmentTemplateType" minOccurs="0"/>
@@ -601,31 +563,21 @@
 			</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
-			<xs:element name="FramePacking" type="DescriptorType" minOccurs="0"
-				maxOccurs="unbounded"/>
-			<xs:element name="AudioChannelConfiguration" type="DescriptorType" minOccurs="0"
-				maxOccurs="unbounded"/>
-			<xs:element name="ContentProtection" type="ContentProtectionType" minOccurs="0"
-				maxOccurs="unbounded"/>
+			<xs:element name="FramePacking" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="AudioChannelConfiguration" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ContentProtection" type="ContentProtectionType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="OutputProtection" type="DescriptorType" minOccurs="0"/>
-			<xs:element name="EssentialProperty" type="DescriptorType" minOccurs="0"
-				maxOccurs="unbounded"/>
-			<xs:element name="SupplementalProperty" type="DescriptorType" minOccurs="0"
-				maxOccurs="unbounded"/>
-			<xs:element name="InbandEventStream" type="EventStreamType" minOccurs="0"
-				maxOccurs="unbounded"/>
+			<xs:element name="EssentialProperty" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="SupplementalProperty" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="InbandEventStream" type="EventStreamType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="Switching" type="SwitchingType" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element name="RandomAccess" type="RandomAccessType" minOccurs="0"
-				maxOccurs="unbounded"/>
+			<xs:element name="RandomAccess" type="RandomAccessType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="GroupLabel" type="LabelType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="Label" type="LabelType" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element name="ProducerReferenceTime" type="ProducerReferenceTimeType" minOccurs="0"
-				maxOccurs="unbounded"/>
-			<xs:element name="ContentPopularityRate" type="ContentPopularityRateType" minOccurs="0"
-				maxOccurs="unbounded"/>
+			<xs:element name="ProducerReferenceTime" type="ProducerReferenceTimeType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ContentPopularityRate" type="ContentPopularityRateType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="Resync" type="ResyncType" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element name="SegmentSequenceProperties" type="SegmentSequencePropertiesType"
-				minOccurs="0"/>
+			<xs:element name="SegmentSequenceProperties" type="SegmentSequencePropertiesType" minOccurs="0"/>
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 		<xs:attribute name="profiles" type="ListOfProfilesType"/>
@@ -746,14 +698,10 @@
 		<xs:complexContent>
 			<xs:extension base="RepresentationBaseType">
 				<xs:sequence>
-					<xs:element name="Accessibility" type="DescriptorType" minOccurs="0"
-						maxOccurs="unbounded"/>
-					<xs:element name="Role" type="DescriptorType" minOccurs="0"
-						maxOccurs="unbounded"/>
-					<xs:element name="Rating" type="DescriptorType" minOccurs="0"
-						maxOccurs="unbounded"/>
-					<xs:element name="Viewpoint" type="DescriptorType" minOccurs="0"
-						maxOccurs="unbounded"/>
+					<xs:element name="Accessibility" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="Role" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="Rating" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="Viewpoint" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
 				</xs:sequence>
 				<xs:attribute name="id" type="StringNoWhitespaceType" default="1"/>
 				<xs:attribute name="preselectionComponents" type="StringVectorType" use="required"/>
@@ -931,8 +879,7 @@
 		<xs:complexContent>
 			<xs:extension base="MultipleSegmentBaseType">
 				<xs:sequence>
-					<xs:element name="SegmentURL" type="SegmentURLType" minOccurs="0"
-						maxOccurs="unbounded"/>
+					<xs:element name="SegmentURL" type="SegmentURLType" minOccurs="0" maxOccurs="unbounded"/>
 				</xs:sequence>
 				<xs:attribute ref="xlink:href"/>
 				<xs:attribute ref="xlink:actuate" default="onRequest"/>
@@ -1150,8 +1097,7 @@
 			<xs:documentation xml:lang="en"> Client Data Reporting </xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
-			<xs:element name="ReportingSystem" type="DescriptorType" minOccurs="1"
-				maxOccurs="unbounded"/>
+			<xs:element name="ReportingSystem" type="DescriptorType" minOccurs="1" maxOccurs="unbounded"/>
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 		<xs:attribute name="serviceLocations" type="StringVectorType"/>
@@ -1174,8 +1120,7 @@
 				</xs:restriction>
 			</xs:simpleType>
 		</xs:attribute>
-		<xs:attribute name="includeInRequests" type="StringNoWhitespaceVectorType"
-			default="segments"/>
+		<xs:attribute name="includeInRequests" type="StringNoWhitespaceVectorType" default="segments"/>
 		<xs:attribute name="keys" type="StringNoWhitespaceVectorType"/>
 		<xs:attribute name="contentID" type="StringNoWhitespaceType"/>
 		<xs:attribute name="sessionID" type="StringNoWhitespaceType"/>
