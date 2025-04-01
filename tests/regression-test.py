@@ -19,7 +19,7 @@ from lxml import etree
 DVBManifestsFile="DVB-manifests.json"
 HbbTVManifestsFile="HbbTV-manifests.json"
 MPEGCMAFManifestsFile="MPEG-CMAF-manifests.json"
-DASHIFManifestsFile="DASH-IF-Manifests.json"
+DASHIFManifestsFile="DASH-IF-manifests.json"
 
 class TestManifests(unittest.TestCase):
 	def setUp(self):
