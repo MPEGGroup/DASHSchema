@@ -1,7 +1,7 @@
 """
 evaluate manifests from other organisations against the MPEG DASH schema
 
-developed by Paul Higgs using Python 3.9.1
+developed by Paul Higgs using Python 3.13.2
 uses the following libraries
  * requests,    python -m pip install requests
  * lxml,        python -m pip install lxml
@@ -20,8 +20,6 @@ DVBManifestsFile="DVB-manifests.json"
 HbbTVManifestsFile="HbbTV-manifests.json"
 MPEGCMAFManifestsFile="MPEG-CMAF-manifests.json"
 DASHIFManifestsFile="DASH-IF-Manifests.json"
-
-DASHIF_dataset_url = "https://raw.githubusercontent.com/Dash-Industry-Forum/Test-Assets-Dataset-Public/master/dataset/data/testvector.json"
 
 class TestManifests(unittest.TestCase):
 	def setUp(self):
@@ -76,20 +74,17 @@ class TestManifests(unittest.TestCase):
 					result.append(item["url"])
 		return result
 
-	def dont_test_DVB(self):
+	def test_DVB(self):
 		self.check_manifests(self.loadDataset(DVBManifestsFile), "DVB")
 
-	def dont_test_HbbTV(self):
+	def test_HbbTV(self):
 		self.check_manifests(self.loadDataset(HbbTVManifestsFile), "HbbTV")
 
-	def dont_test_MPEG_CMAF(self):
+	def test_MPEG_CMAF(self):
 		self.check_manifests(self.loadDataset(MPEGCMAFManifestsFile), "MPEG CMAF")
 		
-	def dont_test_DASH_IF_list(self):
+	def test_DASH_IF_list(self):
 		self.check_manifests(self.loadDataset(DASHIFManifestsFile), "DASH-IF Local List")
-			
-	def test_DASH_IF_dataset(self):
-		self.check_manifests(self.loadDataset(DASHIF_dataset_url), "DASH-IF Dataset")
 	
 	def dont_test_one(self):
 		mpd="http://html5.cablelabs.com:8100/cenc/prwv/dash.mpd"
