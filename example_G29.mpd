@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<MPD xmlns="urn:mpeg:dash:schema:mpd:2011" type="dynamic" id="7399610060681366163" profiles="urn:mpeg:dash:profile:isoff-live:2011"
+<MPD 
+    xmlns="urn:mpeg:dash:schema:mpd:2011" type="dynamic" id="7399610060681366163" profiles="urn:mpeg:dash:profile:isoff-live:2011"
     minBufferTime="PT2.000S" maxSegmentDuration="PT0H0M2.016S" minimumUpdatePeriod="PT0H0M2.002S"
     timeShiftBufferDepth="PT0H0M30.000S" publishTime="2021-11-10T20:44:07.025Z"
     availabilityStartTime="1977-05-25T18:00:00.000Z"
