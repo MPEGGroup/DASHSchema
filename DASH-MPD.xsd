@@ -153,12 +153,11 @@
 		<xs:simpleContent>
 			<xs:extension base="xs:anyURI">
 				<xs:attribute name="serviceLocation" type="xs:string"/>
-				<xs:attribute name="ttl" type="xs:double" use="optional"/>
+				<xs:attribute name="ttl" type="xs:double"/>
 				<xs:anyAttribute namespace="##other" processContents="lax"/>
 			</xs:extension>
 		</xs:simpleContent>
 	</xs:complexType>
-	
 	<xs:complexType name="LocationType">
 		<xs:simpleContent>
 			<xs:extension base="xs:anyURI">
@@ -166,9 +165,7 @@
 				<xs:anyAttribute namespace="##other" processContents="lax"/>
 			</xs:extension>
 		</xs:simpleContent>
-	</xs:complexType>
-		
-	
+	</xs:complexType>	
 	<xs:simpleType name="PresentationType">
 		<xs:annotation>
 			<xs:documentation xml:lang="en"> Presentation Type enumeration </xs:documentation>
@@ -628,7 +625,7 @@
 				maxOccurs="unbounded"/>
 			<xs:element name="Resync" type="ResyncType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="SegmentSequenceProperties" type="SegmentSequencePropertiesType"
-				minOccurs="0" maxOccurs="1"/>
+				minOccurs="0"/>
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 		<xs:attribute name="profiles" type="ListOfProfilesType"/>
@@ -688,8 +685,8 @@
 							</xs:restriction>
 						</xs:simpleType>
 					</xs:attribute>
-					<xs:attribute name="start" type="xs:unsignedLong" use="optional"/>
-					<xs:attribute name="r" type="xs:int" use="optional" default="0"/>
+					<xs:attribute name="start" type="xs:unsignedLong"/>
+					<xs:attribute name="r" type="xs:int" default="0"/>
 					<xs:anyAttribute namespace="##other" processContents="lax"/>
 				</xs:complexType>
 			</xs:element>
@@ -967,11 +964,9 @@
 				<xs:attribute name="index" type="xs:string"/>
 				<xs:attribute name="initialization" type="xs:string"/>
 				<xs:attribute name="bitstreamSwitching" type="xs:string"/>
-
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-
 	<xs:complexType name="RunLengthType">
 		<xs:annotation>
 			<xs:documentation xml:lang="en"> Run-length coded sequence of segments or segment
@@ -985,19 +980,17 @@
 		<xs:attribute name="k" type="xs:unsignedLong" default="1"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
-
 	<xs:complexType name="PatternType">
 		<xs:annotation>
 			<xs:documentation xml:lang="en"> Duration pattern </xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
-			<xs:element name="P" type="RunLengthType" minOccurs="1" maxOccurs="unbounded"/>
+			<xs:element name="P" type="RunLengthType" maxOccurs="unbounded"/>
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 		<xs:attribute name="id" type="xs:unsignedLong" use="required"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
-
 	<xs:complexType name="SegmentTimelineType">
 		<xs:annotation>
 			<xs:documentation xml:lang="en"> Segment Timeline </xs:documentation>
@@ -1027,7 +1020,6 @@
 		</xs:annotation>
 		<xs:list itemType="xs:string"/>
 	</xs:simpleType>
-
 	<xs:simpleType name="ListOf4CCType">
 		<xs:annotation>
 			<xs:documentation xml:lang="en"> Whitespace separated list of 4CC </xs:documentation>
@@ -1101,7 +1093,6 @@
 		<xs:attribute name="metrics" type="xs:string" use="required"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
-	<!--  -->
 	<xs:complexType name="RangeType">
 		<xs:annotation>
 			<xs:documentation xml:lang="en"> Metrics Range </xs:documentation>
@@ -1138,7 +1129,6 @@
 		<xs:attribute name="nextLeapChangeTime" type="xs:dateTime"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
-
 	<xs:simpleType name="StringNoWhitespaceVectorType">
 		<xs:annotation>
 			<xs:documentation xml:lang="en"> Whitespace-separated list of no-whitespace strings
@@ -1146,9 +1136,6 @@
 		</xs:annotation>
 		<xs:list itemType="StringNoWhitespaceType"/>
 	</xs:simpleType>
-
-
-
 	<xs:complexType name="ContentSteeringType">
 		<xs:simpleContent>
 			<xs:extension base="xs:anyURI">
@@ -1158,8 +1145,6 @@
 			</xs:extension>
 		</xs:simpleContent>
 	</xs:complexType>
-
-	<!-- ClientDataReporting -->
 	<xs:complexType name="ClientDataReportingType">
 		<xs:annotation>
 			<xs:documentation xml:lang="en"> Client Data Reporting </xs:documentation>
@@ -1173,8 +1158,6 @@
 		<xs:attribute name="adaptationSets" type="UIntVectorType"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
-
-	<!-- CMCDParameterType -->
 	<xs:complexType name="CMCDParameterType">
 		<xs:annotation>
 			<xs:documentation xml:lang="en"> CMCD Parameters </xs:documentation>
@@ -1198,7 +1181,6 @@
 		<xs:attribute name="sessionID" type="StringNoWhitespaceType"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
-	
 	<xs:complexType name="SupVideoInfoType">
 		<xs:annotation>
 			<xs:documentation xml:lang="en"> Picture-in-picture information </xs:documentation>
@@ -1206,7 +1188,6 @@
 		<xs:attribute name="processingInfo" type="xs:string"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
-
 	<xs:complexType name="SegmentSequencePropertiesType">
 		<xs:annotation>
 			<xs:documentation xml:lang="en"> Segment Sequence properties </xs:documentation>
@@ -1217,7 +1198,6 @@
 		</xs:sequence>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
-
 	<xs:complexType name="SapWithCadenceType">
 		<xs:annotation>
 			<xs:documentation xml:lang="en"> Segment Sequence SAP properties </xs:documentation>
@@ -1229,5 +1209,4 @@
 		<xs:attribute name="cadence" type="xs:unsignedInt" default="0"/>
 		<xs:anyAttribute namespace="##other" processContents="lax"/>
 	</xs:complexType>
-
 </xs:schema>
