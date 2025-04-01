@@ -3,7 +3,7 @@ name: Test MPDs
 on: [push, pull_request, workflow_dispatch]
 
 jobs:
-  build:
+  test:
 
     runs-on: ubuntu-latest
 
