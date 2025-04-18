@@ -16,10 +16,7 @@ import re
 
 from lxml import etree
 
-DVBManifestsFile="DVB-manifests.json"
-HbbTVManifestsFile="HbbTV-manifests.json"
-MPEGCMAFManifestsFile="MPEG-CMAF-manifests.json"
-DASHIFManifestsFile="DASH-IF-manifests.json"
+DASHIF_dataset_url = "https://raw.githubusercontent.com/Dash-Industry-Forum/Test-Assets-Dataset-Public/master/dataset/data/testvector.json"
 
 class TestManifests(unittest.TestCase):
 	def setUp(self):
@@ -73,18 +70,9 @@ class TestManifests(unittest.TestCase):
 				else:
 					result.append(item["url"])
 		return result
-
-	def test_DVB(self):
-		self.check_manifests(self.loadDataset(DVBManifestsFile), "DVB")
-
-	def test_HbbTV(self):
-		self.check_manifests(self.loadDataset(HbbTVManifestsFile), "HbbTV")
-
-	def test_MPEG_CMAF(self):
-		self.check_manifests(self.loadDataset(MPEGCMAFManifestsFile), "MPEG CMAF")
 		
-	def test_DASH_IF_list(self):
-		self.check_manifests(self.loadDataset(DASHIFManifestsFile), "DASH-IF Local List")
+	def test_DASH_IF_dataset(self):
+		self.check_manifests(self.loadDataset(DASHIF_dataset_url), "DASH-IF Dataset")
 	
 	def dont_test_one(self):
 		mpd="http://html5.cablelabs.com:8100/cenc/prwv/dash.mpd"
