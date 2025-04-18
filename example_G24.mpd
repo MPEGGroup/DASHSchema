@@ -1,30 +1,35 @@
-<?xml version="1.0" encoding="utf-8"?>
-<MPD 
-   xmlns="urn:mpeg:dash:schema:mpd:2011"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="urn:mpeg:dash:schema:mpd:2011 DASH-MPD.xsd"
-
-  availabilityStartTime="1970-01-01T00:00:00Z" maxSegmentDuration="PT6S"
-  minBufferTime="PT2S" minimumUpdatePeriod="PT5M" 
-  profiles="urn:mpeg:dash:profile:isoff-live:2011" publishTime="2019-03-12T01:17:30Z"
-  timeShiftBufferDepth="PT8M20S" type="dynamic">
-
-  <Period id="p0" start="PT0S">
-     
-     <BaseURL>http://liveserver.com/live/live1/</BaseURL>
-     
-      <EventStream schemeIdUri="urn:mpeg:dash:event:alternative:2022S" value="replace">
-            <Event presentationTime="60" duration="10000000">http://acmeadsertver.com/preroll.mpd</Event>
-      </EventStream>
-      
-      <AdaptationSet contentType="video" maxHeight="1920" maxWidth="1080"
-          mimeType="video/mp4" par="16:9" segmentAlignment="true" startWithSAP="1">
-         <SegmentTemplate duration="2" initialization="$RepresentationID$/init.mp4" 
-            media="$RepresentationID$/$Number$.m4s" startNumber="0" />
-         <Representation id="V300" bandwidth="300000" codecs="avc1.64001e"
-            frameRate="60/2" />
-         <Representation id="V600" bandwidth="600000" codecs="avc1.64001e"
-            frameRate="60/2" />
-      </AdaptationSet>
+<?xml version="1.0"?>
+<MPD xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:mpeg:dash:schema:mpd:2011" xsi:schemaLocation="urn:mpeg:dash:schema:mpd:2011 DASH-MPD.xsd" type="static" mediaPresentationDuration="PT24S" availabilityStartTime="2014-10-17T17:17:05Z" minBufferTime="PT4S" profiles="urn:mpeg:dash:profile:cmaf:2019,urn:mpeg:dash:profile:isoff-live:2011">
+  <Period id="1" duration="PT530S">
+    <EventStream schemeIdUri="urn:mpeg:dash:nonlinearplayback:2020" value="urn:xapp:2020:userinterface1">
+      <Event presentationTime="530" duration="30">
+        <SelectionInfo selectionInfo="What would you like to happen next?" contactURL="http://cdn.com/content_xyz/">
+          <Selection parameter="1" data="Bill kills Alice"/>
+          <Selection parameter="2" data="Bill kisses Alice"/>
+          <Selection parameter="3" data="Bill frames Alice"/>
+        </SelectionInfo>
+      </Event>
+    </EventStream>
+    <!-- Video -->
+    <AdaptationSet contentType="video" id="1" mimeType="video/mp4 profiles='cmfc'" codecs="avc1.4D401F" maxWidth="1080" maxHeight="720" maxFrameRate="30" segmentProfiles="cmfs cmff" segmentAlignment="true" startWithSAP="1">
+      <SegmentTemplate timescale="30" initialization="$RepresentationID$/0" media="$RepresentationID$/$Number$">
+        <SegmentTimeline>
+          <S t="0" d="120" r="5"/>
+        </SegmentTimeline>
+      </SegmentTemplate>
+      <Representation id="video1/1" bandwidth="250000"/>
+      <Representation id="video1/2" bandwidth="500000"/>
+      <Representation id="video1/3" bandwidth="1000000"/>
+    </AdaptationSet>
+    <!-- Audio -->
+    <AdaptationSet contentType="audio" id="1" mimeType="audio/mp4 profiles='cmfc'" codecs="mp4a.40.5" segmentProfiles="cmfs cmff" segmentAlignment="true" startWithSAP="1">
+      <SegmentTemplate timescale="48" initialization="$RepresentationID$/0" media="$RepresentationID$/$Number$">
+        <SegmentTimeline>
+          <S t="0" d="120" r="5"/>
+        </SegmentTimeline>
+      </SegmentTemplate>
+      <Representation id="audio1/1" bandwidth="2500"/>
+      <Representation id="audio1/2" bandwidth="500000"/>
+    </AdaptationSet>
   </Period>
 </MPD>
