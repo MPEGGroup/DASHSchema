@@ -13,7 +13,7 @@
       <SupplementalProperty schemeIdUri="urn:example:gps"/>
       <SegmentTemplate duration="2" startNumber="1" media="video_$Number$_$Bandwidth$bps.mp4">
       </SegmentTemplate>
-      Representation id="v0" codecs="avc3.4d401f" width="1280" height="720" frameRate="25" sar="1:1" bandwidth="3000000"/>
+      <Representation id="v0" codecs="avc3.4d401f" width="1280" height="720" frameRate="25" sar="1:1" bandwidth="3000000"/>
       <Representation id="v1" codecs="avc3.4d401f" width="640" height="360" frameRate="25" sar="1:1" bandwidth="1500000"/>
     </AdaptationSet>
   </Period>
