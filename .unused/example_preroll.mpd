@@ -13,7 +13,7 @@
     <AdaptationSet segmentAlignment="true" maxWidth="1280" maxHeight="720" par="16:9">
       <Representation id="1" mimeType="video/mp4" codecs="avc1.4d401f" width="1280" height="720" frameRate="24" startWithSAP="1" bandwidth="1485978">
         <SegmentTemplate timescale="12288" presentationTimeOffset="1024" duration="24576"
-           media="video_$Number$.mp4" startNumber="1" initialization="video_init.mp4" />
+           media="video_$Number$.mp4" startNumber="1" initialization="video_init.mp4"/>
       </Representation>
     </AdaptationSet>
   </Preroll>
@@ -22,11 +22,11 @@
       <AdaptationSet contentType="video" maxHeight="1920" maxWidth="1080"
           mimeType="video/mp4" par="16:9" segmentAlignment="true" startWithSAP="1">
          <SegmentTemplate duration="2" initialization="$RepresentationID$/init.mp4" 
-            media="$RepresentationID$/$Number$.m4s" startNumber="0" />
+            media="$RepresentationID$/$Number$.m4s" startNumber="0"/>
          <Representation id="V300" bandwidth="300000" codecs="avc1.64001e"
-            frameRate="60/2" />
+            frameRate="60/2"/>
          <Representation id="V600" bandwidth="600000" codecs="avc1.64001e"
-            frameRate="60/2" />
+            frameRate="60/2"/>
       </AdaptationSet>
   </Period>
 </MPD>

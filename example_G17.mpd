@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MPD
- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xmlns="urn:mpeg:dash:schema:mpd:2011"
- xsi:schemaLocation="urn:mpeg:dash:schema:mpd:2011 DASH-MPD.xsd"
- type="dynamic"
- availabilityStartTime="2018-12-20T06:04:22Z"
- publishTime="2018-12-20T06:04:22Z"
- minimumUpdatePeriod="PT2S"
- mediaPresentationDuration="PT0H4M9.708S"
- minBufferTime="PT4S"
- profiles="urn:mpeg:dash:profile:isoff-live:2011">
- <Period id="1" start="PT0S">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="urn:mpeg:dash:schema:mpd:2011"
+  xsi:schemaLocation="urn:mpeg:dash:schema:mpd:2011 DASH-MPD.xsd"
+  type="dynamic"
+  availabilityStartTime="2018-12-20T06:04:22Z"
+  publishTime="2018-12-20T06:04:22Z"
+  minimumUpdatePeriod="PT2S"
+  mediaPresentationDuration="PT0H4M9.708S"
+  minBufferTime="PT4S"
+  profiles="urn:mpeg:dash:profile:isoff-live:2011">
+  <Period id="1" start="PT0S">
     <!-- Video -->
     <AdaptationSet id="1" mimeType="video/mp4" codecs="hev1.1.6.L120.90" segmentAlignment="true" startWithSAP="1">
       <SegmentTemplate timescale="5994" media="video_$Number$.mp4" initialization="video.mp4">
@@ -50,5 +50,5 @@
       <Label id="1">Main Spanish</Label>
       <Role schemeIdUri="urn:mpeg:dash:role:2011" value="dub"/>
     </Preselection>
- </Period>
+  </Period>
 </MPD>

@@ -12,12 +12,12 @@
       <Representation id="v0" codecs="hvc1.2.4.L153.B0" width="1280" height="720" frameRate="25" sar="1:1" bandwidth="3000000"/>
       <Representation id="v1" codecs="hvc1.2.4.L90.B0" width="640" height="360" frameRate="25" sar="1:1" bandwidth="1500000"/>
     </AdaptationSet>
-    
+  
     <!-- stereoscopic view, combination of the above -->
     <Preselection codecs="lhc1" tag="3" preselectionComponents="1" selectionPriority="3">
       <Role schemeIdUri="urn:mpeg:dash:stereoid:2011" value="l0 r1"/>
     </Preselection>
-    
+
   </Period>
 </MPD>
 

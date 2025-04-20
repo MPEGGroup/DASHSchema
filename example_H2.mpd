@@ -33,8 +33,8 @@
     <!-- Tile 1 -->
     <AdaptationSet segmentAlignment="true" subsegmentAlignment="true" subsegmentStartsWithSAP="1">
       <SupplementalProperty schemeIdUri="urn:mpeg:dash:srd:2014" value="0,0,0,1,1,2,2"/>
-       <Role schemeIdUri="urn:mpeg:dash:role:2011" value="supplementary"/>
-     <Representation id="4" mimeType="video/mp4" codecs="avc1.42c00d" width="640" height="360" bandwidth="218284" startWithSAP="1">
+      <Role schemeIdUri="urn:mpeg:dash:role:2011" value="supplementary"/>
+      <Representation id="4" mimeType="video/mp4" codecs="avc1.42c00d" width="640" height="360" bandwidth="218284" startWithSAP="1">
         <BaseURL> tile1_video_small.mp4</BaseURL>
         <SegmentBase indexRangeExact="true" indexRange="837-988"/>
       </Representation>
@@ -50,17 +50,14 @@
     <!-- Tile 2 -->
     <AdaptationSet segmentAlignment="true" subsegmentAlignment="true" subsegmentStartsWithSAP="1">
       <SupplementalProperty schemeIdUri="urn:mpeg:dash:srd:2014" value="0,1,0,1,1,2,2"/>
-     
     </AdaptationSet>
     <!-- Tile 3 -->
     <AdaptationSet segmentAlignment="true" subsegmentAlignment="true" subsegmentStartsWithSAP="1">
       <SupplementalProperty schemeIdUri="urn:mpeg:dash:srd:2014" value="0,1,1,1,1,2,2"/>
-     
     </AdaptationSet>
     <!-- Tile 4 -->
     <AdaptationSet segmentAlignment="true" subsegmentAlignment="true" subsegmentStartsWithSAP="1">
       <SupplementalProperty schemeIdUri="urn:mpeg:dash:srd:2014" value="0,0,1,1,1,2,2"/>
-     
     </AdaptationSet>
   </Period>
 </MPD>
