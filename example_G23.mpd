@@ -12,12 +12,18 @@
    type="dynamic">
   <Period id="p0" start="PT0S">
     <BaseURL>http://liveserver.com/live/live1/</BaseURL>
-    <EventStream schemeIdUri="urn:mpeg:dash:event:alternative:2022"
-           value="replace">
-      <Event presentationTime="0"
-           duration="10000000">http://acmeadsertver.com/preroll.mpd</Event>
+    <EventStream timescale="90000"
+      schemeIdUri="urn:mpeg:dash:event:alternativeMPD:replace:2025">
+      
+      <Event presentationTime="0" duration="2838240000000000" id="42">
+        <ReplacePresentation 
+          uri="http://cdn1.example.com/preroll.mpd"
+          maxDuration="1350000" clip="false" executeOnce="true"/>
+      </Event>
+      
     </EventStream>
     
+   
     <AdaptationSet contentType="video"
              maxHeight="1920"
              maxWidth="1080"
@@ -32,11 +38,11 @@
       <Representation id="V300"
               bandwidth="300000"
               codecs="avc1.64001e"
-              frameRate="60/2"/>
+              frameRate="30000/1001"/>
       <Representation id="V600"
               bandwidth="600000"
               codecs="avc1.64001e"
-              frameRate="60/2"/>
+              frameRate="30000/1001"/>
     </AdaptationSet>
   </Period>
 </MPD>

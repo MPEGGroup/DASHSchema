@@ -5,8 +5,7 @@
   xsi:schemaLocation="urn:mpeg:dash:schema:mpd:2011 DASH-MPD.xsd"
   type="static" 
   mediaPresentationDuration="PT3256S" 
-  minBufferTime="PT1.2S" 
-  profiles="urn:mpeg:dash:profile:isoff-on-demand:2011"> 
+  minBufferTime="PT1.2S" profiles="urn:mpeg:dash:profile:full:2011"> 
 
   <BaseURL>http://cdn1.example.com/</BaseURL> 
   <BaseURL>http://cdn2.example.com/</BaseURL> 
