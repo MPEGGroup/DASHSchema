@@ -23,7 +23,7 @@
       
     </EventStream>
     
-    
+   
     <AdaptationSet contentType="video"
              maxHeight="1920"
              maxWidth="1080"
@@ -38,11 +38,11 @@
       <Representation id="V300"
               bandwidth="300000"
               codecs="avc1.64001e"
-              frameRate="60/2"/>
+              frameRate="30000/1001"/>
       <Representation id="V600"
               bandwidth="600000"
               codecs="avc1.64001e"
-              frameRate="60/2"/>
+              frameRate="30000/1001"/>
     </AdaptationSet>
   </Period>
 </MPD>
