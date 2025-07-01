@@ -1,0 +1,16 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:cenc="urn:mpeg:cenc:2013" targetNamespace="urn:mpeg:cenc:2013" 
+		elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:simpleType name="KeyIdType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-Fa-f0-9]{8}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- space-delimited list of KIDs -->
+	<xs:simpleType name="KeyIdListType">
+		<xs:list itemType="cenc:KeyIdType"/>
+	</xs:simpleType>
+	<!-- attribute used within the DASH mp4protection descriptor -->
+	<xs:attribute name="default_KID" type="cenc:KeyIdListType"/>
+	<!-- element used within system specific UUID ContentProtection descriptors -->
+	<xs:element name="pssh" type="xs:base64Binary"/>
+</xs:schema>
