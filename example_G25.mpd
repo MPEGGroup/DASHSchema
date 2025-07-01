@@ -11,7 +11,7 @@
 
     <AdaptationSet id="0" contentType="video" mimeType="video/mp4" segmentAlignment="true"
       startWithSAP="1">
-      <ContentProtection schemeIdUri="urn:mpeg:dash:mp4protection:2011" value="cenc"
+      <ContentProtection schemeIdUri="urn:mpeg:dash:mp4protection:2011" value="cbcs"
         cenc:default_KID="ed1f2e89-8a1f-47f8-a5f5-371dd397464c"/>
       <ContentProtection schemeIdUri="urn:uuid:afbcb50e-bf74-3d13-be8f-13930c783962"
         robustness="SW_SECURE_DECODE">
@@ -36,7 +36,7 @@
     <!-- HD Adaptation Set (keyID: 65ee94f8-54db-4460-ae6d-401bf195fc2b) -->
     <AdaptationSet id="1" contentType="video" mimeType="video/mp4" segmentAlignment="true"
       startWithSAP="1">
-      <ContentProtection schemeIdUri="urn:mpeg:dash:mp4protection:2011" value="cenc"
+      <ContentProtection schemeIdUri="urn:mpeg:dash:mp4protection:2011" value="cbcs"
         cenc:default_KID="65ee94f8-54db-4460-ae6d-401bf195fc2b"/>
       <ContentProtection schemeIdUri="urn:uuid:afbcb50e-bf74-3d13-be8f-13930c783962"
         robustness="HW_SECURE_CRYPTO">
@@ -64,7 +64,7 @@
     <!-- UHD Adaptation Set (keyID: 100efe5e-247f-4a82-b4ed-cb159f8b7b20) -->
     <AdaptationSet id="2" contentType="video" mimeType="video/mp4" segmentAlignment="true"
       startWithSAP="1">
-      <ContentProtection schemeIdUri="urn:mpeg:dash:mp4protection:2011" value="cenc"
+      <ContentProtection schemeIdUri="urn:mpeg:dash:mp4protection:2011" value="cbcs"
         cenc:default_KID="100efe5e-247f-4a82-b4ed-cb159f8b7b20"/>
       <ContentProtection schemeIdUri="urn:uuid:afbcb50e-bf74-3d13-be8f-13930c783962"
         robustness="HW_SECURE_ALL">
@@ -96,7 +96,7 @@
     <!-- E-AC-3 Audio Primary lang (keyID: 55ff04db-d75a-dfb9-ef8a-6473ae9ac9c4) -->
     <AdaptationSet id="3" contentType="audio" mimeType="audio/mp4" lang="en">
       <AudioChannelConfiguration schemeIdUri="urn:mpeg:mpegB:cicp:ChannelConfiguration" value="6"/>
-      <ContentProtection schemeIdUri="urn:mpeg:dash:mp4protection:2011" value="cenc"
+      <ContentProtection schemeIdUri="urn:mpeg:dash:mp4protection:2011" value="cbcs"
         cenc:default_KID="55ff04db-d75a-dfb9-ef8a-6473ae9ac9c4"/>
       <ContentProtection schemeIdUri="urn:uuid:afbcb50e-bf74-3d13-be8f-13930c783962"
         robustness="SW_SECURE_CRYPTO">
@@ -128,7 +128,7 @@
     <!-- Same as previous audio -->
     <AdaptationSet id="4" contentType="audio" mimeType="audio/mp4" lang="en">
       <AudioChannelConfiguration schemeIdUri="urn:mpeg:mpegB:cicp:ChannelConfiguration" value="2"/>
-      <ContentProtection schemeIdUri="urn:mpeg:dash:mp4protection:2011" value="cenc"
+      <ContentProtection schemeIdUri="urn:mpeg:dash:mp4protection:2011" value="cbcs"
         cenc:default_KID="55ff04db-d75a-dfb9-ef8a-6473ae9ac9c4"/>
       <ContentProtection schemeIdUri="urn:uuid:afbcb50e-bf74-3d13-be8f-13930c783962"
         robustness="SW_SECURE_CRYPTO">
@@ -152,7 +152,7 @@
     <!-- Same as previous audio -->
     <AdaptationSet id="5" contentType="audio" mimeType="audio/mp4" lang="en">
       <AudioChannelConfiguration schemeIdUri="urn:mpeg:mpegB:cicp:ChannelConfiguration" value="2"/>
-      <ContentProtection schemeIdUri="urn:mpeg:dash:mp4protection:2011" value="cenc"
+      <ContentProtection schemeIdUri="urn:mpeg:dash:mp4protection:2011" value="cbcs"
         cenc:default_KID="55ff04db-d75a-dfb9-ef8a-6473ae9ac9c4"/>
       <ContentProtection schemeIdUri="urn:uuid:afbcb50e-bf74-3d13-be8f-13930c783962"
         robustness="SW_SECURE_CRYPTO">
