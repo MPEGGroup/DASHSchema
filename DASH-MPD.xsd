@@ -1157,7 +1157,7 @@
     <xs:sequence>
       <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
     </xs:sequence>
-    <xs:attribute name="type" type="SAPType" default="0"/>
+    <xs:attribute name="sapType" type="SAPType" default="0"/>
     <xs:attribute name="cadence" type="xs:unsignedInt" default="0"/>
     <xs:attribute name="event" type="xs:boolean" default="true"/>
     <xs:attribute name="alignment" type="StringNoWhitespaceType"/>
