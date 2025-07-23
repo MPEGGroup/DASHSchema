@@ -8,7 +8,7 @@
     <AdaptationSet id="1" contentType="video" mimeType="video/mp4" segmentAlignment="true" startWithSAP="0" codecs="hvc1.2.4.L93.B0" frameRate="50">
       <EssentialProperty schemeIdUri="urn:mpeg:dash:ssr:2023"/>
       <ProducerReferenceTime id="7" wallClockTime="2019-08-06T13:44:12Z" presentationTime="158400"/>
-      <SegmentSequenceProperties type="1"/>
+      <SegmentSequenceProperties sapType="1" cadence="1"/>
       <Role schemeIdUri="urn:mpeg:dash:role:2011" value="main"/>
       <!-- Segment Sequence Representations where partial segments with subnumber > 1 
       are not expected to have any kind of random access / bitstream switching
