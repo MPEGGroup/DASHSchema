@@ -16,8 +16,8 @@
       <Representation id="2160p" bandwidth="18667200" width="3840" height="2160"/>
     </AdaptationSet>
     <AdaptationSet id="1" contentType="video" mimeType="video/mp4" segmentAlignment="true" startWithSAP="1">
-      <EssentialProperty schemeIdUri="urn:mpeg:dash:ssr:2023" value="video_primary"/>
-      <SupplementalProperty schemeIdUri="urn:mpeg:dash:adaptation-set-switching:2016" value="video_primary"/>
+      <EssentialProperty schemeIdUri="urn:mpeg:dash:ssr:2023" value="0"/>
+      <SupplementalProperty schemeIdUri="urn:mpeg:dash:adaptation-set-switching:2016" value="0"/>
       <SegmentTemplate initialization="$RepresentationID$/init.mp4" media="$RepresentationID$/segment_$Time$_part_$SubNumber$.mp4" timescale="90000" presentationTimeOffset="135158">
         <SegmentTimeline>
           <S t="546975158" d="172800" r="144" k="16"/>
