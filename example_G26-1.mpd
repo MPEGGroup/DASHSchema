@@ -18,13 +18,16 @@
     <AdaptationSet id="1" contentType="video" mimeType="video/mp4" segmentAlignment="true" startWithSAP="1">
       <EssentialProperty schemeIdUri="urn:mpeg:dash:ssr:2023" value="0"/>
       <SupplementalProperty schemeIdUri="urn:mpeg:dash:adaptation-set-switching:2016" value="0"/>
+
+      <!-- Each partial segment starts with IDR and can be used to start playback  -->
+      <SegmentSequenceProperties sapType="1" cadence="1"/>
+      
       <SegmentTemplate initialization="$RepresentationID$/init.mp4" media="$RepresentationID$/segment_$Time$_part_$SubNumber$.mp4" timescale="90000" presentationTimeOffset="135158">
         <SegmentTimeline>
           <S t="546975158" d="172800" r="144" k="16"/>
         </SegmentTimeline>
       </SegmentTemplate>
-      <!-- Fine Granularity Access representations with 6-frame partial segments.
-         Each segment starts with IDR and can be used to start playback  -->
+      <!-- Fine Granularity Access representations with 6-frame partial segments.  -->
       <Representation id="join_6_540p" bandwidth="600000" codecs="hvc1.2.4.L93.B0" width="960" height="540" frameRate="50"/>
       <Representation id="join_6_1080p" bandwidth="1200000" codecs="hvc1.2.4.L93.B0" width="1920" height="1080" frameRate="50"/>
     </AdaptationSet>
