@@ -26,11 +26,6 @@
 PRESELECTION-DESCRIPTOR-VALUE = TAG-VALUE "," ID-LIST
 
 ID-LIST       = ID-VALUE *( WHITESPACE ID-VALUE )
-                ; NOTE: The spec text shows [ WHITESPACE ID-VALUE ]
-                ; (i.e. exactly 1 or 2 IDs), but the prose describes
-                ; "a white space separated list" which implies any number.
-                ; Written here as *() for practical use; the spec text
-                ; may need a correction.
 
 TAG-VALUE     = STRING
 
@@ -85,8 +80,8 @@ ROLE-VALUE  = "caption" / "subtitle" / "main" / "alternate"
             / "supplementary"
 ROLE-VALUE  =/ "commentary" / "dub" / "description" / "sign"
             / "metadata"
-ROLE-VALUE  =/ "enhanced audio intelligibility" / "emergency"
-ROLE-VALUE  =/ "forced subtitle" / "easyreader" / "karaoke"
+ROLE-VALUE  =/ "enhanced-audio-intelligibility" / "emergency"
+ROLE-VALUE  =/ "forced-subtitle" / "easyreader" / "karaoke"
 
 
 ; =============================================================================
@@ -95,12 +90,7 @@ ROLE-VALUE  =/ "forced subtitle" / "easyreader" / "karaoke"
 ; =============================================================================
 
 STEROID-VALUE = VIEW-INDICATOR *( SP VIEW-INDICATOR )
-
-VIEW-INDICATOR = LEFT-VIEW-INDICATOR / RIGHT-VIEW-INDICATOR
-
-LEFT-VIEW-INDICATOR  = "l" DECIMAL-DIGITS
-
-RIGHT-VIEW-INDICATOR = "r" DECIMAL-DIGITS
+VIEW-INDICATOR = ("l"/"r") 1*DIGIT
 
 
 ; =============================================================================
@@ -125,7 +115,7 @@ HTTP-VALUE  = httpurl *( WS httpurl )
 ; --- urn:mpeg:dash:utc:direct:2014 ---
 
 DIRECT-VALUE = [ "-" ] 4DIGIT "-" 2DIGIT "-" 2DIGIT
-               "T" 2DIGIT ":" 2DIGIT ":" 2DIGIT
+               "T" 2DIGIT ":" 2DIGIT ":" 2DIGIT ["." 1*DIGIT] 
                [ "Z" / ( "+" / "-" ) 2DIGIT ":" 2DIGIT ]
 
 
