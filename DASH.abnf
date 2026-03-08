@@ -4,14 +4,6 @@
 ; Combined ABNF definitions for ISO/IEC 23009-1:2026 (DASH 6th Edition)
 ; Companion file to DASH-MPD.xsd for automated MPD value validation.
 ;
-; Naming conventions:
-;   - The spec text uses underscores in some rule names (e.g.
-;     DECIMAL_DIGITS, AUDIO-RECEIVER_MIX-VALUE).  RFC 5234 only allows
-;     hyphens in rule names, so all underscores have been normalized to
-;     hyphens in this file (DECIMAL-DIGITS, AUDIO-RECEIVER-MIX-VALUE).
-;   - The spec defines DECIMAL_DIGITS / DECIMAL-DIGITS redundantly in
-;     several places; they are unified here as a single shared rule.
-;
 ; External rules referenced but defined elsewhere:
 ;   host, port           - IETF RFC 3986 (as augmented by RFC 6874)
 ;   http-URI, https-URI  - IETF RFC 9110 Section 4.2
