@@ -185,6 +185,7 @@
     <xs:attribute name="start" type="xs:duration"/>
     <xs:attribute name="duration" type="xs:duration"/>
     <xs:attribute name="bitstreamSwitching" type="xs:boolean" default="false"/>
+    <xs:attribute name="minBufferTime" type="xs:duration"/>
     <xs:anyAttribute namespace="##other" processContents="lax"/>
   </xs:complexType>
   <xs:complexType name="ImportedMpdType">
