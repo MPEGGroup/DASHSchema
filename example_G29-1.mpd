@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?> 
 <MPD xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:mpeg:dash:schema:mpd:2011" profiles="urn:mpeg:dash:profile:advanced-linear:2025" xsi:schemaLocation="urn:mpeg:dash:schema:mpd:2011 DASH-MPD.xsd" type="dynamic" minimumUpdatePeriod="PT2S" timeShiftBufferDepth="PT30M" minBufferTime="PT4S" availabilityStartTime="2023-12-25T12:30:00" publishTime="2023-12-25T12:30:00">
   <BaseURL>http://cdn1.example.com/</BaseURL>
   <Period id="1">
