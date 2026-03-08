@@ -4,7 +4,7 @@
     <BaseURL>http://liveserver.com/live/live1/</BaseURL>
     <EventStream timescale="90000" schemeIdUri="urn:mpeg:dash:event:alternativeMPD:replace:2025">
       <Event presentationTime="0" duration="2838240000000000" id="42">
-        <ReplacePresentation url="http://cdn1.example.com/preroll.mpd" maxDuration="1350000" clip="false" executeOnce="true"/>
+        <ReplacePresentation uri="http://cdn1.example.com/preroll.mpd" maxDuration="1350000" clip="false" executeOnce="true"/>
       </Event>
     </EventStream>
     <AdaptationSet contentType="video" maxHeight="1920" maxWidth="1080" mimeType="video/mp4" par="16:9" segmentAlignment="true" startWithSAP="1">

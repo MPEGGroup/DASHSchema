@@ -1189,7 +1189,7 @@
       <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
       <xs:element name="SupplementalProperty" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
     </xs:sequence>
-    <xs:attribute name="url" type="xs:anyURI" use="required"/>
+    <xs:attribute name="uri" type="xs:anyURI" use="required"/>
     <xs:attribute name="earliestResolutionTimeOffset" type="xs:double" default="60.0"/>
     <xs:attribute name="maxDuration" type="xs:unsignedLong" default="2251799813685247"/>
     <xs:attribute name="executeOnce" type="xs:boolean" default="false"/>
@@ -1205,7 +1205,7 @@
       <xs:extension base="AlternativeMPDEventType">
         <xs:attribute name="returnOffset" type="xs:unsignedLong"/>
         <xs:attribute name="clip" type="xs:boolean" default="true"/>
-        <xs:attribute name="startAtOffset" type="xs:boolean" default="false"/>
+        <xs:attribute name="startWithOffset" type="xs:boolean" default="false"/>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>

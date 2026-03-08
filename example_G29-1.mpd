@@ -4,7 +4,7 @@
   <Period id="1">
     <EventStream timescale="90000" schemeIdUri="urn:mpeg:dash:event:alternativeMPD:replace:2025">
       <Event presentationTime="3780000" duration="1350000" id="42">
-        <ReplacePresentation url="http://cdn1.example.com/ad1.mpd?dur=15" earliestResolutionTimeOffset="378000" maxDuration="1350000" clip="true" executeOnce="true" noJump="2"/>
+        <ReplacePresentation uri="http://cdn1.example.com/ad1.mpd?dur=15" earliestResolutionTimeOffset="378000" maxDuration="1350000" clip="true" executeOnce="true" noJump="2"/>
       </Event>
       <RequestParam includeInRequests="altmpd" queryTemplate="prta=$urn:mpeg:dash:state:execution-delta#42$"/>
     </EventStream>
