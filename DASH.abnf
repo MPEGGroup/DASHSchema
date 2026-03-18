@@ -1,0 +1,215 @@
+; =============================================================================
+; DASH-MPD-values.abnf
+;
+; Combined ABNF definitions for ISO/IEC 23009-1:2026 (DASH 6th Edition)
+; Companion file to DASH-MPD.xsd for automated MPD value validation.
+;
+; External rules referenced but defined elsewhere:
+;   host, port           - IETF RFC 3986 (as augmented by RFC 6874)
+;   http-URI, https-URI  - IETF RFC 9110 Section 4.2
+; =============================================================================
+
+
+; =============================================================================
+; 5.3.11.2 - Preselection Descriptor
+; Scheme: urn:mpeg:dash:preselection:2016
+; =============================================================================
+
+PRESELECTION-DESCRIPTOR-VALUE = TAG-VALUE "," ID-LIST
+
+ID-LIST       = ID-VALUE *( WHITESPACE ID-VALUE )
+
+TAG-VALUE     = STRING
+
+ID-VALUE      = 1*DIGIT
+
+WHITESPACE    = 1*WSP
+
+
+; =============================================================================
+; 5.8.5.2 - MP4 Protection
+; Scheme: urn:mpeg:dash:mp4protection:2011
+; =============================================================================
+
+MP4-PROTECTION-VALUE = VERSIONED-4CC
+
+VERSIONED-4CC = CCCC [ CCCC-VERSION ]
+
+CCCC          = ALPHA ALPHA ALPHA ALPHA
+
+CCCC-VERSION  = ":" 1*8HEXDIG
+
+
+; =============================================================================
+; 5.8.5.3 - CA_descriptor
+; Scheme: urn:mpeg:dash:13818:1:CA_descriptor:2011
+; =============================================================================
+
+CA-DESCRIPTOR-VALUE = LHEX LHEX LHEX LHEX
+
+LHEX          = DIGIT / "a" / "b" / "c" / "d" / "e" / "f"
+
+
+; =============================================================================
+; 5.8.5.4 - Frame Packing
+; Scheme: urn:mpeg:dash:14496:10:frame_packing_arrangement_type:2011
+;         urn:mpeg:dash:13818:1:stereo_video_format_type:2011
+; =============================================================================
+
+FRAME-PACKING-ARRANGEMENT-TYPE-VALUE = VIDEO-FRAME-PACKING-TYPE
+
+STEREO-VIDEO-FORMAT-TYPE = VIDEO-FRAME-PACKING-TYPE
+
+VIDEO-FRAME-PACKING-TYPE = 1*2DIGIT
+
+
+; =============================================================================
+; 5.8.5.6 - DASH Role Scheme
+; Scheme: urn:mpeg:dash:role:2011
+; =============================================================================
+
+ROLE-VALUE  = "caption" / "subtitle" / "main" / "alternate"
+            / "supplementary"
+ROLE-VALUE  =/ "commentary" / "dub" / "description" / "sign"
+            / "metadata"
+ROLE-VALUE  =/ "enhanced-audio-intelligibility" / "emergency"
+ROLE-VALUE  =/ "forced-subtitle" / "easyreader" / "karaoke"
+
+
+; =============================================================================
+; 5.8.5.7 - DASH Multiple Views Scheme (Stereo ID)
+; Scheme: urn:mpeg:dash:stereoid:2011
+; =============================================================================
+
+STEROID-VALUE = VIEW-INDICATOR *( SP VIEW-INDICATOR )
+VIEW-INDICATOR = ("l"/"r") 1*DIGIT
+
+
+; =============================================================================
+; 5.8.5.8 - DASH UTC Timing Schemes
+; =============================================================================
+
+; --- urn:mpeg:dash:utc:ntp:2014 / urn:mpeg:dash:utc:sntp:2014 ---
+
+NTP-VALUE   = TIME-SERVER *( WS TIME-SERVER )
+
+TIME-SERVER = host [ ":" port ]
+                ; host and port per IETF RFC 3986 / RFC 6874
+
+; --- urn:mpeg:dash:utc:http-head:2014
+;     urn:mpeg:dash:utc:http-xsdate:2014
+;     urn:mpeg:dash:utc:http-iso:2014
+;     urn:mpeg:dash:utc:http-ntp:2014 ---
+
+HTTP-VALUE  = httpurl *( WS httpurl )
+                ; httpurl = http-URI / https-URI per IETF RFC 9110
+
+; --- urn:mpeg:dash:utc:direct:2014 ---
+
+DIRECT-VALUE = [ "-" ] 4DIGIT "-" 2DIGIT "-" 2DIGIT
+               "T" 2DIGIT ":" 2DIGIT ":" 2DIGIT ["." 1*DIGIT] 
+               [ "Z" / ( "+" / "-" ) 2DIGIT ":" 2DIGIT ]
+
+
+; =============================================================================
+; 5.8.5.9 - Audio Receiver Mix
+; Scheme: urn:mpeg:dash:audio-receiver-mix:2014
+; =============================================================================
+
+AUDIO-RECEIVER-MIX-VALUE = ADAPTATION-SET-ID
+
+ADAPTATION-SET-ID = DECIMAL-DIGITS
+
+
+; =============================================================================
+; 5.8.5.10 - MPD Adaptation Set Linking
+; Scheme: urn:mpeg:dash:mpd-as-linking:2015
+; =============================================================================
+
+MPD-AS-LINKING-VALUE = MPD-URL [ WSP TIMELINE-OFFSET ]
+
+MPD-URL          = httpurl
+                     ; http-URI / https-URI per IETF RFC 9110
+
+TIMELINE-OFFSET  = "timeOffset=" [ "-" ] DECIMAL-DIGITS
+
+
+; =============================================================================
+; 5.8.5.11 - Sub-Asset Identifier
+; Scheme: urn:mpeg:dash:sai:2015
+; =============================================================================
+
+SAI-VALUE = *VCHAR
+
+
+; =============================================================================
+; 5.8.5.13 - Quality Ranking Equivalence
+; Scheme: urn:mpeg:dash:qr-equivalence:2018
+; =============================================================================
+
+QR-EQUIVALENCE-VALUE = AS-ID *( WSP AS-ID )
+
+AS-ID = DECIMAL-DIGITS
+
+
+; =============================================================================
+; 5.8.7 - Supplementary Video (VVC picture-in-picture)
+; SupVideoInfo@processingInfo value syntax
+; =============================================================================
+
+processingInfo       = dataUnitsReplaceable 1*( SP regionId )
+
+dataUnitsReplaceable = "0" / "1"
+
+regionId             = 1*DIGIT
+
+
+
+; =============================================================================
+; Annex H.2.3 - Static Spatial Relationship Description (SRD)
+; Scheme: urn:mpeg:dash:srd:2014
+; =============================================================================
+
+STATIC-SRD-VALUE = source-id "," object-x "," object-y ","
+                   object-width "," object-height
+                   [ "," total-width
+                     [ "," total-height
+                       [ "," spatial-set-id ] ] ]
+
+source-id       = DECIMAL-DIGITS
+spatial-set-id  = DECIMAL-DIGITS
+object-x        = DECIMAL-DIGITS
+object-y        = DECIMAL-DIGITS
+object-width    = DECIMAL-DIGITS
+object-height   = DECIMAL-DIGITS
+total-width     = DECIMAL-DIGITS
+total-height    = DECIMAL-DIGITS
+
+
+; =============================================================================
+; Annex H.2.4 - Dynamic Spatial Relationship Description (SRD)
+; Scheme: urn:mpeg:dash:srd:dynamic:2016
+; =============================================================================
+
+DYNAMIC-SRD-VALUE = source-id "," coordinate-id [ "," spatial-set-id ]
+
+coordinate-id   = STRING
+
+
+; =============================================================================
+; Shared terminal rules
+; =============================================================================
+
+DECIMAL-DIGITS = 1*DIGIT
+
+STRING         = *VCHAR
+
+; WS is used in the spec as an alias for whitespace between tokens
+WS             = 1*WSP
+
+; httpurl is a placeholder for http-URI / https-URI from RFC 9110
+; Parsers should accept both schemes.
+; httpurl = http-URI / https-URI    ; defined in IETF RFC 9110 sec. 4.2
+
+; HEXDIG is already defined in RFC 5234 core rules.
+; LHEX is the lowercase-only subset used by the CA_descriptor scheme.
