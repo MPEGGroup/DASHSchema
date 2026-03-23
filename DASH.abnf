@@ -17,13 +17,12 @@
 
 PRESELECTION-DESCRIPTOR-VALUE = TAG-VALUE "," ID-LIST
 
-ID-LIST       = ID-VALUE *( WHITESPACE ID-VALUE )
+ID-LIST       = ID-VALUE *( WS ID-VALUE )
 
 TAG-VALUE     = STRING
 
 ID-VALUE      = 1*DIGIT
 
-WHITESPACE    = 1*WSP
 
 
 ; =============================================================================
@@ -81,7 +80,7 @@ ROLE-VALUE  =/ "forced-subtitle" / "easyreader" / "karaoke"
 ; Scheme: urn:mpeg:dash:stereoid:2011
 ; =============================================================================
 
-STEROID-VALUE = VIEW-INDICATOR *( SP VIEW-INDICATOR )
+STEROID-VALUE = VIEW-INDICATOR *( WSP VIEW-INDICATOR )
 VIEW-INDICATOR = ("l"/"r") 1*DIGIT
 
 
@@ -129,7 +128,6 @@ ADAPTATION-SET-ID = DECIMAL-DIGITS
 MPD-AS-LINKING-VALUE = MPD-URL [ WSP TIMELINE-OFFSET ]
 
 MPD-URL          = httpurl
-                     ; http-URI / https-URI per IETF RFC 9110
 
 TIMELINE-OFFSET  = "timeOffset=" [ "-" ] DECIMAL-DIGITS
 
@@ -157,7 +155,7 @@ AS-ID = DECIMAL-DIGITS
 ; SupVideoInfo@processingInfo value syntax
 ; =============================================================================
 
-processingInfo       = dataUnitsReplaceable 1*( SP regionId )
+processingInfo       = dataUnitsReplaceable 1*( WSP regionId )
 
 dataUnitsReplaceable = "0" / "1"
 
@@ -195,7 +193,6 @@ DYNAMIC-SRD-VALUE = source-id "," coordinate-id [ "," spatial-set-id ]
 
 coordinate-id   = STRING
 
-
 ; =============================================================================
 ; Shared terminal rules
 ; =============================================================================
@@ -207,9 +204,6 @@ STRING         = *VCHAR
 ; WS is used in the spec as an alias for whitespace between tokens
 WS             = 1*WSP
 
-; httpurl is a placeholder for http-URI / https-URI from RFC 9110
-; Parsers should accept both schemes.
-; httpurl = http-URI / https-URI    ; defined in IETF RFC 9110 sec. 4.2
+httpurl = http-URI / https-URI
+; http-URI and https-URI are  defined in IETF RFC 9110 sec. 4.2
 
-; HEXDIG is already defined in RFC 5234 core rules.
-; LHEX is the lowercase-only subset used by the CA_descriptor scheme.
