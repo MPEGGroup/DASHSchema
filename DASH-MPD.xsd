@@ -107,7 +107,7 @@
       <xs:element name="SupplementalProperty" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
       <xs:element name="UTCTiming" type="DescriptorType" minOccurs="0" maxOccurs="unbounded"/>
       <xs:element name="LeapSecondInformation" type="LeapSecondInformationType" minOccurs="0"/>
-      <xs:element name="ContentSteering" type="ContentSteeringType" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="ContentSteering" type="ContentSteeringType" minOccurs="0"/>
       <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
     </xs:sequence>
     <xs:attribute name="id" type="xs:string"/>
