@@ -21,12 +21,24 @@ HbbTVManifestsFile="HbbTV-manifests.json"
 MPEGCMAFManifestsFile="MPEG-CMAF-manifests.json"
 DASHIFManifestsFile="DASH-IF-manifests.json"
 
+class PrefixResolver(etree.Resolver):
+    # https://lxml.de/resolvers.html
+    def __init__(self, prefix):
+        self.prefix = prefix.lower()
+
+    def resolve(self, url, pubid, context):
+        if url.lower().startswith(self.prefix):
+            res=requests.get(url, allow_redirects=True)
+            return self.resolve_string(res.text, context)
+
 class TestManifests(unittest.TestCase):
 	def setUp(self):
 		self.log = logging.getLogger('MDP_tests')
 		logging.basicConfig(stream=sys.stderr, level=logging.INFO)
 		self.log.info('Loading MPEG DASH schema')
 		self.xsdParser=etree.XMLParser(load_dtd=True, no_network=False, huge_tree=True, resolve_entities=True)
+		self.xsdParser.resolvers.add(PrefixResolver("https"))
+		self.xsdParser.resolvers.add(PrefixResolver("http"))
 		with open('../DASH-MPD.xsd', 'r') as schema_file:
 			self.mpd_schema = etree.XMLSchema(etree.parse(schema_file, self.xsdParser))
 #		is_python3 = sys.version_info.major == 3
@@ -40,7 +52,6 @@ class TestManifests(unittest.TestCase):
 			except Exception as err:
 				self.skipTest("failed to retrieve manifest")
 			else:
-#				self.assertEqual(mpdRequest.status_code, 200, "Request error; expected 200, got %d" % mpdRequest.status_code)
 				if mpdRequest.status_code == 200:	
 					mpdUrl = mpdRequest.text
 					strt=mpdUrl.find('<')
