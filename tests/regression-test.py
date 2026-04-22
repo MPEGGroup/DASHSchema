@@ -16,20 +16,12 @@ import re
 
 from lxml import etree
 
+from resolver import PrefixResolver
+
 DVBManifestsFile="DVB-manifests.json"
 HbbTVManifestsFile="HbbTV-manifests.json"
 MPEGCMAFManifestsFile="MPEG-CMAF-manifests.json"
 DASHIFManifestsFile="DASH-IF-manifests.json"
-
-class PrefixResolver(etree.Resolver):
-    # https://lxml.de/resolvers.html
-    def __init__(self, prefix):
-        self.prefix = prefix.lower()
-
-    def resolve(self, url, pubid, context):
-        if url.lower().startswith(self.prefix):
-            res=requests.get(url, allow_redirects=True)
-            return self.resolve_string(res.text, context)
 
 class TestManifests(unittest.TestCase):
 	def setUp(self):
@@ -43,6 +35,8 @@ class TestManifests(unittest.TestCase):
 			self.mpd_schema = etree.XMLSchema(etree.parse(schema_file, self.xsdParser))
 #		is_python3 = sys.version_info.major == 3
 		self.xmlParser=etree.XMLParser(load_dtd=True, no_network=False, huge_tree=True, resolve_entities=True)
+		self.xmlParser.resolvers.add(PrefixResolver("https"))
+		self.xmlParser.resolvers.add(PrefixResolver("http"))
 
 	def check_a_manifest(self, mpdURL, source):
 		with self.subTest(msg=mpdURL):		
