@@ -1,24 +1,23 @@
-name:  Regression test DASH IF MPDs
+name: Regression test DASH IF MPDs
 
 on: [workflow_dispatch]
 
 jobs:
-  build:
-
+  test:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python 3.13
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.13
-    - name: Install dependencies
-      run: |
-        cd tests/
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-    - name: Run tests
-      run: |
-        cd tests/
-        python -m unittest -v regression-test-DASHIF-db.py
+      - uses: actions/checkout@v6
+      - name: Set up Python 3.13
+        uses: actions/setup-python@v6
+        with:
+          python-version: 3.13
+      - name: Install dependencies
+        run: |
+          cd tests/
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Run tests
+        run: |
+          cd tests/
+          python -m unittest -v regression-test-DASHIF-db.py

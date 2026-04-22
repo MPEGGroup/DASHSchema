@@ -31,7 +31,7 @@ class TestDASH(unittest.TestCase):
         self.parser.resolvers.add(PrefixResolver("http"))
 
     def test_mpds(self):
-        """ Test all MPDs found in the repository."""
+        self.log.info("Test all MPDs found in the repository.")
         with open('../DASH-MPD.xsd', 'r') as schema_file:
             mpd_schema = etree.XMLSchema( etree.parse(schema_file, self.parser) )
         for mpd_path in glob.glob('../*.mpd'):
@@ -42,7 +42,7 @@ class TestDASH(unittest.TestCase):
 
 
     def test_mpps(self):
-        """ Test all MPPs found in the repository."""
+        self.log.info(" Test all MPPs found in the repository.")
         with open('../DASH-MPD-PATCH.xsd', 'r') as mpp_schema_file:
             mpp_schema = etree.XMLSchema( etree.parse(mpp_schema_file, self.parser) )		
         for mpp_path in glob.glob('../*.mpp'):

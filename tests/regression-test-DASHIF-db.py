@@ -18,26 +18,39 @@ from lxml import etree
 
 DASHIF_dataset_url = "https://raw.githubusercontent.com/Dash-Industry-Forum/Test-Assets-Dataset-Public/master/dataset/data/testvector.json"
 
+class PrefixResolver(etree.Resolver):
+    # https://lxml.de/resolvers.html
+    def __init__(self, prefix):
+        self.prefix = prefix.lower()
+
+    def resolve(self, url, pubid, context):
+        if url.lower().startswith(self.prefix):
+            res=requests.get(url, allow_redirects=True)
+            return self.resolve_string(res.text, context)
+
 class TestManifests(unittest.TestCase):
 	def setUp(self):
 		self.log = logging.getLogger('MDP_tests')
 		logging.basicConfig(stream=sys.stderr, level=logging.INFO)
 		self.log.info('Loading MPEG DASH schema')
 		self.xsdParser=etree.XMLParser(load_dtd=True, no_network=False, huge_tree=True, resolve_entities=True)
+		self.xsdParser.resolvers.add(PrefixResolver("https"))
+		self.xsdParser.resolvers.add(PrefixResolver("http"))
 		with open('../DASH-MPD.xsd', 'r') as schema_file:
 			self.mpd_schema = etree.XMLSchema(etree.parse(schema_file, self.xsdParser))
 #		is_python3 = sys.version_info.major == 3
 		self.xmlParser=etree.XMLParser(load_dtd=True, no_network=False, huge_tree=True, resolve_entities=True)
+		self.xmlParser.resolvers.add(PrefixResolver("https"))
+		self.xmlParser.resolvers.add(PrefixResolver("http"))
 
 	def check_a_manifest(self, mpdURL, source):
 		with self.subTest(msg=mpdURL):		
 			self.log.info('Validating {%s} %s', source, mpdURL)	
 			try:
-				mpdRequest=requests.get(mpdURL, allow_redirects=True)	
+				mpdRequest=requests.get(mpdURL, allow_redirects=True, timeout=2.50)	
 			except Exception as err:
-				self.fail(err)
+				self.skipTest("failed to retrieve manifest")
 			else:
-				self.assertEqual(mpdRequest.status_code, 200, "Request error; expected 200, got %d" % mpdRequest.status_code)
 				if mpdRequest.status_code == 200:
 					mpdUrl = mpdRequest.text
 					strt=mpdUrl.find('<')
@@ -46,6 +59,8 @@ class TestManifests(unittest.TestCase):
 					mpd=etree.fromstring((mpdUrl).encode('utf8'), self.xmlParser)
 					if not self.mpd_schema.validate(mpd):
 						self.fail(self.mpd_schema.error_log.filter_from_errors())
+				else:
+					self.skipTest("response not 200 OK")
 
 	def check_manifests(self, mpdList, source):
 		for mpdURL in mpdList:
