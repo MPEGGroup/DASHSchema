@@ -18,15 +18,7 @@ from lxml import etree
 
 DASHIF_dataset_url = "https://raw.githubusercontent.com/Dash-Industry-Forum/Test-Assets-Dataset-Public/master/dataset/data/testvector.json"
 
-class PrefixResolver(etree.Resolver):
-    # https://lxml.de/resolvers.html
-    def __init__(self, prefix):
-        self.prefix = prefix.lower()
-
-    def resolve(self, url, pubid, context):
-        if url.lower().startswith(self.prefix):
-            res=requests.get(url, allow_redirects=True)
-            return self.resolve_string(res.text, context)
+from resolver import PrefixResolver
 
 class TestManifests(unittest.TestCase):
 	def setUp(self):
