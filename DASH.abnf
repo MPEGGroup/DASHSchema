@@ -142,10 +142,10 @@ SAI-VALUE = *VCHAR
 
 ; =============================================================================
 ; 5.8.5.13 - Quality Ranking Equivalence
-; Scheme: urn:mpeg:dash:qr-equivalence:2018
+; Scheme: urn:mpeg:dash:qr-equivalence:201
 ; =============================================================================
 
-QR-EQUIVALENCE-VALUE = AS-ID *( WSP AS-ID )
+QR-EQUIVALENCE-VALUE = AS-ID *( “,” WS AS-ID )
 
 AS-ID = DECIMAL-DIGITS
 
