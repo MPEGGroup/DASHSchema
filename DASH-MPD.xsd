@@ -1162,7 +1162,7 @@
     <xs:attribute name="sapType" type="SAPType" default="0"/>
     <xs:attribute name="cadence" type="xs:unsignedInt" default="0"/>
     <xs:attribute name="event" type="xs:boolean" default="true"/>
-    <xs:attribute name="alignment" type="StringNoWhitespaceType"/>
+    <xs:attribute name="alignment" type="StringNoWhitespaceVectorType"/>
     <xs:anyAttribute namespace="##other" processContents="lax"/>
   </xs:complexType>
   <xs:complexType name="ClientDataReportingType">
