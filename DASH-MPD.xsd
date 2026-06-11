@@ -225,7 +225,7 @@
     <xs:sequence>
       <xs:choice minOccurs="0" maxOccurs="1">
         <xs:element name="SelectionInfo" type="SelectionInfoType" minOccurs="0" maxOccurs="1"/>
-        <xs:element name="ServiceDescription" type="ServiceDescriptionType" minOccurs="0" maxOccurs="1"/>
+        <xs:element name="ServiceDescription" type="ServiceDescriptionType" minOccurs="0" maxOccurs="unbounded"/>
         <xs:element name="InsertPresentation" type="AlternativeMPDEventType" minOccurs="0" maxOccurs="1"/>
         <xs:element name="ReplacePresentation" type="AlternativeMPDReplaceEventType" minOccurs="0" maxOccurs="1"/>
       </xs:choice>
@@ -236,7 +236,7 @@
     <xs:attribute name="presentationTime" type="xs:unsignedLong" default="0"/>
     <xs:attribute name="duration" type="xs:unsignedLong"/>
     <xs:attribute name="id" type="xs:unsignedLong"/>
-    <xs:attribute name="status" type="EventStatusType" default="none"/>
+    <xs:attribute name="status" type="EventStatusType" default="repeat"/>
     <xs:attribute name="contentEncoding" type="ContentEncodingType" use="prohibited"/>
     <xs:attribute name="messageData" type="xs:string" use="prohibited">
       <xs:annotation>
@@ -1160,7 +1160,7 @@
       <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
     </xs:sequence>
     <xs:attribute name="sapType" type="SAPType" default="0"/>
-    <xs:attribute name="cadence" type="xs:unsignedInt" default="0"/>
+    <xs:attribute name="cadence" type="xs:unsignedInt" default="1"/>
     <xs:attribute name="event" type="xs:boolean" default="true"/>
     <xs:attribute name="alignment" type="StringNoWhitespaceVectorType"/>
     <xs:anyAttribute namespace="##other" processContents="lax"/>
@@ -1193,6 +1193,7 @@
     </xs:sequence>
     <xs:attribute name="uri" type="xs:anyURI" use="required"/>
     <xs:attribute name="earliestResolutionTimeOffset" type="xs:double" default="60.0"/>
+    <xs:attribute name="serviceDescriptionId" type="xs:unsignedInt" use="optional"/>
     <xs:attribute name="maxDuration" type="xs:unsignedLong" default="2251799813685247"/>
     <xs:attribute name="executeOnce" type="xs:boolean" default="false"/>
     <xs:attribute name="noJump" type="xs:integer" default="0"/>
