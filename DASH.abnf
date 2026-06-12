@@ -80,7 +80,7 @@ ROLE-VALUE  =/ "forced-subtitle" / "easyreader" / "karaoke"
 ; Scheme: urn:mpeg:dash:stereoid:2011
 ; =============================================================================
 
-STEROID-VALUE = VIEW-INDICATOR *( WSP VIEW-INDICATOR )
+STEREOID-VALUE = VIEW-INDICATOR *( WSP VIEW-INDICATOR )
 VIEW-INDICATOR = ("l"/"r") 1*DIGIT
 
 
@@ -142,7 +142,7 @@ SAI-VALUE = *VCHAR
 
 ; =============================================================================
 ; 5.8.5.13 - Quality Ranking Equivalence
-; Scheme: urn:mpeg:dash:qr-equivalence:201
+; Scheme: urn:mpeg:dash:qr-equivalence:2019
 ; =============================================================================
 
 QR-EQUIVALENCE-VALUE = AS-ID *( “,” WS AS-ID )
