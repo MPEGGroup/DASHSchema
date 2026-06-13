@@ -63,7 +63,7 @@
 <!ENTITY fancy_list "&quot;&charset;&squote;&language;&squote;&id_list;&quot;">
 <!-- --><!-- --><!ENTITY comma_sep ",[&space;&tab;]*">
 ]>
-<!-- 6th Ed. 2nd Draft FDIS -->
+<!-- 6th Ed. final -->
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:up="urn:mpeg:dash:schema:urlparam:2016" xmlns="urn:mpeg:dash:schema:mpd:2011" targetNamespace="urn:mpeg:dash:schema:mpd:2011" elementFormDefault="qualified" attributeFormDefault="unqualified">
   <xs:import namespace="http://www.w3.org/1999/xlink" schemaLocation="xlink.xsd">
     <xs:annotation>
