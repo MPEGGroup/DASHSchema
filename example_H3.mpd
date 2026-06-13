@@ -16,7 +16,7 @@
     </AdaptationSet>
     <!-- Moving Region-of-Interest -->
     <AdaptationSet segmentAlignment="true" subsegmentAlignment="true" subsegmentStartsWithSAP="1">
-      <EssentialProperty schemeIdUri="urn:mpeg:dash:srd:2016" value="1, roi-coordinates"/>
+      <EssentialProperty schemeIdUri="urn:mpeg:dash:srd:dynamic:2016" value="1, roi-coordinates"/>
       <Representation id="zoomed" mimeType="video/mp4" codecs="avc1.42c01e" bandwidth="5000000" width="1920" height="1080">
         <BaseURL>zoomed_part.mp4</BaseURL>
       </Representation>
