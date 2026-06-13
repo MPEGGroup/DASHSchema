@@ -145,7 +145,7 @@ SAI-VALUE = *VCHAR
 ; Scheme: urn:mpeg:dash:qr-equivalence:2019
 ; =============================================================================
 
-QR-EQUIVALENCE-VALUE = AS-ID *( “,” WS AS-ID )
+QR-EQUIVALENCE-VALUE = AS-ID *( "," WS AS-ID )
 
 AS-ID = DECIMAL-DIGITS
 
