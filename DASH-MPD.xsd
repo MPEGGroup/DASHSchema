@@ -1116,7 +1116,7 @@
   <xs:complexType name="ContentSteeringType">
     <xs:simpleContent>
       <xs:extension base="xs:anyURI">
-        <xs:attribute name="defaultServiceLocation" type="StringNoWhitespaceType"/>
+        <xs:attribute name="defaultServiceLocation" type="StringNoWhitespaceVectorType"/>
         <xs:attribute name="queryBeforeStart" type="xs:boolean" default="false"/>
         <xs:attribute name="clientRequirement" type="xs:boolean" default="true"/>
       </xs:extension>
